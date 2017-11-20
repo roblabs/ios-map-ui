@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Mapbox-starter/../readme.md">
+   </FileRef>
+   <FileRef
+      location = "group:Mapbox-starter/Mapbox-starter.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Mapbox-UIBarButton/Mapbox-UIBarButton.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Mapbox-Search/Mapbox-Search.xcodeproj">
+   </FileRef>
+</Workspace>
