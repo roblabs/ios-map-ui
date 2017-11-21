@@ -1,5 +1,7 @@
 # Using Swift to create Maps while minimizing reliance on storyboards
 
+Explore the project at [github.com/roblabs/ios-map-ui](https://github.com/roblabs/ios-map-ui/)
+
 # Mapbox Starter
 
 A starter project for Mapbox maps in iOS
