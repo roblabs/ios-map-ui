@@ -8,8 +8,11 @@ A starter project for Mapbox maps in iOS
 
 ## Features
 * A starter Mapbox project built off the steps documented at [https://www.mapbox.com/install](https://www.mapbox.com/install)
-* Built using Carthage.  Install by running `carthage update`
-* Made with Xcode Version 9.1 (9B55), and Swift 4
+* Built using Carthage
+  * `brew install carthage`
+  * Install by running `carthage update`
+* ~~Made with Xcode Version 9.1 (9B55), and Swift 4~~
+* Updated for Xcode Version 10.3 (10G8) and Swift 5
 
 ### How to Use
 * Add a `MGLMapboxAccessToken` key to the `Info.plist`.
