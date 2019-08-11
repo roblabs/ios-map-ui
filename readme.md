@@ -114,3 +114,25 @@ A Mapbox map with `UISearchBar` added using Swift, with minimal use of the story
 ![](Mapbox-Search/main.storyboard.png)
 
 ---
+
+
+# MapKit Starter
+
+To make a MapKit view without a storyboard
+
+1. In `Info.plist`, delete the key `Main Storyboard file base name`
+1. Be sure to add the *Maps* Capability in Project > Capabilities
+1. In your `AppDelegate.swift`, ```
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    if let window = window {
+        window.backgroundColor = UIColor.white
+        window.rootViewController = ViewController()
+        window.makeKeyAndVisible()
+    }
+
+    return true
+}
+```

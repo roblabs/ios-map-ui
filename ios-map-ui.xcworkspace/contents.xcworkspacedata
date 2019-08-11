@@ -13,4 +13,7 @@
    <FileRef
       location = "group:Mapbox-Search/Mapbox-Search.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:MapKit-starter/MapKit-starter.xcodeproj">
+   </FileRef>
 </Workspace>
