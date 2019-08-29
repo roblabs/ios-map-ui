@@ -49,6 +49,7 @@ class MapModelController: UIViewController {
     private lazy var mapView: MGLMapView! = {
         let mapView = MGLMapView(frame: view.bounds, styleURL: Default.style.url)
         mapView.delegate = self
+        mapView.compassView.compassVisibility = .visible
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let center = model?.map.boundaries.center.clCoord ?? Default.center
         mapView.setCenter(center, zoomLevel: 9, animated: false)
@@ -91,6 +92,11 @@ class MapModelController: UIViewController {
         super.viewDidLoad()
         loadModel()
         loadSubViews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureCompass()
     }
     
     private func loadModel() {
@@ -147,6 +153,18 @@ class MapModelController: UIViewController {
         
         // add panel to parent controller
         fpc.addPanel(toParent: self, animated: true)
+    }
+    
+    // configure compassView position based on button containerView
+    private func configureCompass() {
+        let compass = mapView.compassView
+        
+        let compassH = compass.bounds.height
+        let offset = Default.padding // how far below containerView compass sits
+        let centerY = containerView.frame.maxY + offset + compassH / 2
+        let centerX = containerView.center.x
+        
+        compass.center = CGPoint(x: centerX, y: centerY)
     }
     
     // MARK: Action methods
