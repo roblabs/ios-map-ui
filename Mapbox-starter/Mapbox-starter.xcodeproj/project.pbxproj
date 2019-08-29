@@ -452,7 +452,7 @@
 				);
 				INFOPLIST_FILE = starter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "epi.rational.ios.map-ui.starter";
+				PRODUCT_BUNDLE_IDENTIFIER = "roblabs.com.ios-map-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +471,7 @@
 				);
 				INFOPLIST_FILE = starter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "epi.rational.ios.map-ui.starter";
+				PRODUCT_BUNDLE_IDENTIFIER = "roblabs.com.ios-map-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
