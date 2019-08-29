@@ -27,8 +27,8 @@ extension Place {
         guard
             let geo = fDict["geometry"] as? [String: AnyObject],
             let coords = geo["coordinates"] as? NSArray,
-            let lat = coords[0] as? Double,
-            let long = coords[1] as? Double,
+            let long = coords[0] as? Double,
+            let lat = coords[1] as? Double,
             
             let props = fDict["properties"] as? [String: AnyObject],
             let name = props["name"] as? String,

@@ -20,7 +20,7 @@ struct MapStyleCollection {
             urlString: "mapbox://styles/mapbox/light-v9"
         ),
         MapStyle(
-            title: "Satelite",
+            title: "Satellite",
             urlString: "mapbox://styles/mapbox/satellite-v9"
         ),
     ]
