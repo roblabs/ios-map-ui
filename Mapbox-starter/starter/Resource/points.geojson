@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.171685,
+          18.308643
+        ]
+      },
+      "properties": {
+        "name": "random point 278",
+        "description": "Campsite",
+        "category": "⛺️"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.650192,
+          40.109468
+        ]
+      },
+      "properties": {
+        "name": "Another random point 314",
+        "description": "desc1",
+        "category": "⛰"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.216262,
+          -60.99367
+        ]
+      },
+      "properties": {
+        "name": "Southern point 1001",
+        "description": "name3",
+        "category": "🏖"
+      }
+    }
+  ]
+}
