@@ -203,8 +203,14 @@ extension SearchPanelController: UISearchBarDelegate {
 extension SearchPanelController {
     
     private struct Size {
-        static let tblCellH: CGFloat = Default.padding * 5
-        static let headerH: CGFloat = 116
+        static let tblCellH: CGFloat = UIDevice.isiPad ? 96 : 64
+        
+        static let headerH: CGFloat = UIDevice.isiPad ?
+            // if iPad, have single row of equal height/width accomodating up to 8 categories
+            UIScreen.main.bounds.width / 8 :
+            // if iPhone, have items of equal height/width filling header, with 4 per row
+            UIScreen.main.bounds.width / 4
+        
         static let twoRowHeaderH: CGFloat = headerH * 2
     }
     
@@ -221,7 +227,9 @@ extension SearchPanelController {
     
     private var hViewHeight: CGFloat {
         let twoRows = categories.count > 4
-        let h = twoRows ? Size.twoRowHeaderH : Size.headerH
+        // iPad headerViews will only have 1 row of 8 categories
+        let h = twoRows && !UIDevice.isiPad ? Size.twoRowHeaderH : Size.headerH
+        
         switch currentPosition {
         case .full: return h
         case .half, .tip, .hidden: return 0
@@ -229,8 +237,9 @@ extension SearchPanelController {
     }
     
     private var collectionViewItemSize: CGSize {
-        let totalW = view.frame.size.width
-        let dim = totalW / 4
+        // have square items, with 4 to a row
+        // if 2 rows, header height will double & item size will stay the same
+        let dim = Size.headerH
         return CGSize(width: dim, height: dim)
     }
     

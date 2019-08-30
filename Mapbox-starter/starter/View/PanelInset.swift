@@ -6,9 +6,15 @@
 //  Copyright © 2019 ePi Rational, Inc. All rights reserved.
 //
 
+import UIKit
 
 struct PanelInset {
     static let full = Default.padding
-    static let half = Default.padding * 14
+    
+    static var half: CGFloat {
+        let screenHeight = UIScreen.main.bounds.height
+        return screenHeight / 2
+    }
+    
     static let tip = (Default.grabberInset * 2) + Default.searchBarHeight
 }
