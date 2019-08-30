@@ -1,2 +1,2 @@
-binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "5.2.0"
+binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "5.3.0"
 github "scenee/FloatingPanel" "v1.6.4"

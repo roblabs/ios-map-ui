@@ -23,8 +23,13 @@ class MapModelController: UIViewController {
     
     private var panelState: PanelState = .search {
         didSet {
+            let showingSettings = panelState == .settings
+            
             // hide top right buttons for settings panel
-            containerView.isHidden = panelState == .settings
+            containerView.isHidden = showingSettings
+            
+            // hide compass button for settings panel
+            mapView.compassView.compassVisibility = showingSettings ? .hidden : .adaptive
             
             // exchange floating panels for current panelState
             exchangeFPC()
@@ -53,6 +58,8 @@ class MapModelController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let center = model?.map.boundaries.center.clCoord ?? Default.center
         mapView.setCenter(center, zoomLevel: 9, animated: false)
+        mapView.showsUserLocation = true
+        mapView.isRotateEnabled = true
         view.addSubview(mapView)
         return mapView
     }()
@@ -241,6 +248,19 @@ extension MapModelController: MGLMapViewDelegate {
     // Allow callout view to appear when an annotation is tapped.
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
+    }
+    
+    // animate compass to show and hide based on map rotation
+    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        // detect if compass rotated,
+        // if compass at 0 degrees, hide
+        let compass = mapView.compassView
+        let radians = atan2(compass.transform.b, compass.transform.a)
+        let degrees = radians * CGFloat(180 / Double.pi)
+        
+        UIView.animate(withDuration: Default.animationDuration) {
+            compass.alpha = degrees == 0 ? 0 : 1
+        }
     }
 }
 
