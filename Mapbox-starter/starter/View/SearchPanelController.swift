@@ -28,8 +28,25 @@ class SearchPanelController: UIViewController {
     }
     
     private var filteredPlaces: Set<Place> {
-        guard let filter = categoryFilter else { return places }
-        return places.filter { $0.category == filter }
+        var result = places
+        
+        // filter for cateogries
+        if let filter = categoryFilter {
+            result = result.filter { $0.category == filter }
+        }
+        
+        // filter for search results
+        guard let searchText = searchBar.text, searchText != ""
+            else { return result }
+        
+        return result.filter({ place -> Bool in
+            let match = place.title.range(
+                of: searchText,
+                options: .caseInsensitive
+            )
+            
+            return match != nil
+        })
     }
     
     private var sortedPlaces: [Place] { return filteredPlaces.sorted() }
@@ -38,11 +55,11 @@ class SearchPanelController: UIViewController {
     
     weak var delegate: SearchPanelControllerDelegate?
     
-    var currentPosition: FloatingPanelPosition = .tip {
+    var currentPosition: FloatingPanelPosition? = .tip {
         didSet { changeHeaderIfNecessary() }
     }
     
-    private lazy var searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar! = {
         let bar = UISearchBar()
         bar.barStyle = .black
         bar.barTintColor = view.backgroundColor
@@ -51,7 +68,6 @@ class SearchPanelController: UIViewController {
         bar.delegate = self
         bar.searchBarStyle = .default
         bar.placeholder = "Search..."
-        bar.activateAnchors(for: searchBarSize)
         view.addSubview(bar)
         return bar
     }()
@@ -102,7 +118,7 @@ class SearchPanelController: UIViewController {
     
     private func animateHeader() {
         let hView = tableView.tableHeaderView!
-        let trgt = hViewHeight
+        let trgt = headerViewTargetHeight
         
         UIView.animate(withDuration: Duration.headerAnimate) {
             hView.frame.size.height = trgt
@@ -111,6 +127,10 @@ class SearchPanelController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("searchController deinit")
     }
 }
 
@@ -176,12 +196,21 @@ extension SearchPanelController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         categoryFilter = categories[indexPath.item]
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionViewItemSize
+    }
 }
 
 extension SearchPanelController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
         delegate?.didBeginSearching()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("textDidChange")
+        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -202,35 +231,31 @@ extension SearchPanelController: UISearchBarDelegate {
 
 extension SearchPanelController {
     
-    private struct Size {
-        static let tblCellH: CGFloat = UIDevice.isiPad ? 96 : 64
-        
-        static let headerH: CGFloat = UIDevice.isiPad ?
-            // if iPad, have single row of equal height/width accomodating up to 8 categories
-            UIScreen.main.bounds.width / 8 :
-            // if iPhone, have items of equal height/width filling header, with 4 per row
-            UIScreen.main.bounds.width / 4
-        
-        static let twoRowHeaderH: CGFloat = headerH * 2
-    }
-    
     private struct Duration {
         static let headerAnimate: TimeInterval = 0.2
         static let tableFade = headerAnimate
     }
     
-    private var searchBarSize: CGSize {
-        let w = view.frame.size.width - Default.padding
-        let h = Default.searchBarHeight
-        return CGSize(width: w, height: h)
+    private struct Size {
+        static let tblCellH: CGFloat = UIDevice.isiPad ? 96 : 64
     }
     
-    private var hViewHeight: CGFloat {
+    // height for visible tableHeaderView
+    private var headerViewHeight: CGFloat {
+        // if iPad, have single row of equal height/width accomodating up to 8 categories
+        // if iPhone, have items of equal height/width filling header, with 4 per row
+        let divisor: CGFloat = UIDevice.isiPad ? 1/8 : 1/4
+        let w = view.frame.size.width * divisor
+        return w
+    }
+    
+    private var headerViewTargetHeight: CGFloat {
         let twoRows = categories.count > 4
         // iPad headerViews will only have 1 row of 8 categories
-        let h = twoRows && !UIDevice.isiPad ? Size.twoRowHeaderH : Size.headerH
+        let h = twoRows && !UIDevice.isiPad ? headerViewHeight * 2 : headerViewHeight
+        guard currentPosition != nil else { return 0 }
         
-        switch currentPosition {
+        switch currentPosition! {
         case .full: return h
         case .half, .tip, .hidden: return 0
         }
@@ -239,7 +264,7 @@ extension SearchPanelController {
     private var collectionViewItemSize: CGSize {
         // have square items, with 4 to a row
         // if 2 rows, header height will double & item size will stay the same
-        let dim = Size.headerH
+        let dim = headerViewHeight
         return CGSize(width: dim, height: dim)
     }
     
@@ -248,18 +273,20 @@ extension SearchPanelController {
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.itemSize = collectionViewItemSize
         return layout
     }
     
     private var viewConstraints: [NSLayoutConstraint] {
         return [
+            searchBar.heightAnchor.constraint(equalToConstant: Default.searchBarHeight),
             searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: Default.grabberInset),
-            searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Default.padding),
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Default.padding),
+            
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: Default.grabberPadding),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ]
     }
 }
