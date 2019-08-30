@@ -11,25 +11,42 @@ import FloatingPanel
 
 class SettingsPanelLayout: FloatingPanelLayout {
     
+    var parentSize: CGSize
+    
+    private var halfInset: CGFloat { return parentSize.height / 2 }
+    
+    private var isLandscape: Bool {
+        return parentSize.height < parentSize.width
+    }
+    
+    init(parentSize: CGSize) {
+        self.parentSize = parentSize
+    }
+    
     public var initialPosition: FloatingPanelPosition {
-        return .full
+        return isLandscape ? .full : .half
     }
     
     public var supportedPositions: Set<FloatingPanelPosition> {
-        return [.hidden, .full]
+        return isLandscape ? [.hidden, .full] : [.hidden, .half]
     }
     
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-        if position == .full { return PanelInset.half }
-        return nil
+        switch position {
+        case .hidden: return nil
+        case .full: return PanelInset.full
+        case .half: return isLandscape ? PanelInset.full : halfInset
+        case .tip: return nil // not supported
+        }
     }
     
     public func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
         let pH = view.bounds.height
         let pW = view.bounds.width
-        
+
         let w = min(pH, pW)
         
+        // have settings panel layout fill entire phone on landscape
         return [
             surfaceView.widthAnchor.constraint(equalToConstant: w),
             surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)

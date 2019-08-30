@@ -23,6 +23,10 @@ class MapModelController: UIViewController {
     
     private var panelState: PanelState = .search {
         didSet {
+            // deallocate previous panel controllers
+            searchVC = nil
+            settingsVC = nil
+            
             let showingSettings = panelState == .settings
             
             // hide top right buttons for settings panel
@@ -36,20 +40,13 @@ class MapModelController: UIViewController {
         }
     }
     
+    private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
+    private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
+    
     private var fpc: FloatingPanelController!
     
-    private lazy var searchVC: SearchPanelController = {
-        let panelController = SearchPanelController(
-            places: model!.map.mappedPlaces)
-        panelController.delegate = self
-        return panelController
-    }()
-    
-    private lazy var settingsVC: SettingsPanelController = {
-        let panelController = SettingsPanelController()
-        panelController.delegate = self
-        return panelController
-    }()
+    private var searchVC: SearchPanelController!
+    private var settingsVC: SettingsPanelController!
     
     private lazy var mapView: MGLMapView! = {
         let mapView = MGLMapView(frame: view.bounds, styleURL: Default.style.url)
@@ -106,6 +103,15 @@ class MapModelController: UIViewController {
         configureCompass()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        // update layouts for new view.frame.size
+        searchLayout.parentSize = size
+        settingsLayout.parentSize = size
+        fpc.updateLayout()
+    }
+    
     private func loadModel() {
         // load data model
         do {
@@ -152,12 +158,16 @@ class MapModelController: UIViewController {
         // set floating panel based on state
         switch panelState {
         case .search:
+            searchVC = SearchPanelController(places: model!.map.mappedPlaces)
+            searchVC.delegate = self
             fpc.set(contentViewController: searchVC)
             fpc.track(scrollView: searchVC.tableView)
         case .settings:
+            settingsVC = SettingsPanelController()
+            settingsVC.delegate = self
             fpc.set(contentViewController: settingsVC)
         }
-        
+
         // add panel to parent controller
         fpc.addPanel(toParent: self, animated: true)
     }
@@ -209,9 +219,19 @@ class MapModelController: UIViewController {
     }
     
     private func exchangeFPC() {
-        // hide previous panel (removed after hidden)
+        // cancel scrollView tracking if there was one
+        fpc.track(scrollView: nil)
+        
+        // hide previous panel
         // afterwards, replace with new panel
-        fpc.hide(animated: true) { self.addFPC() }
+        fpc.hide(animated: true) { [weak self] in
+            
+            // remove panel/panelcontroler
+            self!.fpc.removePanelFromParent(animated: false)
+            
+            // add new panelcontroller
+            self!.addFPC()
+        }
     }
     
     // MARK: Errors
@@ -271,8 +291,8 @@ extension MapModelController: FloatingPanelControllerDelegate {
     
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         switch panelState {
-        case .search: return SearchPanelLayout()
-        case .settings: return SettingsPanelLayout()
+        case .search: return searchLayout
+        case .settings: return settingsLayout
         }
     }
     
@@ -310,7 +330,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
     }
     
     func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
-        guard panelState == .search else { return }
+        guard searchVC != nil else { return }
         
         // update currentPosition variable for searchVC
         searchVC.currentPosition = vc.position

@@ -11,6 +11,17 @@ import FloatingPanel
 
 class SearchPanelLayout: FloatingPanelLayout {
     
+    var parentSize: CGSize
+    
+    private var halfInset: CGFloat {
+        let h = parentSize.height
+        return h / 2
+    }
+    
+    init(parentSize: CGSize) {
+        self.parentSize = parentSize
+    }
+    
     public var initialPosition: FloatingPanelPosition {
         return .half
     }
@@ -21,9 +32,9 @@ class SearchPanelLayout: FloatingPanelLayout {
     
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
-        case .full: return PanelInset.full // 16 A top inset from safe area
-        case .half: return PanelInset.half // 224 A bottom inset from the safe area (old value: 216)
-        case .tip: return PanelInset.tip // 48 A bottom inset from the safe area (old value: 44)
+        case .full: return PanelInset.full // Single Padding from top
+        case .half: return halfInset // half way up the view's height
+        case .tip: return PanelInset.tip // offset from bottom to include grabber and searchBar
         case .hidden: return nil
         }
     }
