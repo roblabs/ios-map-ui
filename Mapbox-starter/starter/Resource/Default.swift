@@ -13,7 +13,7 @@ import CoreLocation
 struct Default {
     static let style = MapStyleCollection.allStyles.first!
     static let center = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    static let padding: CGFloat = 16
+    static let padding: CGFloat = 8
     static let cornerRadius: CGFloat = padding
     static let animationDuration: TimeInterval = 0.2
     static let searchBarHeight: CGFloat = 44
