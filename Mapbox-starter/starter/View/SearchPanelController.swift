@@ -113,7 +113,10 @@ class SearchPanelController: UIViewController {
     // MARK: Animation methods
     
     func changeHeaderIfNecessary() {
-        tableView.performBatchUpdates({ self.animateHeader() })
+        // wait until tableView is part of view hierarchy before reloading, otherwise UITableViewAlertForLayoutOutsideViewHierarchy warning
+        if tableView.window != nil {
+            tableView.performBatchUpdates({ self.animateHeader() })
+        }
     }
     
     private func animateHeader() {

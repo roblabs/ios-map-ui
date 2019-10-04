@@ -25,7 +25,6 @@
 		CF4EF29523172653006E6B65 /* MapStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27623172652006E6B65 /* MapStyleCollection.swift */; };
 		CF4EF29623172653006E6B65 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27723172652006E6B65 /* SerializationError.swift */; };
 		CF4EF29723172653006E6B65 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27823172652006E6B65 /* Extensions.swift */; };
-		CF4EF29823172653006E6B65 /* AppleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27923172652006E6B65 /* AppleColor.swift */; };
 		CF4EF29923172653006E6B65 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27A23172652006E6B65 /* LocationManager.swift */; };
 		CF4EF29A23172653006E6B65 /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27B23172652006E6B65 /* MapError.swift */; };
 		CF4EF29B23172653006E6B65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27D23172653006E6B65 /* Location.swift */; };
@@ -63,7 +62,6 @@
 		CF4EF27623172652006E6B65 /* MapStyleCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapStyleCollection.swift; sourceTree = "<group>"; };
 		CF4EF27723172652006E6B65 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
 		CF4EF27823172652006E6B65 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CF4EF27923172652006E6B65 /* AppleColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleColor.swift; sourceTree = "<group>"; };
 		CF4EF27A23172652006E6B65 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CF4EF27B23172652006E6B65 /* MapError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
 		CF4EF27D23172653006E6B65 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				CF4EF27623172652006E6B65 /* MapStyleCollection.swift */,
 				CF4EF27723172652006E6B65 /* SerializationError.swift */,
 				CF4EF27823172652006E6B65 /* Extensions.swift */,
-				CF4EF27923172652006E6B65 /* AppleColor.swift */,
 				CF4EF27A23172652006E6B65 /* LocationManager.swift */,
 				CF4EF27B23172652006E6B65 /* MapError.swift */,
 			);
@@ -297,7 +294,6 @@
 				CF4EF29E23172653006E6B65 /* MapStyle.swift in Sources */,
 				CF4EF29723172653006E6B65 /* Extensions.swift in Sources */,
 				CF4EF29F23172653006E6B65 /* Location+Service.swift in Sources */,
-				CF4EF29823172653006E6B65 /* AppleColor.swift in Sources */,
 				CF4EF28E23172653006E6B65 /* SettingsPanelController.swift in Sources */,
 				CF4EF29123172653006E6B65 /* PanelInset.swift in Sources */,
 				CF4EF29623172653006E6B65 /* SerializationError.swift in Sources */,
