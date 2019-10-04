@@ -8,10 +8,17 @@
 
 import UIKit
 import MapKit
+import os.signpost
 
 class ViewController: UIViewController {
+    
+    var oslog = OSLog(subsystem: "roblabs.com.ios-map-ui", category: "ViewController")
 
     override func viewDidLoad() {
+        if #available(iOS 12.0, *) {
+            os_signpost(.event, log: oslog, name: "viewDidLoad")
+            os_signpost(.begin, log: oslog, name: "viewDidLoad")
+        }
         super.viewDidLoad()
         
         let mapView = MKMapView()
@@ -25,6 +32,9 @@ class ViewController: UIViewController {
         mapView.center = view.center
         
         view.addSubview(mapView)
+        if #available(iOS 12.0, *) {
+            os_signpost(.end, log: oslog, name: "viewDidLoad")
+        }
     }
 
 
