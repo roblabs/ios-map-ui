@@ -28,9 +28,9 @@ extension PlaceCategory {
     
     var color: UIColor {
         switch self {
-        case .wild: return AppleColor.green
-        case .camp: return AppleColor.orange
-        case .misc: return AppleColor.yellow
+        case .wild: return .systemGreen
+        case .camp: return .systemOrange
+        case .misc: return .systemYellow
         }
     }
     
