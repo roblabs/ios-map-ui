@@ -31,6 +31,9 @@
       <Group
          location = "container:"
          name = "SwiftUI">
+         <FileRef
+            location = "group:MapKit-SwiftUI-for-tvOS/MapKit-SwiftUI-for-tvOS.xcodeproj">
+         </FileRef>
       </Group>
       <Group
          location = "container:"
