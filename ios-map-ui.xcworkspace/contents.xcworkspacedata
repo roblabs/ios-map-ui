@@ -4,16 +4,40 @@
    <FileRef
       location = "group:Mapbox-starter/../readme.md">
    </FileRef>
-   <FileRef
-      location = "group:Mapbox-starter/Mapbox-starter.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Mapbox-UIBarButton/Mapbox-UIBarButton.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Mapbox-Search/Mapbox-Search.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:MapKit-starter/MapKit-starter.xcodeproj">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Mapbox">
+      <Group
+         location = "container:"
+         name = "SwiftUI">
+      </Group>
+      <Group
+         location = "container:"
+         name = "Without-Storyboards">
+         <FileRef
+            location = "group:Mapbox-starter/Mapbox-starter.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:Mapbox-UIBarButton/Mapbox-UIBarButton.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:Mapbox-Search/Mapbox-Search.xcodeproj">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
+      location = "container:"
+      name = "MapKit">
+      <Group
+         location = "container:"
+         name = "SwiftUI">
+      </Group>
+      <Group
+         location = "container:"
+         name = "Without-Storyboards">
+         <FileRef
+            location = "group:MapKit-starter/MapKit-starter.xcodeproj">
+         </FileRef>
+      </Group>
+   </Group>
 </Workspace>
