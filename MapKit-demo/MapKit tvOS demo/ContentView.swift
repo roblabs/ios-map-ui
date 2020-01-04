@@ -7,30 +7,42 @@
 //
 
 import SwiftUI
+import MapKit
+
+struct TabItem: Identifiable {
+    var id = UUID()
+    var image: Image
+    var tag: Int
+    var title: String
+    var type: MKMapType = .standard
+}
 
 struct ContentView: View {
     @State private var selection = 0
+    
+    let tabData = [
+        TabItem(image: Image("first"), tag: 0, title: String("standard"), type: .standard),
+        TabItem(image: Image("first"), tag: 1, title: String("satellite"), type: .satellite),
+        TabItem(image: Image("first"), tag: 2, title: String("hybrid"), type: .hybrid),
+        TabItem(image: Image("first"), tag: 3, title: String("satelliteFlyover"), type: .satelliteFlyover),
+        TabItem(image: Image("first"), tag: 4, title: String("hybridFlyover"), type: .hybridFlyover),
+        TabItem(image: Image("first"), tag: 5, title: String("mutedStandard"), type: .mutedStandard)
+    ]
  
     var body: some View {
-        TabView(selection: $selection){
-                MapView(mapType: .hybridFlyover)
+        return TabView(selection: $selection){
+            
+            ForEach(tabData) { tabItem in
+                MapView(mapType: tabItem.type)
                     .font(.title)
                     .tabItem {
                         HStack {
                             Image("first")
-                            Text("First")
+                            Text(tabItem.title)
                         }
                     }
-                    .tag(0)
-            MapView(mapType: .standard)
-                .font(.title)
-                .tabItem {
-                    HStack {
-                        Image("second")
-                        Text("Second")
-                    }
-                }
-                .tag(1)
+                    .tag(tabItem.tag)
+            }
         }
     }
 }
