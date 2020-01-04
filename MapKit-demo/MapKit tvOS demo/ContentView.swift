@@ -13,16 +13,16 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
-                .tabItem {
-                    HStack {
-                        Image("first")
-                        Text("First")
+                MapView(mapType: .hybridFlyover)
+                    .font(.title)
+                    .tabItem {
+                        HStack {
+                            Image("first")
+                            Text("First")
+                        }
                     }
-                }
-                .tag(0)
-            Text("Second View")
+                    .tag(0)
+            MapView(mapType: .standard)
                 .font(.title)
                 .tabItem {
                     HStack {
@@ -37,6 +37,20 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        
+        let deviceNames: [String] = [
+            "Apple TV",
+            "Apple TV 4K"
+        ]
+        
+        let group = Group {
+            ForEach(deviceNames, id: \.self) { deviceName in
+            ContentView()
+                    .previewDevice(PreviewDevice(rawValue: deviceName))
+                    .previewDisplayName("\(deviceName)")
+            }
+        }
+        
+        return group
     }
 }
