@@ -13,6 +13,11 @@
 		D7BB2FAF23C0F8AA00D94807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FAE23C0F8AA00D94807 /* Assets.xcassets */; };
 		D7BB2FB223C0F8AA00D94807 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FB123C0F8AA00D94807 /* Preview Assets.xcassets */; };
 		D7BB2FB523C0F8AA00D94807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FB323C0F8AA00D94807 /* LaunchScreen.storyboard */; };
+		D7BB2FC423C0FAF800D94807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2FC323C0FAF800D94807 /* AppDelegate.swift */; };
+		D7BB2FC623C0FAF800D94807 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2FC523C0FAF800D94807 /* ContentView.swift */; };
+		D7BB2FC823C0FAFB00D94807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FC723C0FAFB00D94807 /* Assets.xcassets */; };
+		D7BB2FCB23C0FAFB00D94807 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FCA23C0FAFB00D94807 /* Preview Assets.xcassets */; };
+		D7BB2FCE23C0FAFB00D94807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BB2FCC23C0FAFB00D94807 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,10 +30,24 @@
 		D7BB2FB423C0F8AA00D94807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7BB2FB623C0F8AA00D94807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7BB2FBC23C0FA6800D94807 /* MapKit-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MapKit-demo.entitlements"; sourceTree = "<group>"; };
+		D7BB2FC123C0FAF800D94807 /* MapKit tvOS demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MapKit tvOS demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7BB2FC323C0FAF800D94807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D7BB2FC523C0FAF800D94807 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D7BB2FC723C0FAFB00D94807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D7BB2FCA23C0FAFB00D94807 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D7BB2FCD23C0FAFB00D94807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D7BB2FCF23C0FAFB00D94807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D7BB2FA223C0F8A900D94807 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7BB2FBE23C0FAF800D94807 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				D7BB2FA723C0F8A900D94807 /* MapKit-demo */,
+				D7BB2FC223C0FAF800D94807 /* MapKit tvOS demo */,
 				D7BB2FA623C0F8A900D94807 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				D7BB2FA523C0F8A900D94807 /* MapKit-demo.app */,
+				D7BB2FC123C0FAF800D94807 /* MapKit tvOS demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +98,27 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D7BB2FC223C0FAF800D94807 /* MapKit tvOS demo */ = {
+			isa = PBXGroup;
+			children = (
+				D7BB2FC323C0FAF800D94807 /* AppDelegate.swift */,
+				D7BB2FC523C0FAF800D94807 /* ContentView.swift */,
+				D7BB2FC723C0FAFB00D94807 /* Assets.xcassets */,
+				D7BB2FCC23C0FAFB00D94807 /* LaunchScreen.storyboard */,
+				D7BB2FCF23C0FAFB00D94807 /* Info.plist */,
+				D7BB2FC923C0FAFB00D94807 /* Preview Content */,
+			);
+			path = "MapKit tvOS demo";
+			sourceTree = "<group>";
+		};
+		D7BB2FC923C0FAFB00D94807 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D7BB2FCA23C0FAFB00D94807 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -97,6 +139,23 @@
 			productReference = D7BB2FA523C0F8A900D94807 /* MapKit-demo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D7BB2FC023C0FAF800D94807 /* MapKit tvOS demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7BB2FD023C0FAFB00D94807 /* Build configuration list for PBXNativeTarget "MapKit tvOS demo" */;
+			buildPhases = (
+				D7BB2FBD23C0FAF800D94807 /* Sources */,
+				D7BB2FBE23C0FAF800D94807 /* Frameworks */,
+				D7BB2FBF23C0FAF800D94807 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MapKit tvOS demo";
+			productName = "MapKit tvOS demo";
+			productReference = D7BB2FC123C0FAF800D94807 /* MapKit tvOS demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -108,6 +167,9 @@
 				ORGANIZATIONNAME = "Rob Labs";
 				TargetAttributes = {
 					D7BB2FA423C0F8A900D94807 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					D7BB2FC023C0FAF800D94807 = {
 						CreatedOnToolsVersion = 11.3;
 					};
 				};
@@ -126,6 +188,7 @@
 			projectRoot = "";
 			targets = (
 				D7BB2FA423C0F8A900D94807 /* MapKit-demo */,
+				D7BB2FC023C0FAF800D94807 /* MapKit tvOS demo */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +201,16 @@
 				D7BB2FB523C0F8AA00D94807 /* LaunchScreen.storyboard in Resources */,
 				D7BB2FB223C0F8AA00D94807 /* Preview Assets.xcassets in Resources */,
 				D7BB2FAF23C0F8AA00D94807 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7BB2FBF23C0FAF800D94807 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7BB2FCE23C0FAFB00D94807 /* LaunchScreen.storyboard in Resources */,
+				D7BB2FCB23C0FAFB00D94807 /* Preview Assets.xcassets in Resources */,
+				D7BB2FC823C0FAFB00D94807 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +227,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7BB2FBD23C0FAF800D94807 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7BB2FC623C0FAF800D94807 /* ContentView.swift in Sources */,
+				D7BB2FC423C0FAF800D94807 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -161,6 +243,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7BB2FB423C0F8AA00D94807 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D7BB2FCC23C0FAFB00D94807 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7BB2FCD23C0FAFB00D94807 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -328,6 +418,50 @@
 			};
 			name = Release;
 		};
+		D7BB2FD123C0FAFB00D94807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MapKit tvOS demo/Preview Content\"";
+				DEVELOPMENT_TEAM = J7V35W7ES8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "MapKit tvOS demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.MapKit-tvOS-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Debug;
+		};
+		D7BB2FD223C0FAFB00D94807 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MapKit tvOS demo/Preview Content\"";
+				DEVELOPMENT_TEAM = J7V35W7ES8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "MapKit tvOS demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.MapKit-tvOS-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -345,6 +479,15 @@
 			buildConfigurations = (
 				D7BB2FBA23C0F8AA00D94807 /* Debug */,
 				D7BB2FBB23C0F8AA00D94807 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7BB2FD023C0FAFB00D94807 /* Build configuration list for PBXNativeTarget "MapKit tvOS demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7BB2FD123C0FAFB00D94807 /* Debug */,
+				D7BB2FD223C0FAFB00D94807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
