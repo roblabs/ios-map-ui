@@ -17,14 +17,15 @@ struct MapView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
         let mapView = MKMapView()
         mapView.mapType = mapType
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        mapView.setRegion(region, animated: true)
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: UIViewRepresentableContext<MapView>) {
-
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+        
     }
 }
 
