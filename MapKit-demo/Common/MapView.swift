@@ -30,6 +30,21 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
+
+        let deviceNames: [String] = [
+            "iPhone SE",
+            "iPhone 11 Pro Max",
+            "iPad Pro (11-inch)"
+        ]
+        
+        let group = Group {
+            ForEach(deviceNames, id: \.self) { deviceName in
             MapView(mapType: .standard)
+                    .previewDevice(PreviewDevice(rawValue: deviceName))
+                    .previewDisplayName("\(deviceName)")
+            }
+        }
+        
+        return group
     }
 }
