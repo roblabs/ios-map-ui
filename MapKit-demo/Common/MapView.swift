@@ -16,16 +16,48 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
         let mapView = MKMapView()
+        
+        // Accessing Map Properties
         mapView.mapType = mapType
         
+        // Manipulating the Visible Portion of the Map
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        
+        // Configuring the Map’s Appearance
+        mapView.showsBuildings = true
+        
+        #if os(iOS)
+            mapView.isPitchEnabled = true
+            mapView.isRotateEnabled = true
+            mapView.showsCompass = true
+        #elseif os(macOS)
+            mapView.isPitchEnabled = false
+            mapView.isRotateEnabled = false
+            mapView.showsCompass = true
+            mapView.showsZoomControls = true
+        #elseif os(tvOS)
+        #endif
+        
+        // Displaying the User’s Location
+        mapView.showsUserLocation = true
+        mapView.showsScale = true
+        
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: UIViewRepresentableContext<MapView>) {
         
+        let locationVisible = mapView.isUserLocationVisible
+        
+    }
+}
+
+struct BaseMapView: View {
+    var mapType : MKMapType = .standard
+    var body: some View {
+        return MapView(mapType: mapType)
     }
 }
 

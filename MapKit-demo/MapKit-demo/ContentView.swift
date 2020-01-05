@@ -60,7 +60,7 @@ struct DetailView: View {
 
     var body: some View {
         Group {
-            MapView(mapType: .standard)
+            BaseMapView(mapType: .standard)
             if selectedDate != nil {
                 Text("\(selectedDate!, formatter: dateFormatter)")
             } else {
