@@ -65,9 +65,8 @@ struct MapView_Previews: PreviewProvider {
     static var previews: some View {
 
         let deviceNames: [String] = [
-            "iPhone SE",
-            "iPhone 11 Pro Max",
-            "iPad Pro (11-inch)"
+            "iPhone 11 Pro",
+            "Apple TV"
         ]
         
         let group = Group {
