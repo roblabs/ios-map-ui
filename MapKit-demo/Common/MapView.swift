@@ -11,8 +11,19 @@ import MapKit
 
 struct MapView: UIViewRepresentable {
     
-    var mapType: MKMapType
-    var coordinate = CLLocationCoordinate2D(latitude: 33.0, longitude: -117)
+    @Binding var mapType: MKMapType
+    @Binding var centerCoordinate: CLLocationCoordinate2D
+    @Binding var centerSpan: MKCoordinateSpan
+    
+    /// To make sure users do not accidentally pan away from the event and get lost, apply a camera boundary.
+    /// This ensures that the center point of the map always remain inside this region.
+    ///   A boundary of an area within which the map's center must remain.
+    @Binding var cameraBoundary: MKCoordinateRegion
+    
+    /// Apply a camera zoom range to restrict how far in and out users can zoom in the map view.
+    ///   A range that determines the minimum and maximum distance of the camera to the center of the map.
+    @Binding var cameraZoomRange: MKMapView.CameraZoomRange
+
     
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
         let mapView = MKMapView()
@@ -21,9 +32,14 @@ struct MapView: UIViewRepresentable {
         mapView.mapType = mapType
         
         // Manipulating the Visible Portion of the Map
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
+        let region = MKCoordinateRegion(center: centerCoordinate, span: centerSpan)
         mapView.setRegion(region, animated: true)
+        
+        // Constraining the Map View
+        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: cameraBoundary)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(
+            minCenterCoordinateDistance: cameraZoomRange.minCenterCoordinateDistance,
+            maxCenterCoordinateDistance: cameraZoomRange.maxCenterCoordinateDistance)
         
         // Configuring the Map’s Appearance
         mapView.showsBuildings = true
@@ -54,24 +70,46 @@ struct MapView: UIViewRepresentable {
     }
 }
 
-struct BaseMapView: View {
-    var mapType : MKMapType = .standard
-    var body: some View {
-        return MapView(mapType: mapType)
-    }
-}
 
 struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
+    
+    // MARK: - MapView() Preview Values
+    static let center: CLLocationCoordinate2D = CLLocationCoordinate2D(
+        latitude: 32.716176,
+        longitude: -117.16952)
+    static let span: CLLocationDegrees = 10.0
+    static let boundaryRange: MKCoordinateRegion = MKCoordinateRegion(
+        center: center,
+        latitudinalMeters: 1 * 1000,
+        longitudinalMeters: 1 * 1000)
+    static let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(
+        minCenterCoordinateDistance: 0.5 * 1000,
+        maxCenterCoordinateDistance: 5.0 * 1000)!
 
-        let deviceNames: [String] = [
-            "iPhone 11 Pro",
-            "Apple TV"
-        ]
+    // Manipulating the Visible Portion of the Map
+    @State static var mapType = MKMapType.hybrid
+    @State static var centerCoordinate = center
+    @State static var centerSpan = MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
+        
+    // Camera - Constraining the Map View
+    @State static var cameraBoundary = boundaryRange
+    @State static var cameraZoomRange = zoomRange
+    
+
+    static let deviceNames: [String] = [
+        "iPhone 11 Pro"
+        , "Apple TV"
+    ]
+
+    static var previews: some View {
         
         let group = Group {
             ForEach(deviceNames, id: \.self) { deviceName in
-            MapView(mapType: .standard)
+                MapView(mapType: $mapType,
+                        centerCoordinate: $centerCoordinate,
+                        centerSpan: $centerSpan,
+                        cameraBoundary: $cameraBoundary,
+                        cameraZoomRange: $cameraZoomRange)
                     .previewDevice(PreviewDevice(rawValue: deviceName))
                     .previewDisplayName("\(deviceName)")
             }
