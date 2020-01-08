@@ -59,25 +59,26 @@ struct MasterView: View {
 struct DetailView: View {
     var selectedDate: Date?
     
+    // MARK: - DetailView() View initial Values
     static let center: CLLocationCoordinate2D = CLLocationCoordinate2D(
         latitude: 32.716176,
         longitude: -117.16952)
     static let span: CLLocationDegrees = 10.0
     static let boundaryRange: MKCoordinateRegion = MKCoordinateRegion(
         center: center,
-        latitudinalMeters: 1 * 1000,
-        longitudinalMeters: 1 * 1000)
+        latitudinalMeters: 1000 * 1000,
+        longitudinalMeters: 1000 * 1000)
     static let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(
         minCenterCoordinateDistance: 0.5 * 1000,
-        maxCenterCoordinateDistance: 5.0 * 1000)!
+        maxCenterCoordinateDistance: 500.0 * 1000)!
     static let camera = MKMapCamera(
         lookingAtCenter: center,
-        fromDistance: 1.0 * 1000,
+        fromDistance: 5.0 * 1000,
         pitch: 45.0,
-        heading: 11.0)
+        heading: -90)
 
     // Manipulating the Visible Portion of the Map
-    @State static var mapType = MKMapType.hybrid
+    @State static var mapType = MKMapType.standard
     @State static var centerCoordinate = center
     @State static var centerSpan = MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
         
