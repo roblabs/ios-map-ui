@@ -24,6 +24,8 @@ struct MapView: UIViewRepresentable {
     ///   A range that determines the minimum and maximum distance of the camera to the center of the map.
     @Binding var cameraZoomRange: MKMapView.CameraZoomRange
 
+    /// A virtual camera for defining the appearance of the map.
+    @Binding var mapCamera: MKMapCamera
     
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
         let mapView = MKMapView()
@@ -40,6 +42,7 @@ struct MapView: UIViewRepresentable {
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(
             minCenterCoordinateDistance: cameraZoomRange.minCenterCoordinateDistance,
             maxCenterCoordinateDistance: cameraZoomRange.maxCenterCoordinateDistance)
+        mapView.camera = mapCamera
         
         // Configuring the Map’s Appearance
         mapView.showsBuildings = true
@@ -85,6 +88,11 @@ struct MapView_Previews: PreviewProvider {
     static let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(
         minCenterCoordinateDistance: 0.5 * 1000,
         maxCenterCoordinateDistance: 5.0 * 1000)!
+    static let camera = MKMapCamera(
+        lookingAtCenter: center,
+        fromDistance: 10.0 * 1000,
+        pitch: 45.0,
+        heading: -90)
 
     // Manipulating the Visible Portion of the Map
     @State static var mapType = MKMapType.hybrid
@@ -94,8 +102,8 @@ struct MapView_Previews: PreviewProvider {
     // Camera - Constraining the Map View
     @State static var cameraBoundary = boundaryRange
     @State static var cameraZoomRange = zoomRange
+    @State static var mapCamera = camera
     
-
     static let deviceNames: [String] = [
         "iPhone 11 Pro"
         , "Apple TV"
@@ -109,7 +117,8 @@ struct MapView_Previews: PreviewProvider {
                         centerCoordinate: $centerCoordinate,
                         centerSpan: $centerSpan,
                         cameraBoundary: $cameraBoundary,
-                        cameraZoomRange: $cameraZoomRange)
+                        cameraZoomRange: $cameraZoomRange,
+                        mapCamera: $mapCamera)
                     .previewDevice(PreviewDevice(rawValue: deviceName))
                     .previewDisplayName("\(deviceName)")
             }

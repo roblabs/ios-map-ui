@@ -70,6 +70,11 @@ struct DetailView: View {
     static let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(
         minCenterCoordinateDistance: 0.5 * 1000,
         maxCenterCoordinateDistance: 5.0 * 1000)!
+    static let camera = MKMapCamera(
+        lookingAtCenter: center,
+        fromDistance: 1.0 * 1000,
+        pitch: 45.0,
+        heading: 11.0)
 
     // Manipulating the Visible Portion of the Map
     @State static var mapType = MKMapType.hybrid
@@ -79,6 +84,7 @@ struct DetailView: View {
     // Camera - Constraining the Map View
     @State static var cameraBoundary = boundaryRange
     @State static var cameraZoomRange = zoomRange
+    @State static var mapCamera = camera
 
     var body: some View {
         Group {
@@ -86,7 +92,9 @@ struct DetailView: View {
                     centerCoordinate: DetailView.$centerCoordinate,
                     centerSpan: DetailView.$centerSpan,
                     cameraBoundary: DetailView.$cameraBoundary,
-                    cameraZoomRange: DetailView.$cameraZoomRange)
+                    cameraZoomRange: DetailView.$cameraZoomRange,
+                    mapCamera: DetailView.$mapCamera)
+            
             if selectedDate != nil {
                 Text("\(selectedDate!, formatter: dateFormatter)")
             } else {
