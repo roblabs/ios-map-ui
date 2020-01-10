@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import os.signpost
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
     
     var oslog = OSLog(subsystem: "roblabs.com.ios-map-ui", category: "ViewController")
 
@@ -31,12 +31,25 @@ class ViewController: UIViewController {
 
         mapView.center = view.center
         
+        mapView.delegate = self
+        
         view.addSubview(mapView)
         if #available(iOS 12.0, *) {
             os_signpost(.end, log: oslog, name: "viewDidLoad")
         }
     }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print("mapViewDidChangeVisibleRegion")
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        print("mapViewDidFinishLoadingMap")
+    }
 
-
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        print("mapViewDidFinishRenderingMap \(mapView.camera.description)")
+        print("mapViewDidFinishRenderingMap altitude = \(mapView.camera.altitude)")
+    }
 }
 
