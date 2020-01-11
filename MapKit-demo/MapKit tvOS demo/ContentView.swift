@@ -48,7 +48,7 @@ struct ContentView: View {
     @State private var cameraZoomRange = zoomRange
     @State private var mapCamera = camera
 
-    let tabData = [
+    let tabData: [TabItem] = [
         TabItem(image: Image("first"), tag: 0, title: String("standard"), type: .standard),
         TabItem(image: Image("first"), tag: 1, title: String("satellite"), type: .satellite),
         TabItem(image: Image("first"), tag: 2, title: String("hybrid"), type: .hybrid),
@@ -60,21 +60,22 @@ struct ContentView: View {
     var body: some View {
         return TabView(selection: $selection){
             
-            ForEach(tabData) { tabItem in
+            ForEach(tabData.indices) { index in
+                MapView(mapType: self.$mapType,
+                        centerCoordinate: self.$centerCoordinate,
+                        centerSpan: self.$centerSpan,
+                        cameraBoundary: self.$cameraBoundary,
+                        cameraZoomRange: self.$cameraZoomRange,
+                        mapCamera: self.$mapCamera)
+                    .font(.title)
                     .tabItem {
                         HStack {
-  
-                    centerSpan: $centerSpan,
-                    cameraBoundary: $cameraBoundary,
-                    cameraZoomRange: $cameraZoomRange,
-                    mapCamera: $mapCamera)
-//                    .font(.title)
-//                    .tabItem {
-//                        HStack {
-//                            Image("first")
-//                            Text(tabItem.title)
-//                        }
-//                    }
+                            Image("first")
+                            Text(self.tabData[index].title + " \(index)")
+                        }
+                    }
+                .tag(self.tabData[index].tag)
+            }
         }
     }
 }
