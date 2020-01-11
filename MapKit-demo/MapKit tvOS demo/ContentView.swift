@@ -36,6 +36,8 @@ struct ContentView: View {
         lookingAtCenter: center,
         fromDistance: 5.0 * 1000,
         pitch: 45.0,
+        fromDistance: 1.0 * 1000,
+        pitch: 75.0,
         heading: -90)
 
     // Manipulating the Visible Portion of the Map
@@ -58,10 +60,12 @@ struct ContentView: View {
     ]
  
     var body: some View {
-        return TabView(selection: $selection){
+        
+        // MARK: - Tabview
+        let tabView =  TabView(selection: $selection){
             
             ForEach(tabData.indices) { index in
-                MapView(mapType: self.$mapType,
+                MapView(mapType: .constant(self.tabData[index].type),
                         centerCoordinate: self.$centerCoordinate,
                         centerSpan: self.$centerSpan,
                         cameraBoundary: self.$cameraBoundary,
@@ -77,6 +81,8 @@ struct ContentView: View {
                 .tag(self.tabData[index].tag)
             }
         }
+        
+        return tabView
     }
 }
 
