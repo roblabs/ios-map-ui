@@ -23,11 +23,17 @@ struct MapView: UIViewRepresentable {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.region = region
         
-//        if #available(iOS 9, macOS 10.15, *) {
-//            mapView.isPitchEnabled = true
-//        } else {
-//            mapView.isRotateEnabled = true
-//        }
+        #if os(iOS)
+            mapView.isPitchEnabled = true
+            mapView.isRotateEnabled = true
+            mapView.showsCompass = true
+        #elseif os(macOS)
+            mapView.isPitchEnabled = false
+            mapView.isRotateEnabled = false
+            mapView.showsCompass = true
+            mapView.showsZoomControls = true
+        #elseif os(tvOS)
+        #endif
         
         mapView.delegate = context.coordinator
         
@@ -87,7 +93,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-            print("mapViewDidFinishRenderingMap")
+            print("mapViewDidFinishRenderingMap \(mapView.camera.description)")
         }
         
         // MARK: - Tracking the User Location

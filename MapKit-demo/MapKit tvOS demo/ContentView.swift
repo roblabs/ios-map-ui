@@ -19,7 +19,35 @@ struct TabItem: Identifiable {
 
 struct ContentView: View {
     @State private var selection = 0
-    
+
+    // MARK: - DetailView() View initial Values
+    static let center: CLLocationCoordinate2D = CLLocationCoordinate2D(
+        latitude: 32.716176,
+        longitude: -117.16952)
+    static let span: CLLocationDegrees = 10.0
+    static let boundaryRange: MKCoordinateRegion = MKCoordinateRegion(
+        center: center,
+        latitudinalMeters: 1000 * 1000,
+        longitudinalMeters: 1000 * 1000)
+    static let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(
+        minCenterCoordinateDistance: 0.5 * 1000,
+        maxCenterCoordinateDistance: 500.0 * 1000)!
+    static let camera = MKMapCamera(
+        lookingAtCenter: center,
+        fromDistance: 5.0 * 1000,
+        pitch: 45.0,
+        heading: -90)
+
+    // Manipulating the Visible Portion of the Map
+    @State private var mapType = MKMapType.standard
+    @State private var centerCoordinate = center
+    @State private var centerSpan = MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
+
+    // Camera - Constraining the Map View
+    @State private var cameraBoundary = boundaryRange
+    @State private var cameraZoomRange = zoomRange
+    @State private var mapCamera = camera
+
     let tabData = [
         TabItem(image: Image("first"), tag: 0, title: String("standard"), type: .standard),
         TabItem(image: Image("first"), tag: 1, title: String("satellite"), type: .satellite),
@@ -33,16 +61,20 @@ struct ContentView: View {
         return TabView(selection: $selection){
             
             ForEach(tabData) { tabItem in
-                MapView(mapType: tabItem.type)
-                    .font(.title)
                     .tabItem {
                         HStack {
-                            Image("first")
-                            Text(tabItem.title)
-                        }
-                    }
-                    .tag(tabItem.tag)
-            }
+  
+                    centerSpan: $centerSpan,
+                    cameraBoundary: $cameraBoundary,
+                    cameraZoomRange: $cameraZoomRange,
+                    mapCamera: $mapCamera)
+//                    .font(.title)
+//                    .tabItem {
+//                        HStack {
+//                            Image("first")
+//                            Text(tabItem.title)
+//                        }
+//                    }
         }
     }
 }
