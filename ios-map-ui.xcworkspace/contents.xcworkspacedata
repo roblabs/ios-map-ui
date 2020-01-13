@@ -32,6 +32,9 @@
          location = "container:"
          name = "SwiftUI">
          <FileRef
+            location = "group:MapKit-demo/MapKit-demo.xcodeproj">
+         </FileRef>
+         <FileRef
             location = "group:MapKit-SwiftUI-for-iOS-macOS/MapKit-SwiftUI-for-iOS-macOS.xcodeproj">
          </FileRef>
          <FileRef
