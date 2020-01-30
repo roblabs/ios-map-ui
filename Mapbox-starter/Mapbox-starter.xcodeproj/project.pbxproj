@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF2ED14A23E366BD001E17C7 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2ED14923E366BD001E17C7 /* LogManager.swift */; };
 		CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */; };
 		CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */; };
 		CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26823172652006E6B65 /* MapModelController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF2ED14923E366BD001E17C7 /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26823172652006E6B65 /* MapModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModelController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				CF4EF27723172652006E6B65 /* SerializationError.swift */,
 				CF4EF27823172652006E6B65 /* Extensions.swift */,
 				CF4EF27A23172652006E6B65 /* LocationManager.swift */,
+				CF2ED14923E366BD001E17C7 /* LogManager.swift */,
 				CF4EF27B23172652006E6B65 /* MapError.swift */,
 			);
 			path = Resource;
@@ -285,6 +288,7 @@
 				CF4EF29D23172653006E6B65 /* PlaceCategory+Service.swift in Sources */,
 				CF4EF29C23172653006E6B65 /* Place.swift in Sources */,
 				CF4EF28C23172653006E6B65 /* PlaceAnnotationView.swift in Sources */,
+				CF2ED14A23E366BD001E17C7 /* LogManager.swift in Sources */,
 				CF4EF2A123172653006E6B65 /* PlaceCategory.swift in Sources */,
 				CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */,
 				CF4EF28D23172653006E6B65 /* SettingsPanelLayout.swift in Sources */,
