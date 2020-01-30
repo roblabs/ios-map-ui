@@ -351,6 +351,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
         switch vc.position {
         case .full, .half: trgt = 1
         case .tip, .hidden: trgt = 0
+        @unknown default: fatalError("Unknown FloatingPanel position")
         }
         
         let tbl = searchVC.tableView
