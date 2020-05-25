@@ -1,6 +1,6 @@
 # MapKit Starter
 
-Starter project for creating MapKit without storyboards.
+Starter project for creating MapKit without storyboards.  Browse the [source code](https://github.com/roblabs/ios-map-ui) for this project.
 
 ## XCTest
 
