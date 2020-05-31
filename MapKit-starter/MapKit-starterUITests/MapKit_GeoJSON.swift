@@ -26,6 +26,60 @@ class MapKit_GeoJSON: XCTestCase {
         }
     }
     
+    ///
+    ///  # Using a JSONDecoder() sample from [Apple](https://developer.apple.com/documentation/foundation/jsondecoder)
+    ///  Parse a `GrGroceryProduct` object from
+    ///   * JSON
+    ///   * GeoJSON
+    ///
+    struct GroceryProduct: Codable {
+        var name: String
+        var points: Int
+        var description: String?
+    }
+
+    func testJSONDecoder() {
+        let json = """
+        {
+            "name": "Durian",
+            "points": 600,
+            "description": "A fruit with a distinctive scent."
+        }
+        """.data(using: .utf8)!
+
+        let decoder = JSONDecoder()
+        let product = try! decoder.decode(GroceryProduct.self, from: json)
+
+        print(product.name) // Prints "Durian"
+    }
+
+    func testGeoJSONDecoder() {
+        let geojson = """
+        {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "properties": {
+                "name": "Durian",
+                "points": 600,
+                "description": "A fruit with a distinctive scent."
+              },
+              "geometry": { "type": "Point", "coordinates": [0,0] }
+            }
+          ]
+        }
+        """.data(using: .utf8)!
+
+        let geojsonObjects = try! MKGeoJSONDecoder().decode(geojson)
+        
+        let decoder = JSONDecoder()
+        let feature = geojsonObjects[0] as! MKGeoJSONFeature
+        let product = try! decoder.decode(GroceryProduct.self, from: feature.properties!)
+
+        print(product.name) // Prints "Durian"
+    }
+    
     func testGeoJSONFromVariable() throws {
         
         let geojson = """

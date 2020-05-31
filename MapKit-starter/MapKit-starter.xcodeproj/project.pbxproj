@@ -13,7 +13,7 @@
 		D75B03B8230070C700C7C3E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75B03B6230070C700C7C3E3 /* LaunchScreen.storyboard */; };
 		D76F72EF24788D9800AA0633 /* MapKit_starterDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */; };
 		D76F72F12479C57A00AA0633 /* MapKit_GeoJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */; };
-		D7A09F4D247B4E8F00BC0F0B /* simple.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D7A09F4C247B4E8F00BC0F0B /* simple.geojson */; };
+		D78191222483595E00BE1E83 /* simple.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D78191212483595E00BE1E83 /* simple.geojson */; };
 		D7CF693123BD7B6A0099C478 /* MapKit_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF693023BD7B6A0099C478 /* MapKit_starterUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		D76F72ED2478826200AA0633 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_starterDirections.swift; sourceTree = "<group>"; };
 		D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_GeoJSON.swift; sourceTree = "<group>"; };
-		D7A09F4C247B4E8F00BC0F0B /* simple.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = simple.geojson; path = "MapKit-starterUITests/simple.geojson"; sourceTree = "<group>"; };
+		D78191212483595E00BE1E83 /* simple.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = simple.geojson; sourceTree = "<group>"; };
 		D7A5400423BE4DB600E39ADB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		D7CF692E23BD7B6A0099C478 /* MapKit-starterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MapKit-starterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CF693023BD7B6A0099C478 /* MapKit_starterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_starterUITests.swift; sourceTree = "<group>"; };
@@ -66,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				D76F72ED2478826200AA0633 /* readme.md */,
-				D7A09F4C247B4E8F00BC0F0B /* simple.geojson */,
 				D75B03AC230070C700C7C3E3 /* MapKit-starter */,
 				D7CF692F23BD7B6A0099C478 /* MapKit-starterUITests */,
 				D75B03AB230070C700C7C3E3 /* Products */,
@@ -97,6 +96,7 @@
 		D7CF692F23BD7B6A0099C478 /* MapKit-starterUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D78191212483595E00BE1E83 /* simple.geojson */,
 				D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */,
 				D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */,
 				D7A5400423BE4DB600E39ADB /* TestPlan.xctestplan */,
@@ -196,7 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7A09F4D247B4E8F00BC0F0B /* simple.geojson in Resources */,
+				D78191222483595E00BE1E83 /* simple.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
