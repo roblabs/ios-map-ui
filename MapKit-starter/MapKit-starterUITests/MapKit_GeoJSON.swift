@@ -28,14 +28,15 @@ class MapKit_GeoJSON: XCTestCase {
     
     ///
     ///  # Using a JSONDecoder() sample from [Apple](https://developer.apple.com/documentation/foundation/jsondecoder)
-    ///  Parse a `GrGroceryProduct` object from
+    ///  Parse a `GroceryProduct` object from
     ///   * JSON
     ///   * GeoJSON
     ///
     struct GroceryProduct: Codable {
         var name: String
         var points: Int
-        var description: String?
+        var description: String
+        var optionalPropertyNotInGeoJSON: String?  /// Use `?` to indicate an optional property key
     }
 
     func testJSONDecoder() {
@@ -71,13 +72,14 @@ class MapKit_GeoJSON: XCTestCase {
         }
         """.data(using: .utf8)!
 
-        let geojsonObjects = try! MKGeoJSONDecoder().decode(geojson)
+        let geojsonObjects = try! MKGeoJSONDecoder().decode(
+            geojson)
         
-        let decoder = JSONDecoder()
         let feature = geojsonObjects[0] as! MKGeoJSONFeature
-        let product = try! decoder.decode(GroceryProduct.self, from: feature.properties!)
+        let properties = try! JSONDecoder().decode(
+            GroceryProduct.self, from: feature.properties!)
 
-        print(product.name) // Prints "Durian"
+        print(properties.name) // Prints "Durian"
     }
     
     func testGeoJSONFromVariable() throws {
