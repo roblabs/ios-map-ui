@@ -27,7 +27,8 @@ class MapKit_GeoJSON: XCTestCase {
     }
     
     ///
-    ///  # Using a JSONDecoder() sample from [Apple](https://developer.apple.com/documentation/foundation/jsondecoder)
+    ///  # Using a JSONDecoder() sample from
+    ///  [Apple](https://developer.apple.com/documentation/foundation/jsondecoder)
     ///  Parse a `GroceryProduct` object from
     ///   * JSON
     ///   * GeoJSON
@@ -158,6 +159,25 @@ class MapKit_GeoJSON: XCTestCase {
         let geojsonObjects = try? MKGeoJSONDecoder().decode(geojsonData!)
         parse(geojsonObjects!)
         
+    }
+    
+    func testSearchFolderForGeoJSON () {
+        let fm = FileManager.default
+        let bundle = Bundle(for: type(of: self))
+        let path = bundle.bundlePath
+        
+        do {
+            let items = try fm.contentsOfDirectory(atPath: path)
+
+            for item in items {
+                print("Found \(item)")
+                if item.hasSuffix("geojson") {
+                    print("//    Found GeoJSON \(item)")
+                }
+            }
+        } catch {
+            // failed to read directory
+        }
     }
 
     private func parse(_ jsonObjects: [MKGeoJSONObject]) {
