@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// - Tag: MapModelControllerPreview_SwiftUI
 struct MapModelControllerPreview: UIViewControllerRepresentable {
 
     typealias UIViewControllerType = MapModelController

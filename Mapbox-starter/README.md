@@ -17,24 +17,28 @@ You can add a SwiftUI to your UIKit project to soft preview the UIKit components
 
 ---
 
-*Example:*  Mapbox Map
+### *Example:*  Mapbox Map
 
 On the left is the SwiftUI code that displays the Map view controller.  On the right is the Preview window.
+
+[View in Source](x-source-tag://MapModelControllerPreview_SwiftUI)
 
 ![](assets/SwiftUI-preview-Maps.png)
 
 ---
 
-*Example:*  Settings control
+### *Example:*  Settings control
 
 On the left is the SwiftUI code that displays the Settings view controller.  On the right is the Preview window.
+
+[View in Source](x-source-tag://SettingsPanelControllerPreview_SwiftUI)
 
 ![](assets/SwiftUI-preview-Maps-settings.png)
 
 
 ---
 
-*Example:*  Mapbox Starter
+### *Example:*  Mapbox Starter
 
 This is what running in the simulator looks like.
 

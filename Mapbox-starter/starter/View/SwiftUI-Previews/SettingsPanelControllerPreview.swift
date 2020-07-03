@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// - Tag: SettingsPanelControllerPreview_SwiftUI
 struct SettingsPanelControllerPreview: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = SettingsPanelController
