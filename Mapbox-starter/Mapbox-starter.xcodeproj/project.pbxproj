@@ -38,6 +38,8 @@
 		CF4EF2A223172653006E6B65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28423172653006E6B65 /* Map.swift */; };
 		CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28523172653006E6B65 /* MapBoundaries.swift */; };
 		CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4EF2A423172840006E6B65 /* FloatingPanel.framework */; };
+		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
+		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
 		FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD602DB91FC22DAD002DA06A /* AppDelegate.swift */; };
 		FD602DC11FC22DAD002DA06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC01FC22DAD002DA06A /* Assets.xcassets */; };
 		FD602DC41FC22DAD002DA06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC21FC22DAD002DA06A /* LaunchScreen.storyboard */; };
@@ -76,6 +78,9 @@
 		CF4EF28423172653006E6B65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		CF4EF28523172653006E6B65 /* MapBoundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBoundaries.swift; sourceTree = "<group>"; };
 		CF4EF2A423172840006E6B65 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
+		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
+		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
+		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapbox-starter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD602DB91FC22DAD002DA06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD602DC01FC22DAD002DA06A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		CF4EF26523172652006E6B65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D7BED76F24AFA72600EFF487 /* SwiftUI-Previews */,
 				CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */,
 				CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */,
 				CF4EF26823172652006E6B65 /* MapModelController.swift */,
@@ -149,9 +155,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D7BED76F24AFA72600EFF487 /* SwiftUI-Previews */ = {
+			isa = PBXGroup;
+			children = (
+				D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */,
+				D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */,
+			);
+			path = "SwiftUI-Previews";
+			sourceTree = "<group>";
+		};
 		FD602DAD1FC22DAD002DA06A = {
 			isa = PBXGroup;
 			children = (
+				D7BED77424AFB03600EFF487 /* README.md */,
 				FD9CD1911FC23D4F00B0D313 /* Cartfile */,
 				FD602DB81FC22DAD002DA06A /* starter */,
 				FD602DB71FC22DAD002DA06A /* Products */,
@@ -301,6 +317,7 @@
 				CF4EF29F23172653006E6B65 /* Location+Service.swift in Sources */,
 				CF4EF28E23172653006E6B65 /* SettingsPanelController.swift in Sources */,
 				CF4EF29123172653006E6B65 /* PanelInset.swift in Sources */,
+				D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */,
 				CF4EF29623172653006E6B65 /* SerializationError.swift in Sources */,
 				CF4EF29223172653006E6B65 /* DataService.swift in Sources */,
 				CF4EF29B23172653006E6B65 /* Location.swift in Sources */,
@@ -308,6 +325,7 @@
 				FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */,
 				CF4EF28B23172653006E6B65 /* SearchPanelLayout.swift in Sources */,
 				CF4EF29023172653006E6B65 /* GPSButton.swift in Sources */,
+				D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */,
 				CF4EF29323172653006E6B65 /* Default.swift in Sources */,
 				CF4EF29923172653006E6B65 /* LocationManager.swift in Sources */,
 				CF4EF28923172653006E6B65 /* PlaceTableViewCell.swift in Sources */,
