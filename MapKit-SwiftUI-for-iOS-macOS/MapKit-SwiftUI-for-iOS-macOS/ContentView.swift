@@ -38,6 +38,38 @@ struct ContentView: View {
     }
 }
 
+/**
+  Preview MapKit in multiple devices in SwiftUI
+ - Author: Rob Labs
+ - Version: 3.14
+ - Date: July 2020
+ - SeeAlso: [previewDevice](https://developer.apple.com/documentation/swiftui/view/previewdevice(_:))
+ - remark: You can look up the `.previewDevice` names by right clicking on `.previewDevice` in Xcode.  As of this writing, here is a list of SwiftUI preview devices.
+ 
+ ---
+ 
+        "iPhone 7"
+        "iPhone 7 Plus"
+        "iPhone 8"
+        "iPhone 8 Plus"
+        "iPhone SE"
+        "iPhone X"
+        "iPhone Xs"
+        "iPhone Xs Max"
+        "iPhone Xʀ"
+        "iPad mini 4"
+        "iPad Air 2"
+        "iPad Pro (9.7-inch)"
+        "iPad Pro (12.9-inch)"
+        "iPad (5th generation)"
+        "iPad Pro (12.9-inch) (2nd generation)"
+        "iPad Pro (10.5-inch)"
+        "iPad (6th generation)"
+        "iPad Pro (11-inch)"
+        "iPad Pro (12.9-inch) (3rd generation)"
+        "iPad mini (5th generation)"
+        "iPad Air (3rd generation)"
+ */
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
