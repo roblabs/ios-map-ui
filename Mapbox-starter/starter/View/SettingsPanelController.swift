@@ -87,11 +87,23 @@ class SettingsPanelController: UIViewController {
     
     private lazy var firstContainer = createContainerView()
     private lazy var secondContainer = createContainerView()
+    private weak var thirdController: SettingCollectionController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.bg
+        addSettingCollectionController()
         NSLayoutConstraint.activate(viewConstraints)
+    }
+    
+    private func addSettingCollectionController() {
+        let scc = SettingCollectionController()
+        thirdController = scc
+        
+        addChild(thirdController)
+        thirdController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(thirdController.view)
+        thirdController.didMove(toParent: self)
     }
     
     // MARK: User Action methods
@@ -190,6 +202,11 @@ extension SettingsPanelController {
             reportButton.widthAnchor.constraint(equalTo: titleLabel.widthAnchor),
             reportButton.topAnchor.constraint(equalTo: addButton.bottomAnchor),
             reportButton.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+            
+            thirdController.view.topAnchor.constraint(equalTo: secondContainer.bottomAnchor, constant: Default.padding),
+            thirdController.view.leftAnchor.constraint(equalTo: secondContainer.leftAnchor),
+            thirdController.view.rightAnchor.constraint(equalTo: secondContainer.rightAnchor),
+            thirdController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Default.padding),
         ]
     }
 }

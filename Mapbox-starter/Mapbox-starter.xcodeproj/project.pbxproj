@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0D055524B763F3006C130C /* SettingsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055424B763F3006C130C /* SettingsCollectionController.swift */; };
 		CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */; };
 		CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */; };
 		CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26823172652006E6B65 /* MapModelController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0D055424B763F3006C130C /* SettingsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionController.swift; sourceTree = "<group>"; };
 		CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26823172652006E6B65 /* MapModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModelController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				CF4EF26C23172652006E6B65 /* PlaceAnnotationView.swift */,
 				CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */,
 				CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */,
+				CF0D055424B763F3006C130C /* SettingsCollectionController.swift */,
 				CF4EF26F23172652006E6B65 /* MapViewModel.swift */,
 				CF4EF27023172652006E6B65 /* GPSButton.swift */,
 				CF4EF27123172652006E6B65 /* PanelInset.swift */,
@@ -297,6 +300,7 @@
 				CF4EF28E23172653006E6B65 /* SettingsPanelController.swift in Sources */,
 				CF4EF29123172653006E6B65 /* PanelInset.swift in Sources */,
 				CF4EF29623172653006E6B65 /* SerializationError.swift in Sources */,
+				CF0D055524B763F3006C130C /* SettingsCollectionController.swift in Sources */,
 				CF4EF29223172653006E6B65 /* DataService.swift in Sources */,
 				CF4EF29B23172653006E6B65 /* Location.swift in Sources */,
 				CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */,
