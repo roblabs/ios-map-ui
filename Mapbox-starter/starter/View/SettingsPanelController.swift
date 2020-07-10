@@ -110,26 +110,21 @@ class SettingsPanelController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let shouldShowCollectionOption = size.height > size.width
+        let portrait = size.height > size.width
         let pos = delegate!.fpc.position
+        
+        let showCollection = portrait && pos == .full || !portrait && size.height > 700
+        let showButton = !showCollection && portrait && pos == .half
         
         let btn = showSettingsButton
         let ctrl = thirdController.view!
         
-        btn.isHidden = !shouldShowCollectionOption
-        ctrl.isHidden = !shouldShowCollectionOption
+        btn.isHidden = !showButton
+        ctrl.isHidden = !showCollection
         
         coordinator.animate(alongsideTransition: { _ in
-            if shouldShowCollectionOption {
-                if pos == .full {
-                    ctrl.alpha = 1
-                } else {
-                    btn.alpha = 1
-                }
-            } else {
-                ctrl.alpha = 0
-                btn.alpha = 0
-            }
+            btn.alpha = showButton ? 1 : 0
+            ctrl.alpha = showCollection ? 1 : 0
         })
     }
     
