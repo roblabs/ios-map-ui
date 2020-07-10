@@ -9,13 +9,10 @@
 import UIKit
 import FloatingPanel
 import Mapbox
-import os.signpost
 
 private let currentFile = File(name: "points", type: "geojson")
 
 class MapModelController: UIViewController {
-    
-    var oslog = OSLog(subsystem: "roblabs.com.ios-map-ui", category: "MapModelController")
     
     // MARK: Model objects
     
@@ -96,16 +93,12 @@ class MapModelController: UIViewController {
     // MARK: View methods
     
     override func viewDidLoad() {
-        if #available(iOS 12.0, *) {
-            os_signpost(.event, log: oslog, name: "viewDidLoad")
-            os_signpost(.begin, log: oslog, name: "viewDidLoad")
-        }
+        LogManager.signpostEvent(event: .mapModelController(.viewDidLoad))
+        LogManager.signpostBegin(event: .mapModelController(.viewDidLoad))
         super.viewDidLoad()
         loadModel()
         loadSubViews()
-        if #available(iOS 12.0, *) {
-            os_signpost(.end, log: oslog, name: "viewDidLoad")
-        }
+        LogManager.signpostEnd(event: .mapModelController(.viewDidLoad))
     }
     
     override func viewDidLayoutSubviews() {
@@ -362,6 +355,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
         switch vc.position {
         case .full, .half: trgt = 1
         case .tip, .hidden: trgt = 0
+        @unknown default: fatalError("Unknown FloatingPanel position")
         }
         
         let tbl = searchVC.tableView
