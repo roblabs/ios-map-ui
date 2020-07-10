@@ -26,6 +26,8 @@ class SettingCollectionController : UIViewController {
         return cv
     }()
     
+    private weak var detailController: SettingDetailController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.container
@@ -42,6 +44,31 @@ class SettingCollectionController : UIViewController {
             cv.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             cv.leftAnchor.constraint(equalTo: view.leftAnchor),
             cv.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+        
+        updateDetailController()
+    }
+    
+    private func updateDetailController() {
+        if detailController != nil {
+            detailController.willMove(toParent: self)
+            detailController.view.removeFromSuperview()
+            detailController.removeFromParent()
+        }
+        
+        let dc = SettingDetailController(setting: currentSetting)
+        detailController = dc
+        addChild(detailController)
+        
+        detailController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(detailController.view)
+        detailController.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            detailController.view.topAnchor.constraint(equalTo: cv.bottomAnchor, constant: 8),
+            detailController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            detailController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            detailController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
     }
 }
@@ -85,6 +112,7 @@ extension SettingCollectionController: UICollectionViewDataSource, UICollectionV
             
             c0.toggleCellSelection()
             c1.toggleCellSelection()
+            updateDetailController()
         }
     }
 }
