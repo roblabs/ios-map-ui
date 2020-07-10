@@ -151,7 +151,7 @@ class SettingsPanelController: UIViewController {
         
         let size = UIScreen.main.bounds.size
         let show = size.width < size.height
-        print("displayInitialCollectionControls: \(show)")
+        
         showSettingsButton.alpha = show ? 1 : 0
         showSettingsButton.isHidden = !show
     }
