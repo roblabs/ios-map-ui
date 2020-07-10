@@ -10,6 +10,7 @@
 		CF0D055524B763F3006C130C /* SettingsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055424B763F3006C130C /* SettingsCollectionController.swift */; };
 		CF0D055724B76CEE006C130C /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055624B76CEE006C130C /* Setting.swift */; };
 		CF0D055924B76D88006C130C /* Setting+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055824B76D88006C130C /* Setting+Service.swift */; };
+		CF0D055B24B76E6F006C130C /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */; };
 		CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */; };
 		CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */; };
 		CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26823172652006E6B65 /* MapModelController.swift */; };
@@ -50,6 +51,7 @@
 		CF0D055424B763F3006C130C /* SettingsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionController.swift; sourceTree = "<group>"; };
 		CF0D055624B76CEE006C130C /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		CF0D055824B76D88006C130C /* Setting+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Setting+Service.swift"; sourceTree = "<group>"; };
+		CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26823172652006E6B65 /* MapModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModelController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */,
 				CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */,
 				CF0D055424B763F3006C130C /* SettingsCollectionController.swift */,
+				CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */,
 				CF4EF26F23172652006E6B65 /* MapViewModel.swift */,
 				CF4EF27023172652006E6B65 /* GPSButton.swift */,
 				CF4EF27123172652006E6B65 /* PanelInset.swift */,
@@ -301,6 +304,7 @@
 				CF0D055924B76D88006C130C /* Setting+Service.swift in Sources */,
 				CF4EF2A223172653006E6B65 /* Map.swift in Sources */,
 				CF4EF2A023172653006E6B65 /* File.swift in Sources */,
+				CF0D055B24B76E6F006C130C /* SettingCollectionViewCell.swift in Sources */,
 				CF4EF28A23172653006E6B65 /* SearchPanelController.swift in Sources */,
 				CF4EF29E23172653006E6B65 /* MapStyle.swift in Sources */,
 				CF4EF29723172653006E6B65 /* Extensions.swift in Sources */,
