@@ -104,6 +104,7 @@ class SettingsPanelController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.bg
         addSettingCollectionController()
+        displayInitialCollectionControls()
         NSLayoutConstraint.activate(viewConstraints)
     }
     
@@ -134,12 +135,21 @@ class SettingsPanelController: UIViewController {
         
         addChild(thirdController!)
         thirdController!.view.translatesAutoresizingMaskIntoConstraints = false
-        thirdController.view.alpha = 0
-        thirdController.view.isHidden = true
         view.addSubview(thirdController!.view)
         thirdController!.didMove(toParent: self)
         
         NSLayoutConstraint.activate(thirdControllerConstraints)
+    }
+    
+    private func displayInitialCollectionControls() {
+        thirdController.view.alpha = 0
+        thirdController.view.isHidden = true
+        
+        let size = UIScreen.main.bounds.size
+        let show = size.width < size.height
+        print("displayInitialCollectionControls: \(show)")
+        showSettingsButton.alpha = show ? 1 : 0
+        showSettingsButton.isHidden = !show
     }
     
     // MARK: User Action methods

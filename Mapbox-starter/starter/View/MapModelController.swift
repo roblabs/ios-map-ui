@@ -343,7 +343,13 @@ extension MapModelController: FloatingPanelControllerDelegate {
     
     func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
         guard searchVC != nil else {
-            if panelState == .settings && vc.position == .full {
+            let size = view.bounds.size
+            
+            
+            if panelState == .settings
+                && vc.position == .full
+                && size.width < size.height
+            {
                 settingsVC.showSettingsCollection()
             }
             return
