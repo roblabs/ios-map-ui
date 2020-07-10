@@ -13,6 +13,7 @@ import FloatingPanel
 protocol SettingsPanelControllerDelegate: class {
     var fpc: FloatingPanelController! { get set }
     func styleSelected(_ style: MapStyle)
+    func showSettingsTapped()
     func didDismiss()
 }
 
@@ -179,9 +180,7 @@ class SettingsPanelController: UIViewController {
     }
     
     @objc func showSettingsTapped() {
-        self.delegate?.fpc.move(to: .full, animated: true, completion: { [weak self] in
-            self?.showSettingsCollection()
-        })
+        delegate?.showSettingsTapped()
     }
     
     func showSettingsCollection() {

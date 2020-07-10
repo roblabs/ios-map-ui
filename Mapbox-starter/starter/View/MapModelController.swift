@@ -407,6 +407,12 @@ extension MapModelController: SettingsPanelControllerDelegate {
         mapView.styleURL = style.url
     }
     
+    func showSettingsTapped() {
+        fpc.move(to: .full, animated: true, completion: { [weak self] in
+            self?.settingsVC.showSettingsCollection()
+        })
+    }
+    
     func didDismiss() {
         // hide settings fpc on dismissal call from settings controller
         // do so by setting panelState, which fires fpc exchange method
