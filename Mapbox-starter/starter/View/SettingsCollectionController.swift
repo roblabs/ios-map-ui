@@ -58,6 +58,7 @@ class SettingCollectionController : UIViewController {
         
         let dc = SettingDetailController(setting: currentSetting)
         detailController = dc
+        detailController.delegate = self
         addChild(detailController)
         
         detailController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +115,16 @@ extension SettingCollectionController: UICollectionViewDataSource, UICollectionV
             c1.toggleCellSelection()
             updateDetailController()
         }
+    }
+}
+
+extension SettingCollectionController: SettingDetailControllerDelegate {
+    func settingDetailTapped() {
+        // show details for current setting
+    }
+    
+    func settingDownloadTapped() {
+        // perform download for current setting
     }
 }
 

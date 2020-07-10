@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol SettingDetailControllerDelegate: class {
+    func settingDetailTapped()
+    func settingDownloadTapped()
+}
+
 class SettingDetailController: UIViewController {
     private let setting: Setting
+    
+    weak var delegate: SettingDetailControllerDelegate!
     
     private lazy var titleLbl: UILabel = {
         let l = UILabel()
@@ -116,11 +123,11 @@ class SettingDetailController: UIViewController {
     }
     
     @objc func detailTapped() {
-        //
+        delegate.settingDetailTapped()
     }
     
     @objc func downloadTapped() {
-        //
+        delegate.settingDownloadTapped()
     }
     
     @objc func switchToggled(sender: UISwitch) {
