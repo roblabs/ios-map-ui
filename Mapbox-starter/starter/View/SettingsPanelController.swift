@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import FloatingPanel
 
 protocol SettingsPanelControllerDelegate: class {
+    var fpc: FloatingPanelController! { get set }
     func styleSelected(_ style: MapStyle)
     func didDismiss()
 }
@@ -89,6 +91,15 @@ class SettingsPanelController: UIViewController {
     private lazy var secondContainer = createContainerView()
     private weak var thirdController: SettingCollectionController!
     
+    private lazy var showSettingsButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Configure Settings", for: .normal)
+        button.addTarget(self, action: #selector(showSettingsTapped), for: .touchUpInside)
+        view.addSubview(button)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.bg
@@ -100,10 +111,14 @@ class SettingsPanelController: UIViewController {
         let scc = SettingCollectionController()
         thirdController = scc
         
-        addChild(thirdController)
-        thirdController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(thirdController.view)
-        thirdController.didMove(toParent: self)
+        addChild(thirdController!)
+        thirdController!.view.translatesAutoresizingMaskIntoConstraints = false
+        thirdController.view.alpha = 0
+        thirdController.view.isHidden = true
+        view.addSubview(thirdController!.view)
+        thirdController!.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate(thirdControllerConstraints)
     }
     
     // MARK: User Action methods
@@ -127,6 +142,34 @@ class SettingsPanelController: UIViewController {
     
     @objc func reportTapped() {
         
+    }
+    
+    @objc func showSettingsTapped() {
+        self.delegate?.fpc.move(to: .full, animated: true, completion: { [weak self] in
+            self?.showSettingsCollection()
+        })
+    }
+    
+    func showSettingsCollection() {
+        thirdController.view.isHidden = false
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.showSettingsButton.alpha = 0
+            self.thirdController.view.alpha = 1
+        }) { _ in
+            self.showSettingsButton.isHidden = true
+        }
+    }
+    
+    func hideSettingsCollection() {
+        showSettingsButton.isHidden = false
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.thirdController.view.alpha = 0
+            self.showSettingsButton.alpha = 1
+        }) { _ in
+            self.thirdController.view.isHidden = true
+        }
     }
 }
 
@@ -203,6 +246,14 @@ extension SettingsPanelController {
             reportButton.topAnchor.constraint(equalTo: addButton.bottomAnchor),
             reportButton.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             
+            showSettingsButton.topAnchor.constraint(equalTo: secondContainer.bottomAnchor, constant: Size.padding),
+            showSettingsButton.heightAnchor.constraint(equalToConstant: Size.segCntrlHeight),
+            showSettingsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ]
+    }
+    
+    private var thirdControllerConstraints: [NSLayoutConstraint] {
+        [
             thirdController.view.topAnchor.constraint(equalTo: secondContainer.bottomAnchor, constant: Default.padding),
             thirdController.view.leftAnchor.constraint(equalTo: secondContainer.leftAnchor),
             thirdController.view.rightAnchor.constraint(equalTo: secondContainer.rightAnchor),

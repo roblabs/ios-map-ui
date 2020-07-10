@@ -46,7 +46,7 @@ class MapModelController: UIViewController {
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
     
-    private var fpc: FloatingPanelController!
+    var fpc: FloatingPanelController!
     
     private var searchVC: SearchPanelController!
     private var settingsVC: SettingsPanelController!
@@ -328,6 +328,8 @@ extension MapModelController: FloatingPanelControllerDelegate {
         // resign the search bar if responder
         if panelState == .search && vc.position == .full {
             searchVC.resignSearchBar()
+        } else if panelState == .settings && vc.position == .full {
+            settingsVC.hideSettingsCollection()
         }
     }
     
@@ -340,7 +342,12 @@ extension MapModelController: FloatingPanelControllerDelegate {
     }
     
     func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
-        guard searchVC != nil else { return }
+        guard searchVC != nil else {
+            if panelState == .settings && vc.position == .full {
+                settingsVC.showSettingsCollection()
+            }
+            return
+        }
         
         // update currentPosition variable for searchVC
         searchVC.currentPosition = vc.position
