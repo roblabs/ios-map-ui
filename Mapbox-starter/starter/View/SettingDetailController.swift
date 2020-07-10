@@ -108,6 +108,8 @@ class SettingDetailController: UIViewController {
             infoBtn.centerYAnchor.constraint(equalTo: titleLbl.centerYAnchor),
             infoBtn.centerXAnchor.constraint(equalTo: offlineSwitch.centerXAnchor),
         ])
+        
+        offlineSwitch.setOn(setting.offlineEnabled, animated: false)
     }
     
     @objc func detailTapped() {
