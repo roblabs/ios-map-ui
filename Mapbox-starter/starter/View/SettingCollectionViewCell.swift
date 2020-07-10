@@ -16,7 +16,6 @@ class SettingCollectionViewCell: UICollectionViewCell {
     private let iv: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -46,8 +45,8 @@ class SettingCollectionViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             iv.topAnchor.constraint(equalTo: contentView.topAnchor, constant: pd),
-            iv.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            iv.widthAnchor.constraint(equalTo: iv.heightAnchor),
+            iv.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: pd),
+            iv.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -pd),
             iv.bottomAnchor.constraint(equalTo: lbl.topAnchor, constant: -pd),
             lbl.heightAnchor.constraint(equalToConstant: 24),
             lbl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -pd),
@@ -57,9 +56,21 @@ class SettingCollectionViewCell: UICollectionViewCell {
     }
     
     func setCell(setting: Setting) {
-        iv.image = UIImage(named: setting.imageTitle)
+        layoutIfNeeded()
+        setAndScaleImage(withName: setting.imageTitle)
         lbl.text = setting.title
         lbl.sizeToFit()
+    }
+    
+    func setAndScaleImage(withName name: String) {
+        if let img = UIImage(named: name) {
+            iv.image = img
+            
+            // if too big, scale down, otherwise center
+            let s = img.size
+            let big = s.height > iv.bounds.height || s.width > iv.bounds.width
+            iv.contentMode = big ? .scaleAspectFit : .center
+        }
     }
     
     func toggleCellSelection() {
