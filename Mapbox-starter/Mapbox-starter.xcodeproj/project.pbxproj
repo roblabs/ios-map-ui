@@ -12,6 +12,7 @@
 		CF0D055924B76D88006C130C /* Setting+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055824B76D88006C130C /* Setting+Service.swift */; };
 		CF0D055B24B76E6F006C130C /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */; };
 		CF0D055D24B7ED28006C130C /* SettingDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055C24B7ED28006C130C /* SettingDetailController.swift */; };
+		CF0D055F24B8D518006C130C /* SettingsPanelController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D055E24B8D518006C130C /* SettingsPanelController+Preview.swift */; };
 		CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */; };
 		CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */; };
 		CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26823172652006E6B65 /* MapModelController.swift */; };
@@ -54,6 +55,7 @@
 		CF0D055824B76D88006C130C /* Setting+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Setting+Service.swift"; sourceTree = "<group>"; };
 		CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF0D055C24B7ED28006C130C /* SettingDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailController.swift; sourceTree = "<group>"; };
+		CF0D055E24B8D518006C130C /* SettingsPanelController+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsPanelController+Preview.swift"; sourceTree = "<group>"; };
 		CF4EF26623172652006E6B65 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26823172652006E6B65 /* MapModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModelController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				CF4EF26B23172652006E6B65 /* SearchPanelLayout.swift */,
 				CF4EF26C23172652006E6B65 /* PlaceAnnotationView.swift */,
 				CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */,
+				CF0D055E24B8D518006C130C /* SettingsPanelController+Preview.swift */,
 				CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */,
 				CF0D055424B763F3006C130C /* SettingsCollectionController.swift */,
 				CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */,
@@ -321,6 +324,7 @@
 				CF4EF29B23172653006E6B65 /* Location.swift in Sources */,
 				CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */,
 				FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */,
+				CF0D055F24B8D518006C130C /* SettingsPanelController+Preview.swift in Sources */,
 				CF4EF28B23172653006E6B65 /* SearchPanelLayout.swift in Sources */,
 				CF4EF29023172653006E6B65 /* GPSButton.swift in Sources */,
 				CF4EF29323172653006E6B65 /* Default.swift in Sources */,
