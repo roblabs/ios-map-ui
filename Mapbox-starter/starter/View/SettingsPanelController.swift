@@ -11,7 +11,7 @@ import UIKit
 import FloatingPanel
 
 protocol SettingsPanelControllerDelegate: class {
-    var fpc: FloatingPanelController! { get set }
+    var fpc: FloatingPanelController! { get }
     func styleSelected(_ style: MapStyle)
     func showSettingsTapped()
     func didDismiss()
