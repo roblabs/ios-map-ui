@@ -22,6 +22,7 @@ class SettingDetailController: UIViewController {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = setting.subtitle
+        l.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
         return l
     }()
     
