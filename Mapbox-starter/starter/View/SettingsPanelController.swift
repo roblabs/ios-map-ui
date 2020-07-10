@@ -107,6 +107,27 @@ class SettingsPanelController: UIViewController {
         NSLayoutConstraint.activate(viewConstraints)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let shouldShowCollectionOption = size.height > size.width
+        let pos = delegate!.fpc.position
+        
+        self.showSettingsButton.isHidden = !shouldShowCollectionOption
+        self.thirdController.view.isHidden = !shouldShowCollectionOption
+        
+        coordinator.animate(alongsideTransition: { _ in
+            if shouldShowCollectionOption {
+                if pos == .full {
+                    self.thirdController.view.alpha = 1
+                } else {
+                    self.showSettingsButton.alpha = 1
+                }
+            } else {
+                self.thirdController.view.alpha = 0
+                self.showSettingsButton.alpha = 0
+            }
+        })
+    }
+    
     private func addSettingCollectionController() {
         let scc = SettingCollectionController()
         thirdController = scc
