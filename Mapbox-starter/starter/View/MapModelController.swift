@@ -342,18 +342,16 @@ extension MapModelController: FloatingPanelControllerDelegate {
     }
     
     func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
-        guard searchVC != nil else {
-            let size = view.bounds.size
-            
-            
-            if panelState == .settings
-                && vc.position == .full
-                && size.width < size.height
-            {
-                settingsVC.showSettingsCollection()
-            }
-            return
+        switch panelState {
+        case .search:
+            updateSearchTable(forPositionChangeOf: vc)
+        case .settings:
+            updateSettingsCollection(forPositionChangeOf: vc)
         }
+    }
+    
+    private func updateSearchTable(forPositionChangeOf vc: FloatingPanelController) {
+        guard searchVC != nil else { return }
         
         // update currentPosition variable for searchVC
         searchVC.currentPosition = vc.position
@@ -369,6 +367,14 @@ extension MapModelController: FloatingPanelControllerDelegate {
         let tbl = searchVC.tableView
         let t = Default.animationDuration
         UIView.animate(withDuration: t) { tbl.alpha = trgt }
+    }
+    
+    private func updateSettingsCollection(forPositionChangeOf vc: FloatingPanelController) {
+        let size = view.bounds.size
+        
+        if vc.position == .full && size.width < size.height {
+            settingsVC.showSettingsCollection()
+        }
     }
 }
 
