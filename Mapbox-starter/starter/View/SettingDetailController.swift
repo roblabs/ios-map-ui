@@ -96,15 +96,17 @@ class SettingDetailController: UIViewController {
         view.addSubview(btmStk)
         view.addSubview(offlineSwitch)
         
+        let p = Default.padding * 2
+        
         NSLayoutConstraint.activate([
-            topStk.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            topStk.topAnchor.constraint(equalTo: view.topAnchor, constant: p),
             topStk.bottomAnchor.constraint(equalTo: view.centerYAnchor),
-            topStk.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            topStk.leftAnchor.constraint(equalTo: view.leftAnchor, constant: p),
             btmStk.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-            btmStk.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
+            btmStk.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -p),
             btmStk.leftAnchor.constraint(equalTo: topStk.leftAnchor),
             offlineSwitch.centerYAnchor.constraint(equalTo: offlineSubLbl.centerYAnchor),
-            offlineSwitch.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            offlineSwitch.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -p),
             infoBtn.centerYAnchor.constraint(equalTo: titleLbl.centerYAnchor),
             infoBtn.centerXAnchor.constraint(equalTo: offlineSwitch.centerXAnchor),
         ])
