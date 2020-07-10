@@ -11,7 +11,21 @@
 		D75B03B0230070C700C7C3E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75B03AF230070C700C7C3E3 /* ViewController.swift */; };
 		D75B03B5230070C700C7C3E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D75B03B4230070C700C7C3E3 /* Assets.xcassets */; };
 		D75B03B8230070C700C7C3E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75B03B6230070C700C7C3E3 /* LaunchScreen.storyboard */; };
+		D76F72EF24788D9800AA0633 /* MapKit_starterDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */; };
+		D76F72F12479C57A00AA0633 /* MapKit_GeoJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */; };
+		D78191222483595E00BE1E83 /* simple.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D78191212483595E00BE1E83 /* simple.geojson */; };
+		D7CF693123BD7B6A0099C478 /* MapKit_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF693023BD7B6A0099C478 /* MapKit_starterUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7CF693323BD7B6A0099C478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D75B03A2230070C700C7C3E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D75B03A9230070C700C7C3E3;
+			remoteInfo = "MapKit-starter";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D75B03AA230070C700C7C3E3 /* MapKit-starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MapKit-starter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,10 +34,25 @@
 		D75B03B4230070C700C7C3E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D75B03B7230070C700C7C3E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D75B03B9230070C700C7C3E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D76F72ED2478826200AA0633 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_starterDirections.swift; sourceTree = "<group>"; };
+		D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_GeoJSON.swift; sourceTree = "<group>"; };
+		D78191212483595E00BE1E83 /* simple.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = simple.geojson; sourceTree = "<group>"; };
+		D7A5400423BE4DB600E39ADB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		D7CF692E23BD7B6A0099C478 /* MapKit-starterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MapKit-starterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7CF693023BD7B6A0099C478 /* MapKit_starterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_starterUITests.swift; sourceTree = "<group>"; };
+		D7CF693223BD7B6A0099C478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D75B03A7230070C700C7C3E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7CF692B23BD7B6A0099C478 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,7 +65,9 @@
 		D75B03A1230070C700C7C3E3 = {
 			isa = PBXGroup;
 			children = (
+				D76F72ED2478826200AA0633 /* readme.md */,
 				D75B03AC230070C700C7C3E3 /* MapKit-starter */,
+				D7CF692F23BD7B6A0099C478 /* MapKit-starterUITests */,
 				D75B03AB230070C700C7C3E3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				D75B03AA230070C700C7C3E3 /* MapKit-starter.app */,
+				D7CF692E23BD7B6A0099C478 /* MapKit-starterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,6 +91,19 @@
 				D75B03B9230070C700C7C3E3 /* Info.plist */,
 			);
 			path = "MapKit-starter";
+			sourceTree = "<group>";
+		};
+		D7CF692F23BD7B6A0099C478 /* MapKit-starterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D78191212483595E00BE1E83 /* simple.geojson */,
+				D76F72F02479C57A00AA0633 /* MapKit_GeoJSON.swift */,
+				D76F72EE24788D9800AA0633 /* MapKit_starterDirections.swift */,
+				D7A5400423BE4DB600E39ADB /* TestPlan.xctestplan */,
+				D7CF693023BD7B6A0099C478 /* MapKit_starterUITests.swift */,
+				D7CF693223BD7B6A0099C478 /* Info.plist */,
+			);
+			path = "MapKit-starterUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,18 +126,40 @@
 			productReference = D75B03AA230070C700C7C3E3 /* MapKit-starter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D7CF692D23BD7B6A0099C478 /* MapKit-starterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7CF693723BD7B6A0099C478 /* Build configuration list for PBXNativeTarget "MapKit-starterUITests" */;
+			buildPhases = (
+				D7CF692A23BD7B6A0099C478 /* Sources */,
+				D7CF692B23BD7B6A0099C478 /* Frameworks */,
+				D7CF692C23BD7B6A0099C478 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7CF693423BD7B6A0099C478 /* PBXTargetDependency */,
+			);
+			name = "MapKit-starterUITests";
+			productName = "MapKit-starterUITests";
+			productReference = D7CF692E23BD7B6A0099C478 /* MapKit-starterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D75B03A2230070C700C7C3E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Rob Labs";
 				TargetAttributes = {
 					D75B03A9230070C700C7C3E3 = {
 						CreatedOnToolsVersion = 10.3;
+					};
+					D7CF692D23BD7B6A0099C478 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = D75B03A9230070C700C7C3E3;
 					};
 				};
 			};
@@ -110,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				D75B03A9230070C700C7C3E3 /* MapKit-starter */,
+				D7CF692D23BD7B6A0099C478 /* MapKit-starterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -121,6 +189,14 @@
 			files = (
 				D75B03B8230070C700C7C3E3 /* LaunchScreen.storyboard in Resources */,
 				D75B03B5230070C700C7C3E3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7CF692C23BD7B6A0099C478 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D78191222483595E00BE1E83 /* simple.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +212,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7CF692A23BD7B6A0099C478 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D76F72F12479C57A00AA0633 /* MapKit_GeoJSON.swift in Sources */,
+				D7CF693123BD7B6A0099C478 /* MapKit_starterUITests.swift in Sources */,
+				D76F72EF24788D9800AA0633 /* MapKit_starterDirections.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7CF693423BD7B6A0099C478 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D75B03A9230070C700C7C3E3 /* MapKit-starter */;
+			targetProxy = D7CF693323BD7B6A0099C478 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D75B03B6230070C700C7C3E3 /* LaunchScreen.storyboard */ = {
@@ -300,6 +394,46 @@
 			};
 			name = Release;
 		};
+		D7CF693523BD7B6A0099C478 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J7V35W7ES8;
+				INFOPLIST_FILE = "MapKit-starterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.MapKit-starterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MapKit-starter";
+			};
+			name = Debug;
+		};
+		D7CF693623BD7B6A0099C478 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J7V35W7ES8;
+				INFOPLIST_FILE = "MapKit-starterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.MapKit-starterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MapKit-starter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -317,6 +451,15 @@
 			buildConfigurations = (
 				D75B03BD230070C700C7C3E3 /* Debug */,
 				D75B03BE230070C700C7C3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7CF693723BD7B6A0099C478 /* Build configuration list for PBXNativeTarget "MapKit-starterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7CF693523BD7B6A0099C478 /* Debug */,
+				D7CF693623BD7B6A0099C478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
