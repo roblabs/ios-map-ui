@@ -112,19 +112,22 @@ class SettingsPanelController: UIViewController {
         let shouldShowCollectionOption = size.height > size.width
         let pos = delegate!.fpc.position
         
-        self.showSettingsButton.isHidden = !shouldShowCollectionOption
-        self.thirdController.view.isHidden = !shouldShowCollectionOption
+        let btn = showSettingsButton
+        let ctrl = thirdController.view!
+        
+        btn.isHidden = !shouldShowCollectionOption
+        ctrl.isHidden = !shouldShowCollectionOption
         
         coordinator.animate(alongsideTransition: { _ in
             if shouldShowCollectionOption {
                 if pos == .full {
-                    self.thirdController.view.alpha = 1
+                    ctrl.alpha = 1
                 } else {
-                    self.showSettingsButton.alpha = 1
+                    btn.alpha = 1
                 }
             } else {
-                self.thirdController.view.alpha = 0
-                self.showSettingsButton.alpha = 0
+                ctrl.alpha = 0
+                btn.alpha = 0
             }
         })
     }
