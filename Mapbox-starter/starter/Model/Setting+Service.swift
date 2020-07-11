@@ -10,7 +10,7 @@ import Foundation
 
 struct SettingDatasource {
     static let settings: [Setting] = {
-        [
+        var s = [
             Setting(
                 id: "setting_1",
                 title: "Setting 1",
@@ -47,6 +47,17 @@ struct SettingDatasource {
                 subtitle: "Subtitle 6",
                 imageTitle: "GPS_icon"
             ),
+        ]
+        
+        #if DEBUG
+        s += debugSettings
+        #endif
+        
+        return s
+    }()
+    
+    static let debugSettings: [Setting] = {
+        [
             Setting(
                 id: "setting_7",
                 title: "Setting 7",
@@ -58,7 +69,7 @@ struct SettingDatasource {
                 title: "Setting 8",
                 subtitle: "Subtitle 8",
                 imageTitle: "GPS_icon"
-            ),
+            )
         ]
     }()
 }
