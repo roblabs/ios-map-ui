@@ -13,12 +13,14 @@ struct SettingsPanelControllerPreview: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = SettingsPanelController
     
+    private let state: SettingsPanelController.SettingCollectionViewState = .collection // update to preview different view states
+    
     func makeUIViewController(context: Context) -> SettingsPanelController {
-        let vc = SettingsPanelController()
-        return vc
+        SettingsPanelController()
     }
     
     func updateUIViewController(_ uiViewController: SettingsPanelController, context: Context) {
+        uiViewController.updateSettingsCollection(forState: state)
     }
 }
 

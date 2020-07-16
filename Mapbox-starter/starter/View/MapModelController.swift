@@ -43,7 +43,7 @@ class MapModelController: UIViewController {
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
     
-    private var fpc: FloatingPanelController!
+    var fpc: FloatingPanelController!
     
     private var searchVC: SearchPanelController!
     private var settingsVC: SettingsPanelController!
@@ -321,6 +321,8 @@ extension MapModelController: FloatingPanelControllerDelegate {
         // resign the search bar if responder
         if panelState == .search && vc.position == .full {
             searchVC.resignSearchBar()
+        } else if panelState == .settings && vc.position == .full {
+            settingsVC.updateSettingsCollection(forState: .button)
         }
     }
     
@@ -333,6 +335,15 @@ extension MapModelController: FloatingPanelControllerDelegate {
     }
     
     func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
+        switch panelState {
+        case .search:
+            updateSearchTable(forPositionChangeOf: vc)
+        case .settings:
+            updateSettingsCollection(forPositionChangeOf: vc)
+        }
+    }
+    
+    private func updateSearchTable(forPositionChangeOf vc: FloatingPanelController) {
         guard searchVC != nil else { return }
         
         // update currentPosition variable for searchVC
@@ -350,6 +361,14 @@ extension MapModelController: FloatingPanelControllerDelegate {
         let tbl = searchVC.tableView
         let t = Default.animationDuration
         UIView.animate(withDuration: t) { tbl.alpha = trgt }
+    }
+    
+    private func updateSettingsCollection(forPositionChangeOf vc: FloatingPanelController) {
+        let size = view.bounds.size
+        
+        if vc.position == .full && size.width < size.height {
+            settingsVC.updateSettingsCollection(forState: .collection)
+        }
     }
 }
 
@@ -380,6 +399,12 @@ extension MapModelController: SettingsPanelControllerDelegate {
     func styleSelected(_ style: MapStyle) {
         model?.updateStyle(to: style)
         mapView.styleURL = style.url
+    }
+    
+    func showSettingsTapped() {
+        fpc.move(to: .full, animated: true, completion: { [weak self] in
+            self?.settingsVC.updateSettingsCollection(forState: .collection)
+        })
     }
     
     func didDismiss() {

@@ -28,7 +28,7 @@ class SettingsPanelLayout: FloatingPanelLayout {
     }
     
     public var supportedPositions: Set<FloatingPanelPosition> {
-        return isLandscape ? [.hidden, .full] : [.hidden, .half]
+        return isLandscape ? [.hidden, .full] : [.hidden, .half, .full]
     }
     
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {

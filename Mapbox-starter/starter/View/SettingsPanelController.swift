@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import FloatingPanel
 
 protocol SettingsPanelControllerDelegate: class {
+    var fpc: FloatingPanelController! { get }
     func styleSelected(_ style: MapStyle)
+    func showSettingsTapped()
     func didDismiss()
 }
 
@@ -87,11 +90,108 @@ class SettingsPanelController: UIViewController {
     
     private lazy var firstContainer = createContainerView()
     private lazy var secondContainer = createContainerView()
+    private weak var thirdController: SettingCollectionController!
+    
+    private lazy var showSettingsButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Configure Settings", for: .normal)
+        button.addTarget(self, action: #selector(showSettingsTapped), for: .touchUpInside)
+        view.addSubview(button)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.bg
+        addSettingCollectionController()
+        displayInitialCollectionControls()
         NSLayoutConstraint.activate(viewConstraints)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let portrait = size.height > size.width
+        let pos = delegate!.fpc.position
+        
+        let showCollection = portrait && pos == .full || !portrait && size.height > 700
+        let showButton = !showCollection && portrait && pos == .half
+        
+        let state: SettingCollectionViewState
+        
+        if showButton {
+            state = .button
+        } else if showCollection {
+            state = .collection
+        } else {
+            state = .none
+        }
+        
+        self.updateSettingsCollection(forState: state, coordinator: coordinator)
+    }
+    
+    enum SettingCollectionViewState {
+        case none, button, collection
+    }
+    
+    func updateSettingsCollection(
+        forState state: SettingCollectionViewState,
+        coordinator: UIViewControllerTransitionCoordinator? = nil
+    ) {
+        let btn = showSettingsButton
+        let ctrl = thirdController.view!
+        
+        if state == .button {
+            btn.isHidden = false
+        } else if state == .collection {
+            ctrl.isHidden = false
+        }
+        
+        let animations: () -> () = {
+            btn.alpha = state == .button ? 1 : 0
+            ctrl.alpha = state == .collection ? 1 : 0
+        }
+        
+        let completion: (Bool) -> () = { _ in
+            if state == .collection {
+                btn.isHidden = true
+            } else if state == .button {
+                ctrl.isHidden = true
+            }
+        }
+        
+        if let c = coordinator {
+            c.animate(alongsideTransition: { _ in
+                animations()
+            }) { _ in
+                completion(true)
+            }
+        } else {
+            let d = Default.animationDuration * 2
+            UIView.animate(withDuration: d, animations: animations, completion: completion)
+        }
+    }
+    
+    private func addSettingCollectionController() {
+        let scc = SettingCollectionController()
+        thirdController = scc
+        
+        addChild(thirdController!)
+        thirdController!.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(thirdController!.view)
+        thirdController!.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate(thirdControllerConstraints)
+    }
+    
+    private func displayInitialCollectionControls() {
+        thirdController.view.alpha = 0
+        thirdController.view.isHidden = true
+        
+        let size = UIScreen.main.bounds.size
+        let show = size.width < size.height
+        
+        showSettingsButton.alpha = show ? 1 : 0
+        showSettingsButton.isHidden = !show
     }
     
     // MARK: User Action methods
@@ -115,6 +215,10 @@ class SettingsPanelController: UIViewController {
     
     @objc func reportTapped() {
         
+    }
+    
+    @objc func showSettingsTapped() {
+        delegate?.showSettingsTapped()
     }
 }
 
@@ -190,6 +294,19 @@ extension SettingsPanelController {
             reportButton.widthAnchor.constraint(equalTo: titleLabel.widthAnchor),
             reportButton.topAnchor.constraint(equalTo: addButton.bottomAnchor),
             reportButton.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+            
+            showSettingsButton.topAnchor.constraint(equalTo: secondContainer.bottomAnchor, constant: Size.padding),
+            showSettingsButton.heightAnchor.constraint(equalToConstant: Size.segCntrlHeight),
+            showSettingsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ]
+    }
+    
+    private var thirdControllerConstraints: [NSLayoutConstraint] {
+        [
+            thirdController.view.topAnchor.constraint(equalTo: secondContainer.bottomAnchor, constant: Default.padding),
+            thirdController.view.leftAnchor.constraint(equalTo: secondContainer.leftAnchor),
+            thirdController.view.rightAnchor.constraint(equalTo: secondContainer.rightAnchor),
+            thirdController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Default.padding),
         ]
     }
 }
