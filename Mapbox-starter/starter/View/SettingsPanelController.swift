@@ -126,24 +126,49 @@ class SettingsPanelController: UIViewController {
             state = .none
         }
         
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.updateSettingsCollection(forState: state)
-        })
+        self.updateSettingsCollection(forState: state, coordinator: coordinator)
     }
     
     enum SettingCollectionViewState {
         case none, button, collection
     }
     
-    func updateSettingsCollection(forState state: SettingCollectionViewState) {
+    func updateSettingsCollection(
+        forState state: SettingCollectionViewState,
+        coordinator: UIViewControllerTransitionCoordinator? = nil
+    ) {
         let btn = showSettingsButton
         let ctrl = thirdController.view!
         
-        btn.isHidden = state != .button
-        ctrl.isHidden = state != .collection
+        if state == .button {
+            btn.isHidden = false
+        } else if state == .collection {
+            ctrl.isHidden = false
+        }
         
-        btn.alpha = state == .button ? 1 : 0
-        ctrl.alpha = state == .collection ? 1 : 0
+        let animations: () -> () = {
+            btn.alpha = state == .button ? 1 : 0
+            ctrl.alpha = state == .collection ? 1 : 0
+        }
+        
+        let completion: (Bool) -> () = { _ in
+            if state == .collection {
+                btn.isHidden = true
+            } else if state == .button {
+                ctrl.isHidden = true
+            }
+        }
+        
+        if let c = coordinator {
+            c.animate(alongsideTransition: { _ in
+                animations()
+            }) { _ in
+                completion(true)
+            }
+        } else {
+            let d = Default.animationDuration * 2
+            UIView.animate(withDuration: d, animations: animations, completion: completion)
+        }
     }
     
     private func addSettingCollectionController() {
