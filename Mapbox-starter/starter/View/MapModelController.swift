@@ -322,7 +322,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
         if panelState == .search && vc.position == .full {
             searchVC.resignSearchBar()
         } else if panelState == .settings && vc.position == .full {
-            settingsVC.hideSettingsCollection()
+            settingsVC.updateSettingsCollection(forState: .button)
         }
     }
     
@@ -367,7 +367,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
         let size = view.bounds.size
         
         if vc.position == .full && size.width < size.height {
-            settingsVC.showSettingsCollection()
+            settingsVC.updateSettingsCollection(forState: .collection)
         }
     }
 }
@@ -403,7 +403,7 @@ extension MapModelController: SettingsPanelControllerDelegate {
     
     func showSettingsTapped() {
         fpc.move(to: .full, animated: true, completion: { [weak self] in
-            self?.settingsVC.showSettingsCollection()
+            self?.settingsVC.updateSettingsCollection(forState: .collection)
         })
     }
     

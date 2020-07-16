@@ -116,16 +116,34 @@ class SettingsPanelController: UIViewController {
         let showCollection = portrait && pos == .full || !portrait && size.height > 700
         let showButton = !showCollection && portrait && pos == .half
         
+        let state: SettingCollectionViewState
+        
+        if showButton {
+            state = .button
+        } else if showCollection {
+            state = .collection
+        } else {
+            state = .none
+        }
+        
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.updateSettingsCollection(forState: state)
+        })
+    }
+    
+    enum SettingCollectionViewState {
+        case none, button, collection
+    }
+    
+    func updateSettingsCollection(forState state: SettingCollectionViewState) {
         let btn = showSettingsButton
         let ctrl = thirdController.view!
         
-        btn.isHidden = !showButton
-        ctrl.isHidden = !showCollection
+        btn.isHidden = state != .button
+        ctrl.isHidden = state != .collection
         
-        coordinator.animate(alongsideTransition: { _ in
-            btn.alpha = showButton ? 1 : 0
-            ctrl.alpha = showCollection ? 1 : 0
-        })
+        btn.alpha = state == .button ? 1 : 0
+        ctrl.alpha = state == .collection ? 1 : 0
     }
     
     private func addSettingCollectionController() {
@@ -176,28 +194,6 @@ class SettingsPanelController: UIViewController {
     
     @objc func showSettingsTapped() {
         delegate?.showSettingsTapped()
-    }
-    
-    func showSettingsCollection() {
-        thirdController.view.isHidden = false
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            self.showSettingsButton.alpha = 0
-            self.thirdController.view.alpha = 1
-        }) { _ in
-            self.showSettingsButton.isHidden = true
-        }
-    }
-    
-    func hideSettingsCollection() {
-        showSettingsButton.isHidden = false
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            self.thirdController.view.alpha = 0
-            self.showSettingsButton.alpha = 1
-        }) { _ in
-            self.thirdController.view.isHidden = true
-        }
     }
 }
 

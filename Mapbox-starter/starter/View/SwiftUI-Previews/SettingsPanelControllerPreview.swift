@@ -19,6 +19,7 @@ struct SettingsPanelControllerPreview: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: SettingsPanelController, context: Context) {
+        uiViewController.updateSettingsCollection(forState: .collection)
     }
 }
 
