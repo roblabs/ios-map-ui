@@ -43,6 +43,7 @@
 		CF4EF2A223172653006E6B65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28423172653006E6B65 /* Map.swift */; };
 		CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28523172653006E6B65 /* MapBoundaries.swift */; };
 		CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4EF2A423172840006E6B65 /* FloatingPanel.framework */; };
+		D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
 		FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD602DB91FC22DAD002DA06A /* AppDelegate.swift */; };
@@ -88,6 +89,7 @@
 		CF4EF28423172653006E6B65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		CF4EF28523172653006E6B65 /* MapBoundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBoundaries.swift; sourceTree = "<group>"; };
 		CF4EF2A423172840006E6B65 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
+		D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */,
 				D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */,
+				D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */,
 			);
 			path = "SwiftUI-Previews";
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */,
 				CF4EF29A23172653006E6B65 /* MapError.swift in Sources */,
+				D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */,
 				CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */,
 				CF0D055D24B7ED28006C130C /* SettingDetailController.swift in Sources */,
 				CF4EF29D23172653006E6B65 /* PlaceCategory+Service.swift in Sources */,

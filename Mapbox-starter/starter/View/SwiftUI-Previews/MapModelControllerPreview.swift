@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-/// - Tag: MapModelControllerPreview_SwiftUI
 struct MapModelControllerPreview: UIViewControllerRepresentable {
 
     typealias UIViewControllerType = MapModelController
@@ -22,6 +21,7 @@ struct MapModelControllerPreview: UIViewControllerRepresentable {
     }
 }
 
+/// - Tag: MapModelControllerPreview_SwiftUI
 struct ContentView_MapModelControllerPreview: PreviewProvider {
     @available(iOS 13.0.0, *)
     static var previews: some View {

@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-/// - Tag: SettingsPanelControllerPreview_SwiftUI
 struct SettingsPanelControllerPreview: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = SettingsPanelController
@@ -24,6 +23,7 @@ struct SettingsPanelControllerPreview: UIViewControllerRepresentable {
     }
 }
 
+/// - Tag: SettingsPanelControllerPreview_SwiftUI
 struct ContentView_SettingsPanelControllerPreview: PreviewProvider {
     @available(iOS 13.0.0, *)
     static var previews: some View {

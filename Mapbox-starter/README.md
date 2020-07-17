@@ -21,7 +21,7 @@ You can add a SwiftUI to your UIKit project to soft preview the UIKit components
 
 On the left is the SwiftUI code that displays the Map view controller.  On the right is the Preview window.
 
-[View in Source](x-source-tag://MapModelControllerPreview_SwiftUI)
+* [View `MapModelControllerPreview` in Xcode](x-source-tag://MapModelControllerPreview_SwiftUI)
 
 ![](assets/SwiftUI-preview-Maps.png)
 
@@ -31,7 +31,8 @@ On the left is the SwiftUI code that displays the Map view controller.  On the r
 
 On the left is the SwiftUI code that displays the Settings view controller.  On the right is the Preview window.
 
-[View in Source](x-source-tag://SettingsPanelControllerPreview_SwiftUI)
+* [View `SettingsPanelControllerPreview` in Xcode](x-source-tag://SettingsPanelControllerPreview_SwiftUI)
+* [View `SettingDetailControllerPreview` in Xcode](x-source-tag://SettingDetailControllerPreview)
 
 ![](assets/SwiftUI-preview-Maps-settings.png)
 
