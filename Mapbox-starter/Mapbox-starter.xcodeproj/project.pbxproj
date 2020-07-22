@@ -43,6 +43,7 @@
 		CF4EF2A223172653006E6B65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28423172653006E6B65 /* Map.swift */; };
 		CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28523172653006E6B65 /* MapBoundaries.swift */; };
 		CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4EF2A423172840006E6B65 /* FloatingPanel.framework */; };
+		D7102E2224C7E9DC0095B9B1 /* grids.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D7102E2124C7E9DB0095B9B1 /* grids.geojson */; };
 		D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
@@ -89,6 +90,7 @@
 		CF4EF28423172653006E6B65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		CF4EF28523172653006E6B65 /* MapBoundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBoundaries.swift; sourceTree = "<group>"; };
 		CF4EF2A423172840006E6B65 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
+		D7102E2124C7E9DB0095B9B1 /* grids.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.geojson; sourceTree = "<group>"; };
 		D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				CF4EF27323172652006E6B65 /* DataService.swift */,
 				CF4EF27423172652006E6B65 /* Default.swift */,
+				D7102E2124C7E9DB0095B9B1 /* grids.geojson */,
 				CF4EF27523172652006E6B65 /* points.geojson */,
 				CF4EF27623172652006E6B65 /* MapStyleCollection.swift */,
 				CF4EF27723172652006E6B65 /* SerializationError.swift */,
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD602DC41FC22DAD002DA06A /* LaunchScreen.storyboard in Resources */,
+				D7102E2224C7E9DC0095B9B1 /* grids.geojson in Resources */,
 				FD602DC11FC22DAD002DA06A /* Assets.xcassets in Resources */,
 				CF4EF29423172653006E6B65 /* points.geojson in Resources */,
 			);

@@ -40,6 +40,9 @@ class MapModelController: UIViewController {
         }
     }
     
+    let layerIdentifier = "polyline"
+    let gridKey = "name"
+    
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
     
@@ -127,6 +130,13 @@ class MapModelController: UIViewController {
         guard model != nil else { return }
         mapView.addAnnotations(model!.annotations)
         mapView.showAnnotations(mapView.annotations!, animated: false)
+        
+        // Add a single tap gesture recognizer. This gesture requires the built-in MGLMapView tap gestures (such as those for zoom and annotation selection) to fail.
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:)))
+        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
+            singleTap.require(toFail: recognizer)
+        }
+        mapView.addGestureRecognizer(singleTap)
     }
     
     private func loadSubViews() {
@@ -284,6 +294,76 @@ extension MapModelController: MGLMapViewDelegate {
         UIView.animate(withDuration: Default.animationDuration) {
             compass.alpha = degrees == 0 ? 0 : 1
         }
+    }
+    
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        loadGeoJson()
+    }
+    
+    @objc @IBAction func handleMapTap(sender: UITapGestureRecognizer) {
+        // Get the CGPoint where the user tapped.
+        let spot = sender.location(in: mapView)
+
+        // Access the features at that point within the state layer.
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set([layerIdentifier]))
+
+        // Get the name of the selected state.
+        if let feature = features.first, let state = feature.attribute(forKey: gridKey) as? String {
+            changeOpacity(name: state)
+        } else {
+            changeOpacity(name: "")
+        }
+    }
+
+    func changeOpacity(name: String) {
+        guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
+            fatalError("Could not cast to specified MGLFillStyleLayer")
+        }
+        // Check if a state was selected, then change the opacity of the states that were not selected.
+        if !name.isEmpty {
+            layer.fillOpacity = NSExpression(format: "TERNARY(name = %@, 0.5, 0)", name)
+        } else {
+            // Reset the opacity for all states if the user did not tap on a state.
+            layer.fillOpacity = NSExpression(forConstantValue: 0.5)
+        }
+    }
+
+    func loadGeoJson() {
+        DispatchQueue.global().async {
+            // Get the path for example.geojson in the app’s bundle.
+            guard let jsonUrl = Bundle.main.url(forResource: "grids", withExtension: "geojson") else {
+                preconditionFailure("Failed to load local GeoJSON file")
+            }
+
+            guard let jsonData = try? Data(contentsOf: jsonUrl) else {
+                preconditionFailure("Failed to parse GeoJSON file")
+            }
+
+            DispatchQueue.main.async {
+                self.drawPolyline(geoJson: jsonData)
+            }
+        }
+    }
+
+    func drawPolyline(geoJson: Data) {
+        // Add our GeoJSON data to the map as an MGLGeoJSONSource.
+        // We can then reference this data from an MGLStyleLayer.
+
+        // MGLMapView.style is optional, so you must guard against it not being set.
+        guard let style = self.mapView.style else { return }
+
+        guard let shapeFromGeoJSON = try? MGLShape(data: geoJson, encoding: String.Encoding.utf8.rawValue) else {
+            fatalError("Could not generate MGLShape")
+        }
+
+        let source = MGLShapeSource(identifier: "polyline-source", shape: shapeFromGeoJSON, options: nil)
+        style.addSource(source)
+
+        // Create new layer for the line.
+        let layer = MGLFillStyleLayer(identifier: "polyline", source: source)
+        layer.fillOpacity = NSExpression(forConstantValue: 0.5)
+
+        style.addLayer(layer)
     }
 }
 
