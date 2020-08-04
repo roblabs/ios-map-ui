@@ -47,11 +47,22 @@
 		D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
+		D7E7E86324CB5CBF00F2BC9E /* Mapbox_starterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */; };
 		FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD602DB91FC22DAD002DA06A /* AppDelegate.swift */; };
 		FD602DC11FC22DAD002DA06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC01FC22DAD002DA06A /* Assets.xcassets */; };
 		FD602DC41FC22DAD002DA06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC21FC22DAD002DA06A /* LaunchScreen.storyboard */; };
 		FD602DCC1FC236CA002DA06A /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD602DCB1FC236CA002DA06A /* Mapbox.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7E7E86524CB5CBF00F2BC9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD602DAE1FC22DAD002DA06A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD602DB51FC22DAD002DA06A;
+			remoteInfo = "Mapbox-starter";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CF0D055424B763F3006C130C /* SettingsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionController.swift; sourceTree = "<group>"; };
@@ -95,6 +106,9 @@
 		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mapbox-starterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapbox_starterTests.swift; sourceTree = "<group>"; };
+		D7E7E86424CB5CBF00F2BC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapbox-starter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD602DB91FC22DAD002DA06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD602DC01FC22DAD002DA06A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D7E7E85D24CB5CBF00F2BC9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD602DB31FC22DAD002DA06A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,12 +206,22 @@
 			path = "SwiftUI-Previews";
 			sourceTree = "<group>";
 		};
+		D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */,
+				D7E7E86424CB5CBF00F2BC9E /* Info.plist */,
+			);
+			path = "Mapbox-starterTests";
+			sourceTree = "<group>";
+		};
 		FD602DAD1FC22DAD002DA06A = {
 			isa = PBXGroup;
 			children = (
 				D7BED77424AFB03600EFF487 /* README.md */,
 				FD9CD1911FC23D4F00B0D313 /* Cartfile */,
 				FD602DB81FC22DAD002DA06A /* starter */,
+				D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */,
 				FD602DB71FC22DAD002DA06A /* Products */,
 				FD602DCE1FC2376D002DA06A /* Recovered References */,
 			);
@@ -200,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */,
+				D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,6 +262,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7E7E86924CB5CBF00F2BC9E /* Build configuration list for PBXNativeTarget "Mapbox-starterTests" */;
+			buildPhases = (
+				D7E7E85C24CB5CBF00F2BC9E /* Sources */,
+				D7E7E85D24CB5CBF00F2BC9E /* Frameworks */,
+				D7E7E85E24CB5CBF00F2BC9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7E7E86624CB5CBF00F2BC9E /* PBXTargetDependency */,
+			);
+			name = "Mapbox-starterTests";
+			productName = "Mapbox-starterTests";
+			productReference = D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FD602DB51FC22DAD002DA06A /* Mapbox-starter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD602DC81FC22DAD002DA06A /* Build configuration list for PBXNativeTarget "Mapbox-starter" */;
@@ -254,10 +304,15 @@
 		FD602DAE1FC22DAD002DA06A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "ePi Rational, Inc.";
 				TargetAttributes = {
+					D7E7E85F24CB5CBF00F2BC9E = {
+						CreatedOnToolsVersion = 11.6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FD602DB51FC22DAD002DA06A;
+					};
 					FD602DB51FC22DAD002DA06A = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1030;
@@ -279,11 +334,19 @@
 			projectRoot = "";
 			targets = (
 				FD602DB51FC22DAD002DA06A /* Mapbox-starter */,
+				D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D7E7E85E24CB5CBF00F2BC9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD602DB41FC22DAD002DA06A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,6 +380,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D7E7E85C24CB5CBF00F2BC9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7E7E86324CB5CBF00F2BC9E /* Mapbox_starterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD602DB21FC22DAD002DA06A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +435,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D7E7E86624CB5CBF00F2BC9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
+			targetProxy = D7E7E86524CB5CBF00F2BC9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FD602DC21FC22DAD002DA06A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -376,6 +455,43 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D7E7E86724CB5CBF00F2BC9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Mapbox-starterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapbox-starter.app/Mapbox-starter";
+			};
+			name = Debug;
+		};
+		D7E7E86824CB5CBF00F2BC9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Mapbox-starterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapbox-starter.app/Mapbox-starter";
+			};
+			name = Release;
+		};
 		FD602DC61FC22DAD002DA06A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -528,6 +644,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D7E7E86924CB5CBF00F2BC9E /* Build configuration list for PBXNativeTarget "Mapbox-starterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7E7E86724CB5CBF00F2BC9E /* Debug */,
+				D7E7E86824CB5CBF00F2BC9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FD602DB11FC22DAD002DA06A /* Build configuration list for PBXProject "Mapbox-starter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
