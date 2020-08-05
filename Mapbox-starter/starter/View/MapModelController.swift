@@ -42,6 +42,7 @@ class MapModelController: UIViewController {
     
     let layerIdentifier = "polyline"
     let gridKey = "name"
+    var gridList = [String]()
     
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
@@ -57,7 +58,8 @@ class MapModelController: UIViewController {
         mapView.compassView.compassVisibility = .visible
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let center = model?.map.boundaries.center.clCoord ?? Default.center
-        mapView.setCenter(center, zoomLevel: 9, animated: false)
+//        mapView.setCenter(center, zoomLevel: 9, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 32, longitude: -116), zoomLevel: 12, animated: false)
         mapView.showsUserLocation = true
         mapView.isRotateEnabled = true
         view.addSubview(mapView)
@@ -304,12 +306,25 @@ extension MapModelController: MGLMapViewDelegate {
         // Get the CGPoint where the user tapped.
         let spot = sender.location(in: mapView)
 
+        guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
+            fatalError("Could not cast to specified MGLFillStyleLayer")
+        }
+
         // Access the features at that point within the state layer.
         let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set([layerIdentifier]))
 
         // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: gridKey) as? String {
-            changeOpacity(name: state)
+        if let feature = features.first, let gridValue = feature.attribute(forKey: gridKey) as? String {
+
+            // if gridValue is already on the gridList, then remove it, and change the fillColor back to default
+            // If it's not on the gridList, then add it and change the fillColor to show it was selected.
+            if let index = gridList.firstIndex(of: gridValue) {
+                gridList.remove(at: index)
+            } else {
+                gridList.append(gridValue)
+                changeOpacity(name: gridValue)
+            }
+            print(gridList)
         } else {
             changeOpacity(name: "")
         }
@@ -321,10 +336,21 @@ extension MapModelController: MGLMapViewDelegate {
         }
         // Check if a state was selected, then change the opacity of the states that were not selected.
         if !name.isEmpty {
-            layer.fillOpacity = NSExpression(format: "TERNARY(name = %@, 0.5, 0)", name)
+            gridList.forEach{
+                print($0)
+                if let index = gridList.firstIndex(of: $0) {
+                    layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 0, alpha: 1))
+                    layer.predicate = NSPredicate(format: "name = %@", $0)
+                } else {
+                    // Reset the opacity for all states if the user did not tap on a state.
+                    layer.fillOpacity = NSExpression(forConstantValue: 0.15)
+                }
+            }
         } else {
             // Reset the opacity for all states if the user did not tap on a state.
-            layer.fillOpacity = NSExpression(forConstantValue: 0.5)
+            layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
+            layer.predicate = NSPredicate(format: "name != %@", "null")
+            layer.fillOpacity = NSExpression(forConstantValue: 0.15)
         }
     }
 
@@ -360,7 +386,8 @@ extension MapModelController: MGLMapViewDelegate {
         style.addSource(source)
 
         // Create new layer for the line.
-        let layer = MGLFillStyleLayer(identifier: "polyline", source: source)
+        let layer = MGLFillStyleLayer(identifier: layerIdentifier, source: source)
+        layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
         layer.fillOpacity = NSExpression(forConstantValue: 0.5)
 
         style.addLayer(layer)
@@ -535,4 +562,3 @@ extension MapModelController {
         ]
     }
 }
-
