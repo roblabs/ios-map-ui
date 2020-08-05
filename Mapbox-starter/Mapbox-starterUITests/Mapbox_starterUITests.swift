@@ -30,6 +30,7 @@ class Mapbox_starterUITests: XCTestCase {
         app.launch()
     }
 
+    /// - Tag: testStyles
     func testStyles() {
         // generated from recording a UI test
         app.launch()

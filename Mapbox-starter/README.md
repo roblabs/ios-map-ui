@@ -14,6 +14,23 @@ But [SwiftUI](https://developer.apple.com/documentation/swiftui) has a lot of po
 
 You can add a SwiftUI to your UIKit project to soft preview the UIKit components.  With SwiftUI, the Preview debugger in Xcode is used to show the UIKit `view`.  This makes UIKit development easier to do without having to build an entire app.
 
+---
+
+### *Example:*  Automated Mapbox Map UI testing
+
+Automated User Interface testing is now setup.  [View the UI Test `testStyles` in Xcode](x-source-tag://testStyles)
+
+```swift
+  app.launch()
+
+  // Info button, upper right corner
+  app.buttons["More Info"].tap()
+
+  // Change Styles
+  app.buttons["Light"].tap()
+  app.buttons["Satellite"].tap()
+  app.buttons["Streets"].tap()
+```
 
 ---
 
