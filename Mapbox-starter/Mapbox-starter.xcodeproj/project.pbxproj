@@ -45,6 +45,7 @@
 		CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4EF2A423172840006E6B65 /* FloatingPanel.framework */; };
 		D7102E2224C7E9DC0095B9B1 /* grids.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D7102E2124C7E9DB0095B9B1 /* grids.geojson */; };
 		D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */; };
+		D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
 		D7E7E86324CB5CBF00F2BC9E /* Mapbox_starterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */; };
@@ -55,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D766ED5A24DA291F001FA28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD602DAE1FC22DAD002DA06A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD602DB51FC22DAD002DA06A;
+			remoteInfo = "Mapbox-starter";
+		};
 		D7E7E86524CB5CBF00F2BC9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD602DAE1FC22DAD002DA06A /* Project object */;
@@ -103,6 +111,12 @@
 		CF4EF2A423172840006E6B65 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
 		D7102E2124C7E9DB0095B9B1 /* grids.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.geojson; sourceTree = "<group>"; };
 		D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailControllerPreview.swift; sourceTree = "<group>"; };
+		D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mapbox-starterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapbox_starterUITests.swift; sourceTree = "<group>"; };
+		D766ED5924DA291F001FA28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D766ED6124DA2E36001FA28A /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
+		D766ED6324DA2E44001FA28A /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		D766ED6524DA2EFB001FA28A /* Mapbox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Mapbox; path = Carthage/Build/iOS/Mapbox.framework/Mapbox; sourceTree = "<group>"; };
 		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -119,6 +133,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D766ED5224DA291F001FA28A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7E7E85D24CB5CBF00F2BC9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +217,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D766ED5624DA291F001FA28A /* Mapbox-starterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */,
+				D766ED5924DA291F001FA28A /* Info.plist */,
+			);
+			path = "Mapbox-starterUITests";
+			sourceTree = "<group>";
+		};
+		D766ED5F24DA2C5E001FA28A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D766ED6524DA2EFB001FA28A /* Mapbox */,
+				D766ED6324DA2E44001FA28A /* MapboxMobileEvents.framework */,
+				D766ED6124DA2E36001FA28A /* Carthage */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D7BED76F24AFA72600EFF487 /* SwiftUI-Previews */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,8 +262,10 @@
 				FD9CD1911FC23D4F00B0D313 /* Cartfile */,
 				FD602DB81FC22DAD002DA06A /* starter */,
 				D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */,
+				D766ED5624DA291F001FA28A /* Mapbox-starterUITests */,
 				FD602DB71FC22DAD002DA06A /* Products */,
 				FD602DCE1FC2376D002DA06A /* Recovered References */,
+				D766ED5F24DA2C5E001FA28A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +274,7 @@
 			children = (
 				FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */,
 				D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */,
+				D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,6 +305,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D766ED5424DA291F001FA28A /* Mapbox-starterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D766ED5E24DA291F001FA28A /* Build configuration list for PBXNativeTarget "Mapbox-starterUITests" */;
+			buildPhases = (
+				D766ED5124DA291F001FA28A /* Sources */,
+				D766ED5224DA291F001FA28A /* Frameworks */,
+				D766ED5324DA291F001FA28A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D766ED5B24DA291F001FA28A /* PBXTargetDependency */,
+			);
+			name = "Mapbox-starterUITests";
+			productName = "Mapbox-starterUITests";
+			productReference = D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7E7E86924CB5CBF00F2BC9E /* Build configuration list for PBXNativeTarget "Mapbox-starterTests" */;
@@ -308,6 +369,11 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "ePi Rational, Inc.";
 				TargetAttributes = {
+					D766ED5424DA291F001FA28A = {
+						CreatedOnToolsVersion = 11.6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FD602DB51FC22DAD002DA06A;
+					};
 					D7E7E85F24CB5CBF00F2BC9E = {
 						CreatedOnToolsVersion = 11.6;
 						ProvisioningStyle = Automatic;
@@ -335,11 +401,19 @@
 			targets = (
 				FD602DB51FC22DAD002DA06A /* Mapbox-starter */,
 				D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */,
+				D766ED5424DA291F001FA28A /* Mapbox-starterUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D766ED5324DA291F001FA28A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7E7E85E24CB5CBF00F2BC9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -380,6 +454,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D766ED5124DA291F001FA28A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7E7E85C24CB5CBF00F2BC9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +518,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D766ED5B24DA291F001FA28A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
+			targetProxy = D766ED5A24DA291F001FA28A /* PBXContainerItemProxy */;
+		};
 		D7E7E86624CB5CBF00F2BC9E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
@@ -455,6 +542,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D766ED5C24DA291F001FA28A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Mapbox-starterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Mapbox.framework",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Mapbox-starter";
+			};
+			name = Debug;
+		};
+		D766ED5D24DA291F001FA28A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Mapbox-starterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Mapbox.framework",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Mapbox-starter";
+			};
+			name = Release;
+		};
 		D7E7E86724CB5CBF00F2BC9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -644,6 +782,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D766ED5E24DA291F001FA28A /* Build configuration list for PBXNativeTarget "Mapbox-starterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D766ED5C24DA291F001FA28A /* Debug */,
+				D766ED5D24DA291F001FA28A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D7E7E86924CB5CBF00F2BC9E /* Build configuration list for PBXNativeTarget "Mapbox-starterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
