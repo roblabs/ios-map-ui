@@ -11,6 +11,7 @@ import XCTest
 class Mapbox_starterTests: XCTestCase {
     
     var sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"]
+    var goodCampingIslands = ["Jones", "Sucia", "Matia"]
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -57,6 +58,6 @@ class Mapbox_starterTests: XCTestCase {
         let kvpLetterJ = ["letter": "J"]
         let beginsWithJ = predicate.withSubstitutionVariables(kvpLetterJ)
         let sanJuanIslandsStartingWithJ = sanJuanIslands.filter { beginsWithJ.evaluate(with: $0) }
-        print(sanJuanIslandsStartingWithJ)
+        print(sanJuanIslandsStartingWithJ)  
     }
 }

@@ -42,7 +42,7 @@ class MapModelController: UIViewController {
     
     let layerIdentifier = "polyline"
     let gridKey = "name"
-    var gridList = [String]()
+    var gridList = [String]()  // Array of 'name' to keep track of which grid was selected
     
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
@@ -58,7 +58,6 @@ class MapModelController: UIViewController {
         mapView.compassView.compassVisibility = .visible
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let center = model?.map.boundaries.center.clCoord ?? Default.center
-//        mapView.setCenter(center, zoomLevel: 9, animated: false)
         mapView.setCenter(CLLocationCoordinate2D(latitude: 32, longitude: -116), zoomLevel: 12, animated: false)
         mapView.showsUserLocation = true
         mapView.isRotateEnabled = true
@@ -132,6 +131,7 @@ class MapModelController: UIViewController {
         guard model != nil else { return }
         mapView.addAnnotations(model!.annotations)
         mapView.showAnnotations(mapView.annotations!, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 48.5, longitude: -122.98), zoomLevel: 9, animated: false)
         
         // Add a single tap gesture recognizer. This gesture requires the built-in MGLMapView tap gestures (such as those for zoom and annotation selection) to fail.
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:)))
@@ -322,36 +322,25 @@ extension MapModelController: MGLMapViewDelegate {
                 gridList.remove(at: index)
             } else {
                 gridList.append(gridValue)
-                changeOpacity(name: gridValue)
             }
+            
+            changeOpacity()
             print(gridList)
-        } else {
-            changeOpacity(name: "")
         }
     }
 
-    func changeOpacity(name: String) {
+    func changeOpacity() {
         guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
             fatalError("Could not cast to specified MGLFillStyleLayer")
         }
-        // Check if a state was selected, then change the opacity of the states that were not selected.
-        if !name.isEmpty {
-            gridList.forEach{
-                print($0)
-                if let index = gridList.firstIndex(of: $0) {
-                    layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 0, alpha: 1))
-                    layer.predicate = NSPredicate(format: "name = %@", $0)
-                } else {
-                    // Reset the opacity for all states if the user did not tap on a state.
-                    layer.fillOpacity = NSExpression(forConstantValue: 0.15)
-                }
-            }
-        } else {
-            // Reset the opacity for all states if the user did not tap on a state.
-            layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
-            layer.predicate = NSPredicate(format: "name != %@", "null")
-            layer.fillOpacity = NSExpression(forConstantValue: 0.15)
-        }
+        
+        /// - Tag: tilePicker
+        
+        // MARK: - sanJuanIslands
+        let sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"] // main list, TODO:  this should be parsed from the GeoJSON
+        let goodCampingIslands = gridList
+        layer.predicate = NSPredicate(format: "name IN %@", sanJuanIslands)
+        layer.fillColor = NSExpression(format: "TERNARY(name in %@, %@, %@)", goodCampingIslands, UIColor.red, UIColor.gray)  // Color selected as red, else gray
     }
 
     func loadGeoJson() {

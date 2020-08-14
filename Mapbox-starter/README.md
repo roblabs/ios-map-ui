@@ -1,5 +1,23 @@
 #  Mapbox Starter
 
+## Tile Picker
+
+This repo includes sample code on how to implement a tile picker.  View the [Tile Picker code in Xcode](x-source-tag://tilePicker)
+
+##### Goal
+
+Given a set of arbitrary shaped grids defined in a GeoJSON
+* Initially paint all grids Gray
+* Allow user to tap on a grid to toggle the choice.  Red is selected, Gray is deselected
+* Built using
+  * [https://docs.mapbox.com/ios/api/maps/5.9.0/predicates-and-expressions.html](https://docs.mapbox.com/ios/api/maps/5.9.0/predicates-and-expressions.html)
+  * [https://github.com/mapbox/mapbox-gl-native-ios/blob/master/platform/ios/docs/guides/For%20Style%20Authors.md#expression-operators](https://github.com/mapbox/mapbox-gl-native-ios/blob/master/platform/ios/docs/guides/For%20Style%20Authors.md#expression-operators)
+
+---
+
+![11](https://user-images.githubusercontent.com/118112/90280324-94cc7080-de1f-11ea-99c5-abbca2035e5f.gif)
+
+---
 
 ## Preview UIKit view controllers with SwiftUI
 
