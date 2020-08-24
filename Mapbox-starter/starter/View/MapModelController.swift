@@ -329,12 +329,11 @@ extension MapModelController: MGLMapViewDelegate {
         }
     }
 
+    /// - Tag: tagTilePicker
     func changeOpacity() {
         guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
             fatalError("Could not cast to specified MGLFillStyleLayer")
         }
-        
-        /// - Tag: tilePicker
         
         // MARK: - sanJuanIslands
         let sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"] // main list, TODO:  this should be parsed from the GeoJSON

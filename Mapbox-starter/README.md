@@ -2,7 +2,7 @@
 
 ## Tile Picker
 
-This repo includes sample code on how to implement a tile picker.  View the [Tile Picker code in Xcode](x-source-tag://tilePicker)
+This repo includes sample code on how to implement a tile picker.  View the [Tile Picker code in Xcode](x-source-tag://tagTilePicker)
 
 ##### Goal
 
@@ -36,7 +36,7 @@ You can add a SwiftUI to your UIKit project to soft preview the UIKit components
 
 ### *Example:*  Automated Mapbox Map UI testing
 
-Automated User Interface testing is now setup.  [View the UI Test `testStyles` in Xcode](x-source-tag://testStyles)
+Automated User Interface testing is now setup.  [View the UI Test `testStyles` in Xcode](x-source-tag://tagTestStyles)
 
 ```swift
   app.launch()
