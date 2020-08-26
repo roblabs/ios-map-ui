@@ -36,7 +36,10 @@ You can add a SwiftUI to your UIKit project to soft preview the UIKit components
 
 ### *Example:*  Automated Mapbox Map UI testing
 
-Automated User Interface testing is now setup.  [View the UI Test `testStyles` in Xcode](x-source-tag://tagTestStyles)
+Automated User Interface testing is now setup.  
+
+* [View the UI Test `testStyles` in Xcode](x-source-tag://tagTestStyles)
+* [View the UI Test `testStyles` on GitHub](https://github.com/roblabs/ios-map-ui/search?q=tagTestStyles&unscoped_q=tagTestStyles)
 
 ```swift
   app.launch()
@@ -54,7 +57,10 @@ Automated User Interface testing is now setup.  [View the UI Test `testStyles` i
 
 ### *Example:*  Toggle Mapbox Style Layers
 
-`toggleLayer` — Turn Mapbox Style layers on and off..  [View `toggleLayer` in Xcode](x-source-tag://tagtoggleLayer)
+`toggleLayer` — Turn Mapbox Style layers on and off.  
+
+* [View `toggleLayer` in Xcode](x-source-tag://tagtoggleLayer)
+* [View `toggleLayer` on GitHub](https://github.com/roblabs/ios-map-ui/search?q=togglelayer&unscoped_q=togglelayer)
 
 ```swift
   # Example #
@@ -86,6 +92,7 @@ Automated User Interface testing is now setup.  [View the UI Test `testStyles` i
 On the left is the SwiftUI code that displays the Map view controller.  On the right is the Preview window.
 
 * [View `MapModelControllerPreview` in Xcode](x-source-tag://MapModelControllerPreview_SwiftUI)
+* [View `MapModelControllerPreview` on GitHub](https://github.com/roblabs/ios-map-ui/search?q=MapModelControllerPreview_SwiftUI&unscoped_q=MapModelControllerPreview_SwiftUI)
 
 ![](assets/SwiftUI-preview-Maps.png)
 
@@ -95,7 +102,7 @@ On the left is the SwiftUI code that displays the Map view controller.  On the r
 
 On the left is the SwiftUI code that displays the Settings view controller.  On the right is the Preview window.
 
-* [View `SettingsPanelControllerPreview` in Xcode](x-source-tag://SettingsPanelControllerPreview_SwiftUI)
+* [View `SettingsPanelControllerPreview_SwiftUI` in Xcode](x-source-tag://SettingsPanelControllerPreview_SwiftUI)
 * [View `SettingDetailControllerPreview` in Xcode](x-source-tag://SettingDetailControllerPreview)
 
 ![](assets/SwiftUI-preview-Maps-settings.png)
