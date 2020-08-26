@@ -15,7 +15,7 @@ Given a set of arbitrary shaped grids defined in a GeoJSON
 
 ---
 
-![11](https://user-images.githubusercontent.com/118112/90280324-94cc7080-de1f-11ea-99c5-abbca2035e5f.gif)
+![GIF of Tile Picker in action](https://user-images.githubusercontent.com/118112/90280324-94cc7080-de1f-11ea-99c5-abbca2035e5f.gif)
 
 ---
 
@@ -49,6 +49,35 @@ Automated User Interface testing is now setup.  [View the UI Test `testStyles` i
   app.buttons["Satellite"].tap()
   app.buttons["Streets"].tap()
 ```
+
+---
+
+### *Example:*  Toggle Mapbox Style Layers
+
+`toggleLayer` — Turn Mapbox Style layers on and off..  [View `toggleLayer` in Xcode](x-source-tag://tagtoggleLayer)
+
+```swift
+  # Example #
+  toggleLayer("land")
+  toggleLayer("national-park")
+```
+
+```lldb
+  # Debugger #
+  # print out the layers array to inspect the layer identifiers
+  po mapView.style?.layers
+```
+
+* Layer `national-park`
+* iOS Demo of toggling layer between `visible` & `none`
+
+*national-park-visible*
+
+![national-park-visible](assets/national-park-visible.png)
+
+*national-park-none*
+
+![national-park-none](assets/national-park-none.png)
 
 ---
 

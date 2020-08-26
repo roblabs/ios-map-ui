@@ -382,6 +382,40 @@ extension MapModelController: MGLMapViewDelegate {
     }
 }
 
+extension MapModelController {
+    
+    /// - TAG: tagtoggleLayer
+    /// `toggleLayer` — Turn Mapbox Style layers on and off.
+    /// - Parameter layer: The Mapbox Style layer `identifier`.
+    ///
+    /// Pass in the Mapbox Style layer `identifier`, then toggle the layer between either `visible` or `none`.
+    ///  * Mapbox Style Spec — [visibility layout property](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#layout-raster-visibility)
+    ///  * Maps SDK for iOS — [Managing Style Layers](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLStyle.html#/c:objc(cs)MGLStyle(im)layerWithIdentifier:)
+    ///   # Example #
+    ///   `toggleLayer("national-park")`
+    ///   # Debugger #
+    ///   `# print out the layers array to inspect the layer identifiers`
+    ///
+    ///   `po mapView.style?.layers`
+    func toggleLayer(_ layer: String) {
+
+        let layerVisibility = mapView.style?.layer(withIdentifier: layer)?.isVisible
+        let toggle = layerVisibility == false ? true : false
+        
+        mapView.style?.layer(withIdentifier: layer)?.isVisible = toggle
+
+        #if DEBUG
+        print()
+        print("Style    \(mapView.style?.name!)")
+        print("styleURL \(mapView.styleURL!)")
+        print("source   \(mapView.style?.source(withIdentifier: layer))")
+        print("id:      \(layer)")
+        let visibilityDescription = layerVisibility == true ? "visible" : "none"
+        print("         layout.visibility: \(visibilityDescription)")
+        #endif
+    }
+}
+
 extension MapModelController: FloatingPanelControllerDelegate {
     enum PanelState {
         case search, settings
