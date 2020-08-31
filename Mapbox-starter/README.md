@@ -32,6 +32,8 @@ But [SwiftUI](https://developer.apple.com/documentation/swiftui) has a lot of po
 
 You can add a SwiftUI to your UIKit project to soft preview the UIKit components.  With SwiftUI, the Preview debugger in Xcode is used to show the UIKit `view`.  This makes UIKit development easier to do without having to build an entire app.
 
+* [View the SwiftUI `MapModelControllerPreview` in Xcode](x-source-tag://MapModelControllerPreview_SwiftUI)
+
 ---
 
 ### *Example:*  Automated Mapbox Map UI testing
@@ -91,8 +93,8 @@ Automated User Interface testing is now setup.
 
 On the left is the SwiftUI code that displays the Map view controller.  On the right is the Preview window.
 
-* [View `MapModelControllerPreview` in Xcode](x-source-tag://MapModelControllerPreview_SwiftUI)
-* [View `MapModelControllerPreview` on GitHub](https://github.com/roblabs/ios-map-ui/search?q=MapModelControllerPreview_SwiftUI&unscoped_q=MapModelControllerPreview_SwiftUI)
+* [View the SwiftUI `MapModelControllerPreview` in Xcode](x-source-tag://MapModelControllerPreview_SwiftUI)
+* [View the code for `MapModelControllerPreview` on GitHub](https://github.com/roblabs/ios-map-ui/search?q=MapModelControllerPreview_SwiftUI&unscoped_q=MapModelControllerPreview_SwiftUI)
 
 ![](assets/SwiftUI-preview-Maps.png)
 

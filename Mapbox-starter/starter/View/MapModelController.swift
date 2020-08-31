@@ -76,6 +76,7 @@ class MapModelController: UIViewController {
         return view
     }()
     
+    // MARK: - Details & GPS Buttons
     private lazy var detailsButton: UIButton = {
         let button = UIButton(type: .detailDisclosure)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -412,6 +413,65 @@ extension MapModelController {
         print("id:      \(layer)")
         let visibilityDescription = layerVisibility == true ? "visible" : "none"
         print("         layout.visibility: \(visibilityDescription)")
+        #endif
+    }
+    
+    /// - TAG: tagupdateRasterSource
+    // MARK: - updateRasterSource
+    /// `updateRasterSource` — Updates Raster sources in the Mapbox Style.
+    ///
+    ///  * Create a new Raster Tile Source — [MGLRasterTileSource](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLRasterTileSource.html)
+    ///  * Managing Sources —
+    ///    * [removeSource](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLStyle.html#/c:objc(cs)MGLStyle(im)removeSource:error:)
+    ///    * [addSource](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLStyle.html#/c:objc(cs)MGLStyle(im)addSource:)
+    ///
+    ///   # Exceptions #
+    ///   * There are two possible exceptions we are trying to avoid.  From the API:
+    ///     *  *Adding the same source instance more than once will result in a* `MGLRedundantSourceException`.
+    ///     * *Reusing the same source identifier, even with different source instances, will result in a* `MGLRedundantSourceIdentifierException`.
+    ///
+    ///   # Debugger (lldb) #
+    ///   `# print out the Sources & Layers for inspection`
+    /**
+# # The layers included in the style, arranged according to their back-to-front ordering on the screen.
+po mapView.style?.layers
+
+# # A set containing the style’s sources.
+po mapView.style?.sources
+     */
+    func updateRasterSource() {
+        
+        let identifier = "osm"
+        let sourceIdentifier = "source-" + identifier
+        let layerIdentifier = "layer-" + identifier
+
+        let source = MGLRasterTileSource(identifier: sourceIdentifier,
+                                         tileURLTemplates: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                                         options: [
+                                            .minimumZoomLevel: 0,
+                                            .maximumZoomLevel: 14,
+                                            .tileSize: 256,
+                                            .attributionInfos: [
+                                                MGLAttributionInfo(title: NSAttributedString(string: "© OSM"),
+                                                                   url: URL(string:"https://operations.osmfoundation.org/policies/tiles/"))]
+        ])
+        
+        // check if Source already exists in Mapbox Style
+        if let s = mapView.style?.source(withIdentifier: sourceIdentifier) {
+            /// Source *already* exists, so continue
+            #if DEBUG
+            print(s)
+            #endif
+        } else {
+            /// Source does *not* exist, so add both Source & Layer to Mapbox Style
+            mapView.style?.addSource(source)
+            let rasterLayer = MGLRasterStyleLayer(identifier: layerIdentifier, source: source)
+            mapView.style?.addLayer(rasterLayer)//, )
+        }
+        
+        #if DEBUG
+        print(mapView.style?.layers)
+        print(mapView.style?.sources)
         #endif
     }
 }
