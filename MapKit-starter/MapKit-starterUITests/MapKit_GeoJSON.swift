@@ -25,14 +25,12 @@ class MapKit_GeoJSON: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    ///
+
     ///  # Using a JSONDecoder() sample from
     ///  [Apple](https://developer.apple.com/documentation/foundation/jsondecoder)
     ///  Parse a `GroceryProduct` object from
     ///   * JSON
     ///   * GeoJSON
-    ///
     struct GroceryProduct: Codable {
         var name: String
         var points: Int
@@ -60,27 +58,34 @@ class MapKit_GeoJSON: XCTestCase {
         {
           "type": "FeatureCollection",
           "features": [
-            {
-              "type": "Feature",
-              "properties": {
-                "name": "Durian",
-                "points": 600,
-                "description": "A fruit with a distinctive scent."
-              },
-              "geometry": { "type": "Point", "coordinates": [0,0] }
-            }
+            {"type": "Feature", "geometry": { "type": "Point", "coordinates": [0, 0] },
+               "properties": {"name": "Strawberry", "points": 600, "description": "🍓"} },
+            {"type": "Feature", "geometry": { "type": "Point", "coordinates": [1, 1] },
+               "properties": {"name": "Apples", "points": 100, "description": "🍎"} },
+            {"type": "Feature", "geometry": { "type": "Point", "coordinates": [2, 2] },
+               "properties": {"name": "Kale", "points": 2000, "description": "🥬"} },
+            {"type": "Feature", "geometry": { "type": "Point", "coordinates": [3, 3] },
+               "properties": {"name": "Carrots", "points": 3000, "description": "🥕"} }
           ]
         }
         """.data(using: .utf8)!
 
-        let geojsonObjects = try! MKGeoJSONDecoder().decode(
-            geojson)
+        let features = try! MKGeoJSONDecoder().decode(geojson)
+        var descriptions = [String]()
+        var names = [String]()
         
-        let feature = geojsonObjects[0] as! MKGeoJSONFeature
-        let properties = try! JSONDecoder().decode(
-            GroceryProduct.self, from: feature.properties!)
-
-        print(properties.name) // Prints "Durian"
+        for element in features  {
+            let feature = element as! MKGeoJSONFeature
+            let properties = try! JSONDecoder().decode(GroceryProduct.self,
+                                                       from: feature.properties!)
+            
+            descriptions.append(properties.description)
+            names.append(properties.name)
+            print(properties)
+        }
+        
+        print(names)
+        print(descriptions)
     }
     
     func testGeoJSONFromVariable() throws {
