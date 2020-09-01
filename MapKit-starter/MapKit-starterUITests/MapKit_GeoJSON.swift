@@ -38,6 +38,28 @@ class MapKit_GeoJSON: XCTestCase {
         var optionalPropertyNotInGeoJSON: String?  /// Use `?` to indicate an optional property key
     }
 
+    struct GeoJSON: Codable {
+        var type: String
+        var features: [Features]
+    }
+
+    struct Features: Codable {
+        var type: String
+        var properties: Property
+        var geometry: Geometry
+    }
+    
+    struct Geometry: Codable {
+        var type: String
+        var coordinates: [Int]
+    }
+    
+    struct Property: Codable {
+        var description: String
+        var name: String
+        var points: Int
+    }
+
     func testJSONDecoder() {
         let json = """
         {
@@ -53,6 +75,11 @@ class MapKit_GeoJSON: XCTestCase {
         print(product.name) // Prints "Durian"
     }
 
+    /// Decode GeoJSON with each of these two methods
+    /// * `JSONDecoder()`
+    ///   * Requires: the following structs: `GeoJSON`, `Features`, `Geometry`, `Property`
+    /// * `MKGeoJSONDecoder()`
+    ///   * Way easier, but requires iOS 13
     func testGeoJSONDecoder() {
         let geojson = """
         {
@@ -70,11 +97,20 @@ class MapKit_GeoJSON: XCTestCase {
         }
         """.data(using: .utf8)!
 
+        /// Decode with `JSONDecoder`
+        let jsonFromGeoJSON = try! JSONDecoder().decode(GeoJSON.self, from: geojson)
+        for feature in jsonFromGeoJSON.features  {
+            let properties = feature.properties
+            let name = feature.properties.name
+            print(properties.name, properties.description, properties.points)
+        }
+        
+        /// Decode with `MKGeoJSONDecoder`
         let features = try! MKGeoJSONDecoder().decode(geojson)
         var descriptions = [String]()
         var names = [String]()
         
-        for element in features  {
+        for element in features {
             let feature = element as! MKGeoJSONFeature
             let properties = try! JSONDecoder().decode(GroceryProduct.self,
                                                        from: feature.properties!)
