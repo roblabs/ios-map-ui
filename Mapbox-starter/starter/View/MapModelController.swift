@@ -12,6 +12,26 @@ import Mapbox
 
 private let currentFile = File(name: "points", type: "geojson")
 
+struct GeoJSON: Codable {
+    var type: String
+    var features: [Features]
+}
+
+struct Features: Codable {
+    var type: String
+    var properties: Property
+    var geometry: Geometry
+}
+
+struct Geometry: Codable {
+    var type: String
+    var coordinates: [[[Double]]]  // TODO: This is the case for a Polygon only
+}
+
+struct Property: Codable {
+    var name: String
+}
+
 class MapModelController: UIViewController {
     
     // MARK: Model objects
@@ -351,6 +371,14 @@ extension MapModelController: MGLMapViewDelegate {
             print("features1 \(features1.count)")
             let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
             print("features2 \(features2.count)")
+            
+            /// as a test, inspect data from the first element that matches the predicate
+            /// Convert a Mapbox `geoJSONDictionary` to JSON
+            let dict = features2[0].geoJSONDictionary()
+            guard let json = try? JSONSerialization.data(withJSONObject: dict,
+                                                         options: JSONSerialization.WritingOptions()) else { return }
+            let geoJSON = try! JSONDecoder().decode(Features.self, from: json)
+            print(geoJSON)
         }
     }
 
@@ -477,7 +505,7 @@ po mapView.style?.sources
             /// Source does *not* exist, so add both Source & Layer to Mapbox Style
             mapView.style?.addSource(source)
             let rasterLayer = MGLRasterStyleLayer(identifier: layerIdentifier, source: source)
-            mapView.style?.addLayer(rasterLayer)//, )
+            mapView.style?.addLayer(rasterLayer)
         }
         
         #if DEBUG
