@@ -341,6 +341,17 @@ extension MapModelController: MGLMapViewDelegate {
         let goodCampingIslands = gridList
         layer.predicate = NSPredicate(format: "name IN %@", sanJuanIslands)
         layer.fillColor = NSExpression(format: "TERNARY(name in %@, %@, %@)", goodCampingIslands, UIColor.red, UIColor.gray)  // Color selected as red, else gray
+        
+        /// [#16467](https://github.com/mapbox/mapbox-gl-native/issues/16467)
+        /// [#85](https://github.com/mapbox/mapbox-gl-native-ios/issues/85)
+        /// [#14970](https://github.com/mapbox/mapbox-gl-native/issues/14970)
+        /// Test & triage of how to use `featuresMatchingPredicate`
+        if let s = mapView.style?.source(withIdentifier: "polyline-source") as? MGLShapeSource {
+            let features1 = s.features(matching: nil)
+            print("features1 \(features1.count)")
+            let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
+            print("features2 \(features2.count)")
+        }
     }
 
     func loadGeoJson() {
