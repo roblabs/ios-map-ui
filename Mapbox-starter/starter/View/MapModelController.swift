@@ -25,7 +25,7 @@ struct Features: Codable {
 
 struct Geometry: Codable {
     var type: String
-    var coordinates: [[[Double]]]  // TODO: This is the case for a Polygon only
+    var coordinates: [[[Double]]]  // TODO: This is the case for a MultiPolygon only
 }
 
 struct Property: Codable {

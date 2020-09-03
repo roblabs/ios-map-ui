@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,8 @@
 		D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
+		D7D4B58825014FC8002367CD /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = D7D4B58725014FC8002367CD /* Turf */; };
+		D7D4B590250152AC002367CD /* TurfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B58F250152AC002367CD /* TurfTests.swift */; };
 		D7E7E86324CB5CBF00F2BC9E /* Mapbox_starterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */; };
 		FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD602DB91FC22DAD002DA06A /* AppDelegate.swift */; };
 		FD602DC11FC22DAD002DA06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC01FC22DAD002DA06A /* Assets.xcassets */; };
@@ -57,6 +59,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		D766ED5A24DA291F001FA28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD602DAE1FC22DAD002DA06A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD602DB51FC22DAD002DA06A;
+			remoteInfo = "Mapbox-starter";
+		};
+		D7D4B592250152AC002367CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD602DAE1FC22DAD002DA06A /* Project object */;
 			proxyType = 1;
@@ -120,6 +129,9 @@
 		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D7D4B58D250152AB002367CD /* TurfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7D4B58F250152AC002367CD /* TurfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurfTests.swift; sourceTree = "<group>"; };
+		D7D4B591250152AC002367CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mapbox-starterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapbox_starterTests.swift; sourceTree = "<group>"; };
 		D7E7E86424CB5CBF00F2BC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +152,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7D4B58A250152AB002367CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7E7E85D24CB5CBF00F2BC9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D4B58825014FC8002367CD /* Turf in Frameworks */,
 				FD602DCC1FC236CA002DA06A /* Mapbox.framework in Frameworks */,
 				CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */,
 			);
@@ -246,6 +266,15 @@
 			path = "SwiftUI-Previews";
 			sourceTree = "<group>";
 		};
+		D7D4B58E250152AB002367CD /* TurfTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7D4B58F250152AC002367CD /* TurfTests.swift */,
+				D7D4B591250152AC002367CD /* Info.plist */,
+			);
+			path = TurfTests;
+			sourceTree = "<group>";
+		};
 		D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +292,7 @@
 				FD602DB81FC22DAD002DA06A /* starter */,
 				D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */,
 				D766ED5624DA291F001FA28A /* Mapbox-starterUITests */,
+				D7D4B58E250152AB002367CD /* TurfTests */,
 				FD602DB71FC22DAD002DA06A /* Products */,
 				FD602DCE1FC2376D002DA06A /* Recovered References */,
 				D766ED5F24DA2C5E001FA28A /* Frameworks */,
@@ -275,6 +305,7 @@
 				FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */,
 				D7E7E86024CB5CBF00F2BC9E /* Mapbox-starterTests.xctest */,
 				D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */,
+				D7D4B58D250152AB002367CD /* TurfTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -323,6 +354,24 @@
 			productReference = D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D7D4B58C250152AB002367CD /* TurfTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D4B594250152AC002367CD /* Build configuration list for PBXNativeTarget "TurfTests" */;
+			buildPhases = (
+				D7D4B589250152AB002367CD /* Sources */,
+				D7D4B58A250152AB002367CD /* Frameworks */,
+				D7D4B58B250152AB002367CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7D4B593250152AC002367CD /* PBXTargetDependency */,
+			);
+			name = TurfTests;
+			productName = TurfTests;
+			productReference = D7D4B58D250152AB002367CD /* TurfTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7E7E86924CB5CBF00F2BC9E /* Build configuration list for PBXNativeTarget "Mapbox-starterTests" */;
@@ -355,6 +404,9 @@
 			dependencies = (
 			);
 			name = "Mapbox-starter";
+			packageProductDependencies = (
+				D7D4B58725014FC8002367CD /* Turf */,
+			);
 			productName = starter;
 			productReference = FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */;
 			productType = "com.apple.product-type.application";
@@ -372,6 +424,10 @@
 					D766ED5424DA291F001FA28A = {
 						CreatedOnToolsVersion = 11.6;
 						ProvisioningStyle = Automatic;
+						TestTargetID = FD602DB51FC22DAD002DA06A;
+					};
+					D7D4B58C250152AB002367CD = {
+						CreatedOnToolsVersion = 11.6;
 						TestTargetID = FD602DB51FC22DAD002DA06A;
 					};
 					D7E7E85F24CB5CBF00F2BC9E = {
@@ -395,6 +451,9 @@
 				Base,
 			);
 			mainGroup = FD602DAD1FC22DAD002DA06A;
+			packageReferences = (
+				D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */,
+			);
 			productRefGroup = FD602DB71FC22DAD002DA06A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -402,12 +461,20 @@
 				FD602DB51FC22DAD002DA06A /* Mapbox-starter */,
 				D7E7E85F24CB5CBF00F2BC9E /* Mapbox-starterTests */,
 				D766ED5424DA291F001FA28A /* Mapbox-starterUITests */,
+				D7D4B58C250152AB002367CD /* TurfTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D766ED5324DA291F001FA28A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D4B58B250152AB002367CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,6 +526,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D4B589250152AB002367CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D4B590250152AC002367CD /* TurfTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +598,11 @@
 			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
 			targetProxy = D766ED5A24DA291F001FA28A /* PBXContainerItemProxy */;
 		};
+		D7D4B593250152AC002367CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
+			targetProxy = D7D4B592250152AC002367CD /* PBXContainerItemProxy */;
+		};
 		D7E7E86624CB5CBF00F2BC9E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD602DB51FC22DAD002DA06A /* Mapbox-starter */;
@@ -553,7 +633,11 @@
 				);
 				INFOPLIST_FILE = "Mapbox-starterUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Mapbox.framework",
@@ -579,7 +663,11 @@
 				);
 				INFOPLIST_FILE = "Mapbox-starterUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Mapbox.framework",
@@ -593,6 +681,51 @@
 			};
 			name = Release;
 		};
+		D7D4B595250152AC002367CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TurfTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roblabs.TurfTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapbox-starter.app/Mapbox-starter";
+			};
+			name = Debug;
+		};
+		D7D4B596250152AC002367CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TurfTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roblabs.TurfTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapbox-starter.app/Mapbox-starter";
+			};
+			name = Release;
+		};
 		D7E7E86724CB5CBF00F2BC9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -601,7 +734,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Mapbox-starterTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterTests";
@@ -620,7 +757,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Mapbox-starterTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roblabs.Mapbox-starterTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -736,7 +877,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -752,7 +894,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = starter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "roblabs.com.ios-map-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -771,7 +916,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = starter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "roblabs.com.ios-map-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -787,6 +935,15 @@
 			buildConfigurations = (
 				D766ED5C24DA291F001FA28A /* Debug */,
 				D766ED5D24DA291F001FA28A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D4B594250152AC002367CD /* Build configuration list for PBXNativeTarget "TurfTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D4B595250152AC002367CD /* Debug */,
+				D7D4B596250152AC002367CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -819,6 +976,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/turf-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7D4B58725014FC8002367CD /* Turf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */;
+			productName = Turf;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD602DAE1FC22DAD002DA06A /* Project object */;
 }

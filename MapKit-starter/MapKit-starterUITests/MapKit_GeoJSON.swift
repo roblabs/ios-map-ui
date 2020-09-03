@@ -51,7 +51,7 @@ class MapKit_GeoJSON: XCTestCase {
     
     struct Geometry: Codable {
         var type: String
-        var coordinates: [Int]
+        var coordinates: [Double]
     }
     
     struct Property: Codable {
@@ -98,6 +98,8 @@ class MapKit_GeoJSON: XCTestCase {
         """.data(using: .utf8)!
 
         /// Decode with `JSONDecoder`
+        /// * Required if you have GeoJSON, but your API is less than iOS 13 (where `MKGeoJSONDecoder` was introduced)
+        /// * Or if you cannot use MapKit at all, say if your are using Mapbox
         let jsonFromGeoJSON = try! JSONDecoder().decode(GeoJSON.self, from: geojson)
         for feature in jsonFromGeoJSON.features  {
             let properties = feature.properties
