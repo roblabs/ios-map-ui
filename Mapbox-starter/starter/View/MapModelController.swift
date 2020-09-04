@@ -9,28 +9,9 @@
 import UIKit
 import FloatingPanel
 import Mapbox
+import Turf
 
 private let currentFile = File(name: "points", type: "geojson")
-
-struct GeoJSON: Codable {
-    var type: String
-    var features: [Features]
-}
-
-struct Features: Codable {
-    var type: String
-    var properties: Property
-    var geometry: Geometry
-}
-
-struct Geometry: Codable {
-    var type: String
-    var coordinates: [[[Double]]]  // TODO: This is the case for a MultiPolygon only
-}
-
-struct Property: Codable {
-    var name: String
-}
 
 class MapModelController: UIViewController {
     
@@ -371,14 +352,32 @@ extension MapModelController: MGLMapViewDelegate {
             print("features1 \(features1.count)")
             let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
             print("features2 \(features2.count)")
+
+            /**
+             /// Cast the result to `MGLFeaturePolygon`
+             */
+            let arrayOfPolygonFeatures = features2 as! [MGLPolygonFeature]
+            let oneFeature = features2[0] as! MGLPolygonFeature
+            let bounds = oneFeature.overlayBounds
+            let coords = oneFeature.coordinates  // TODO: - how to use this UnsafeMutablePointer<CLLocationCoordinate2d>???
             
-            /// as a test, inspect data from the first element that matches the predicate
-            /// Convert a Mapbox `geoJSONDictionary` to JSON
+            /**
+             /// as a test, inspect data from the first element that matches the predicate
+             /// Convert to a Mapbox `geoJSONDictionary` to JSON
+             */
             let dict = features2[0].geoJSONDictionary()
             guard let json = try? JSONSerialization.data(withJSONObject: dict,
                                                          options: JSONSerialization.WritingOptions()) else { return }
-            let geoJSON = try! JSONDecoder().decode(Features.self, from: json)
-            print(geoJSON)
+            let feature = try! JSONDecoder().decode(Feature.self, from: json)
+            
+            /// Set a breakpoint to inspect the data from the Turf `Feature` object.  These variables are unused, but here to learn and inspect GeoJSON data
+            let id = feature.identifier
+            let p = feature.properties
+            let g = feature.geometry
+            let t = feature.geometry.type
+            let value = feature.geometry.value as! Polygon
+
+            let bbox = try? BoundingBox(from: value.coordinates[0])  /// TODO: - In this example, need to access the 0th element of the array?!?
         }
     }
 
