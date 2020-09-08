@@ -273,6 +273,7 @@ class MapModelController: UIViewController {
     }
 }
 
+// MARK: - extension MGLMapViewDelegate
 extension MapModelController: MGLMapViewDelegate {
     private var annoReuseId: String { return "annoReuseId" }
     
@@ -288,6 +289,25 @@ extension MapModelController: MGLMapViewDelegate {
         }
         
         return PlaceAnnotationView(placeAnnotation: pAnno, reuseIdentifier: annoReuseId)
+    }
+    
+    /// Print out metadata from the current map view, useful testing of regions & centers for Offline maps
+    func mapView(_ mapView: MGLMapView, regionDidChangeWith reason: MGLCameraChangeReason, animated: Bool) {
+        #if DEBUG
+        /// Convenience pretty printing:  go straight from the log to code
+        let latitude = String(format: "%.6f", mapView.latitude)
+        let longitude = String(format: "%.6f", mapView.longitude)
+        let zoomLevel = String(format: "%.2f", mapView.zoomLevel)
+        let visibleCoordinateBounds = mapView.visibleCoordinateBounds
+        print("/// `-mapView:regionDidChangeAnimated:`")
+        /// use for setting center
+        print("mapView.setCenter(CLLocationCoordinate2D(latitude: \(latitude), longitude: \(longitude)), zoomLevel: \(zoomLevel), animated: false)")
+        /// use for bounding box and zoom range for Offline testing
+        print("let sw = \(visibleCoordinateBounds.sw) ")
+        print("let ne = \(visibleCoordinateBounds.ne)")
+        print("let fromZoomLevel = 0.0")
+        print("let toZoomLevel = \(zoomLevel)")
+        #endif
     }
     
     // Allow callout view to appear when an annotation is tapped.
@@ -468,8 +488,6 @@ extension MapModelController {
 
     }
 
-    /// MARK: - MGLOfflinePack notification handlers
-
     @objc func offlinePackProgressDidChange(notification: NSNotification) {
         // Get the offline pack this notification is regarding,
         // and the associated user info for the pack; in this case, `name = My Offline Pack`
@@ -524,6 +542,7 @@ extension MapModelController {
     }
 }
 
+// MARK: - extension Tile Grid UI
 extension MapModelController {
     
     /// - TAG: tagtoggleLayer
@@ -533,12 +552,21 @@ extension MapModelController {
     /// Pass in the Mapbox Style layer `identifier`, then toggle the layer between either `visible` or `none`.
     ///  * Mapbox Style Spec — [visibility layout property](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#layout-raster-visibility)
     ///  * Maps SDK for iOS — [Managing Style Layers](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLStyle.html#/c:objc(cs)MGLStyle(im)layerWithIdentifier:)
-    ///   # Example #
-    ///   `toggleLayer("national-park")`
-    ///   # Debugger #
-    ///   `# print out the layers array to inspect the layer identifiers`
-    ///
-    ///   `po mapView.style?.layers`
+    ///   # Example Swift usage #
+    /**
+```
+toggleLayer("national-park")
+```
+
+     */
+    ///   # LLDB Debugger #
+    /**
+```
+# print out the layers array to inspect the layer identifiers
+
+po mapView.style?.layers
+```
+     */
     func toggleLayer(_ layer: String) {
 
         let layerVisibility = mapView.style?.layer(withIdentifier: layer)?.isVisible
@@ -558,7 +586,6 @@ extension MapModelController {
     }
     
     /// - TAG: tagupdateRasterSource
-    // MARK: - updateRasterSource
     /// `updateRasterSource` — Updates Raster sources in the Mapbox Style.
     ///
     ///  * Create a new Raster Tile Source — [MGLRasterTileSource](https://docs.mapbox.com/ios/api/maps/5.9.0/Classes/MGLRasterTileSource.html)
@@ -574,11 +601,13 @@ extension MapModelController {
     ///   # Debugger (lldb) #
     ///   `# print out the Sources & Layers for inspection`
     /**
-# # The layers included in the style, arranged according to their back-to-front ordering on the screen.
+```
+# The layers included in the style, arranged according to their back-to-front ordering on the screen.
 po mapView.style?.layers
 
-# # A set containing the style’s sources.
+# A set containing the style’s sources.
 po mapView.style?.sources
+```
      */
     func updateRasterSource() {
         
@@ -617,6 +646,7 @@ po mapView.style?.sources
     }
 }
 
+// MARK: - extension FloatingPanelController
 extension MapModelController: FloatingPanelControllerDelegate {
     enum PanelState {
         case search, settings
@@ -702,6 +732,7 @@ extension MapModelController: FloatingPanelControllerDelegate {
     }
 }
 
+// MARK: - extension Search Panel
 extension MapModelController: SearchPanelControllerDelegate {
     
     func didBeginSearching() {
@@ -725,6 +756,7 @@ extension MapModelController: SearchPanelControllerDelegate {
     }
 }
 
+// MARK: - extension Settings Panel
 extension MapModelController: SettingsPanelControllerDelegate {
     func styleSelected(_ style: MapStyle) {
         model?.updateStyle(to: style)
@@ -744,8 +776,8 @@ extension MapModelController: SettingsPanelControllerDelegate {
     }
 }
 
+// MARK: - extension Color Attributes
 extension MapModelController {
-    // MARK: Color Attributes
     private struct Color {
         static let topRightContainer = UIColor.white
         static let topRightButton = UIColor.blue
