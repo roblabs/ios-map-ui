@@ -392,20 +392,26 @@ extension MapModelController {
     
     /// Start Offline download
     ///
+    /// - Parameter boundingBox: The Mapbox Style layer `identifier`.
+    /// - Parameter offlineName: Friendly name to save Offline Pack.
+    /// - Parameter fromZoomLevel: `zoom` range, minimum.
+    /// - Parameter toZoomLevel: `zoom` range, maximum.
+    ///
     /// Create a region that includes the current viewport and any tiles needed to view it when zoomed further in.
     /// Because tile count grows exponentially with the maximum zoom level, you should be conservative with your `toZoomLevel` setting.
-    func startOfflinePackDownload(boundingBox: MGLCoordinateBounds) {
-        // TODO: - Hardcoded
-        let fromZoomLevel = 9.0
-        let toZoomLevel = 14.0
-        let bbox = MGLCoordinateBounds(sw: boundingBox.sw, ne: boundingBox.ne)
+    func startOfflinePackDownload(boundingBox: MGLCoordinateBounds,
+                                  offlineName: String = "Offline Maps for Mobile",
+                                  fromZoomLevel: Double = 9.0,
+                                  toZoomLevel: Double = 14.0) {
+        
+        let bounds = MGLCoordinateBounds(sw: boundingBox.sw, ne: boundingBox.ne)
         let region = MGLTilePyramidOfflineRegion(styleURL: mapView.styleURL,
-                                                 bounds: bbox,
+                                                 bounds: bounds,
                                                  fromZoomLevel: fromZoomLevel,
                                                  toZoomLevel: toZoomLevel)
 
         // Store some data for identification purposes alongside the downloaded resources.
-        let userInfo = ["name": "My Offline Pack"]
+        let userInfo = ["name": offlineName]
         let context = NSKeyedArchiver.archivedData(withRootObject: userInfo)
 
         // Create and register an offline pack with the shared offline storage object.
@@ -594,7 +600,7 @@ po mapView.style?.sources
     func gridStartOfflineDownload() {
         for (index, element) in grids.coordinates.enumerated() {
             print(index, ":", element)
-            startOfflinePackDownload(boundingBox: element)
+            startOfflinePackDownload(boundingBox: element, offlineName: "Offline Maps for Mobile")
         }
     }
 
