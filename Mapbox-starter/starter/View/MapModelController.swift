@@ -385,117 +385,6 @@ extension MapModelController: MGLMapViewDelegate {
         gridcomputeBoundingBox()
         gridStartOfflineDownload()
     }
-    
-    /// Operate on `grids` and compute the bounding box for each
-    func gridcomputeBoundingBox() {
-        for (index, element) in grids.names.enumerated() {
-            print(index, ":", element)
-            let bbox = computeBoundingBoxUpdateUI()
-
-            grids.coordinates.append(bbox)
-        }
-    }
-    
-    /// start Offline Download for each grid
-    func gridStartOfflineDownload() {
-        for (index, element) in grids.coordinates.enumerated() {
-            print(index, ":", element)
-            startOfflinePackDownload(boundingBox: element)
-        }
-    }
-
-    /// - Tag: tagTilePicker
-    func computeBoundingBoxUpdateUI() -> MGLCoordinateBounds {
-        
-        var returnBounds = MGLCoordinateBounds()
-        guard let layer = mapView.style?.layer(withIdentifier: grids.layerIdentifier) as? MGLFillStyleLayer else {
-            fatalError("Could not cast to specified MGLFillStyleLayer")
-        }
-        
-        let goodCampingIslands = grids.names
-        layer.predicate = NSPredicate(format: "name IN %@", sanJuanIslands)
-        layer.fillColor = NSExpression(format: "TERNARY(name in %@, %@, %@)", goodCampingIslands, UIColor.red, UIColor.gray)  // Color selected as red, else gray
-        
-        /// [#16467](https://github.com/mapbox/mapbox-gl-native/issues/16467)
-        /// [#85](https://github.com/mapbox/mapbox-gl-native-ios/issues/85)
-        /// [#14970](https://github.com/mapbox/mapbox-gl-native/issues/14970)
-        /// Test & triage of how to use `featuresMatchingPredicate`
-        if let s = mapView.style?.source(withIdentifier: grids.sourceIdentifier) as? MGLShapeSource {
-            let features1 = s.features(matching: nil)
-            print("features1 \(features1.count)")
-            let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
-            print("features2 \(features2.count)")
-
-            /**
-             /// Cast the result to `MGLFeaturePolygon`
-             */
-            let arrayOfPolygonFeatures = features2 as! [MGLPolygonFeature]
-            let oneFeature = features2[0] as! MGLPolygonFeature
-            let bounds = oneFeature.overlayBounds
-            let coords = oneFeature.coordinates  // TODO: - how to use this UnsafeMutablePointer<CLLocationCoordinate2d>???
-            
-            /**
-             /// as a test, inspect data from the first element that matches the predicate
-             /// Convert to a Mapbox `geoJSONDictionary` to JSON
-             */
-            let dict = features2[0].geoJSONDictionary()
-            guard let json = try? JSONSerialization.data(withJSONObject: dict,
-                                                         options: JSONSerialization.WritingOptions()) else { return MGLCoordinateBounds() }
-            let feature = try! JSONDecoder().decode(Feature.self, from: json)
-            
-            /// Set a breakpoint to inspect the data from the Turf `Feature` object.  These variables are unused, but here to learn and inspect GeoJSON data
-            let id = feature.identifier
-            let p = feature.properties
-            let g = feature.geometry
-            let t = feature.geometry.type
-            let value = feature.geometry.value as! Polygon
-
-            let bbox = try? BoundingBox(from: value.coordinates[0])  /// TODO: - In this example, need to access the 0th element of the array?!?
-            returnBounds.sw = bbox?.southWest as! CLLocationCoordinate2D
-            returnBounds.ne = bbox?.northEast as! CLLocationCoordinate2D
-        }
-
-        return returnBounds
-    }
-
-    func loadGeoJson() {
-        DispatchQueue.global().async {
-            // Get the path for example.geojson in the app’s bundle.
-            guard let jsonUrl = Bundle.main.url(forResource: "grids", withExtension: "geojson") else {
-                preconditionFailure("Failed to load local GeoJSON file")
-            }
-
-            guard let jsonData = try? Data(contentsOf: jsonUrl) else {
-                preconditionFailure("Failed to parse GeoJSON file")
-            }
-
-            DispatchQueue.main.async {
-                self.drawPolyline(geoJson: jsonData)
-            }
-        }
-    }
-
-    func drawPolyline(geoJson: Data) {
-        // Add our GeoJSON data to the map as an MGLGeoJSONSource.
-        // We can then reference this data from an MGLStyleLayer.
-
-        // MGLMapView.style is optional, so you must guard against it not being set.
-        guard let style = self.mapView.style else { return }
-
-        guard let shapeFromGeoJSON = try? MGLShape(data: geoJson, encoding: String.Encoding.utf8.rawValue) else {
-            fatalError("Could not generate MGLShape")
-        }
-
-        let source = MGLShapeSource(identifier: grids.sourceIdentifier, shape: shapeFromGeoJSON, options: nil)
-        style.addSource(source)
-
-        // Create new layer for the line.
-        let layer = MGLFillStyleLayer(identifier: grids.layerIdentifier, source: source)
-        layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
-        layer.fillOpacity = NSExpression(forConstantValue: 0.5)
-
-        style.addLayer(layer)
-    }
 }
 
 // MARK: - extension Offline Maps
@@ -689,6 +578,117 @@ po mapView.style?.sources
         print(mapView.style?.layers)
         print(mapView.style?.sources)
         #endif
+    }
+    
+    /// Operate on `grids` and compute the bounding box for each
+    func gridcomputeBoundingBox() {
+        for (index, element) in grids.names.enumerated() {
+            print(index, ":", element)
+            let bbox = computeBoundingBoxUpdateUI()
+
+            grids.coordinates.append(bbox)
+        }
+    }
+    
+    /// start Offline Download for each grid
+    func gridStartOfflineDownload() {
+        for (index, element) in grids.coordinates.enumerated() {
+            print(index, ":", element)
+            startOfflinePackDownload(boundingBox: element)
+        }
+    }
+
+    /// - Tag: tagTilePicker
+    func computeBoundingBoxUpdateUI() -> MGLCoordinateBounds {
+        
+        var returnBounds = MGLCoordinateBounds()
+        guard let layer = mapView.style?.layer(withIdentifier: grids.layerIdentifier) as? MGLFillStyleLayer else {
+            fatalError("Could not cast to specified MGLFillStyleLayer")
+        }
+        
+        let goodCampingIslands = grids.names
+        layer.predicate = NSPredicate(format: "name IN %@", sanJuanIslands)
+        layer.fillColor = NSExpression(format: "TERNARY(name in %@, %@, %@)", goodCampingIslands, UIColor.red, UIColor.gray)  // Color selected as red, else gray
+        
+        /// [#16467](https://github.com/mapbox/mapbox-gl-native/issues/16467)
+        /// [#85](https://github.com/mapbox/mapbox-gl-native-ios/issues/85)
+        /// [#14970](https://github.com/mapbox/mapbox-gl-native/issues/14970)
+        /// Test & triage of how to use `featuresMatchingPredicate`
+        if let s = mapView.style?.source(withIdentifier: grids.sourceIdentifier) as? MGLShapeSource {
+            let features1 = s.features(matching: nil)
+            print("features1 \(features1.count)")
+            let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
+            print("features2 \(features2.count)")
+
+            /**
+             /// Cast the result to `MGLFeaturePolygon`
+             */
+            let arrayOfPolygonFeatures = features2 as! [MGLPolygonFeature]
+            let oneFeature = features2[0] as! MGLPolygonFeature
+            let bounds = oneFeature.overlayBounds
+            let coords = oneFeature.coordinates  // TODO: - how to use this UnsafeMutablePointer<CLLocationCoordinate2d>???
+            
+            /**
+             /// as a test, inspect data from the first element that matches the predicate
+             /// Convert to a Mapbox `geoJSONDictionary` to JSON
+             */
+            let dict = features2[0].geoJSONDictionary()
+            guard let json = try? JSONSerialization.data(withJSONObject: dict,
+                                                         options: JSONSerialization.WritingOptions()) else { return MGLCoordinateBounds() }
+            let feature = try! JSONDecoder().decode(Feature.self, from: json)
+            
+            /// Set a breakpoint to inspect the data from the Turf `Feature` object.  These variables are unused, but here to learn and inspect GeoJSON data
+            let id = feature.identifier
+            let p = feature.properties
+            let g = feature.geometry
+            let t = feature.geometry.type
+            let value = feature.geometry.value as! Polygon
+
+            let bbox = try? BoundingBox(from: value.coordinates[0])  /// TODO: - In this example, need to access the 0th element of the array?!?
+            returnBounds.sw = bbox?.southWest as! CLLocationCoordinate2D
+            returnBounds.ne = bbox?.northEast as! CLLocationCoordinate2D
+        }
+
+        return returnBounds
+    }
+
+    func loadGeoJson() {
+        DispatchQueue.global().async {
+            // Get the path for example.geojson in the app’s bundle.
+            guard let jsonUrl = Bundle.main.url(forResource: "grids", withExtension: "geojson") else {
+                preconditionFailure("Failed to load local GeoJSON file")
+            }
+
+            guard let jsonData = try? Data(contentsOf: jsonUrl) else {
+                preconditionFailure("Failed to parse GeoJSON file")
+            }
+
+            DispatchQueue.main.async {
+                self.drawPolyline(geoJson: jsonData)
+            }
+        }
+    }
+
+    func drawPolyline(geoJson: Data) {
+        // Add our GeoJSON data to the map as an MGLGeoJSONSource.
+        // We can then reference this data from an MGLStyleLayer.
+
+        // MGLMapView.style is optional, so you must guard against it not being set.
+        guard let style = self.mapView.style else { return }
+
+        guard let shapeFromGeoJSON = try? MGLShape(data: geoJson, encoding: String.Encoding.utf8.rawValue) else {
+            fatalError("Could not generate MGLShape")
+        }
+
+        let source = MGLShapeSource(identifier: grids.sourceIdentifier, shape: shapeFromGeoJSON, options: nil)
+        style.addSource(source)
+
+        // Create new layer for the line.
+        let layer = MGLFillStyleLayer(identifier: grids.layerIdentifier, source: source)
+        layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
+        layer.fillOpacity = NSExpression(forConstantValue: 0.5)
+
+        style.addLayer(layer)
     }
 }
 
