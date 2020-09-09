@@ -41,9 +41,27 @@ class MapModelController: UIViewController {
         }
     }
     
-    let layerIdentifier = "polyline"
-    let gridKey = "name"
-    var gridList = [String]()  // Array of 'name' to keep track of which grid was selected
+    /// test list of Islands from `grids.geojson`
+    let sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"] // main list, TODO:  this should be parsed from the GeoJSON
+
+    struct Grids {
+        /// id for the grids `layer`  in the Mapbox Style
+        let layerIdentifier = "grids-layer"
+        
+        /// id for the grids `source` in the Mapbox Style
+        let sourceIdentifier = "grids-source"
+        
+        /// This name MUST exist in the Grids GeoJSON `properties`
+        let gridPropertiesKey = "name"
+        
+        /// Array of `name`'s to keep track of which grid was selected
+        var names = [String]()
+        
+        /// Array of bounding boxes to keep track of which grid was selected
+        var coordinates = [MGLCoordinateBounds]()
+    }
+    
+    var grids = Grids()
     
     private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
     private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
@@ -113,6 +131,13 @@ class MapModelController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(offlinePackProgressDidChange), name: NSNotification.Name.MGLOfflinePackProgressChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(offlinePackDidReceiveError), name: NSNotification.Name.MGLOfflinePackError, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(offlinePackDidReceiveMaximumAllowedMapboxTiles), name: NSNotification.Name.MGLOfflinePackMaximumMapboxTilesReached, object: nil)
+        
+        #if DEBUG
+        var mask = [] as MGLMapDebugMaskOptions
+        mask = [ MGLMapDebugMaskOptions.tileBoundariesMask, MGLMapDebugMaskOptions.tileInfoMask]
+
+        mapView.debugMask = mask
+        #endif
     }
     
     override func viewDidLayoutSubviews() {
@@ -336,38 +361,58 @@ extension MapModelController: MGLMapViewDelegate {
         // Get the CGPoint where the user tapped.
         let spot = sender.location(in: mapView)
 
-        guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
+        guard let layer = mapView.style?.layer(withIdentifier: grids.layerIdentifier) as? MGLFillStyleLayer else {
             fatalError("Could not cast to specified MGLFillStyleLayer")
         }
 
         // Access the features at that point within the state layer.
-        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set([layerIdentifier]))
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set([grids.layerIdentifier]))
 
         // Get the name of the selected state.
-        if let feature = features.first, let gridValue = feature.attribute(forKey: gridKey) as? String {
+        if let feature = features.first, let gridValue = feature.attribute(forKey: grids.gridPropertiesKey) as? String {
 
             // if gridValue is already on the gridList, then remove it, and change the fillColor back to default
             // If it's not on the gridList, then add it and change the fillColor to show it was selected.
-            if let index = gridList.firstIndex(of: gridValue) {
-                gridList.remove(at: index)
+            if let index = grids.names.firstIndex(of: gridValue) {
+                grids.names.remove(at: index)
             } else {
-                gridList.append(gridValue)
+                grids.names.append(gridValue)
             }
             
-            changeOpacity()
-            print(gridList)
+        }
+        
+        grids.coordinates = []  // reset array and compute bounding box
+        gridcomputeBoundingBox()
+        gridStartOfflineDownload()
+    }
+    
+    /// Operate on `grids` and compute the bounding box for each
+    func gridcomputeBoundingBox() {
+        for (index, element) in grids.names.enumerated() {
+            print(index, ":", element)
+            let bbox = computeBoundingBoxUpdateUI()
+
+            grids.coordinates.append(bbox)
+        }
+    }
+    
+    /// start Offline Download for each grid
+    func gridStartOfflineDownload() {
+        for (index, element) in grids.coordinates.enumerated() {
+            print(index, ":", element)
+            startOfflinePackDownload(boundingBox: element)
         }
     }
 
     /// - Tag: tagTilePicker
-    func changeOpacity() {
-        guard let layer = mapView.style?.layer(withIdentifier: layerIdentifier) as? MGLFillStyleLayer else {
+    func computeBoundingBoxUpdateUI() -> MGLCoordinateBounds {
+        
+        var returnBounds = MGLCoordinateBounds()
+        guard let layer = mapView.style?.layer(withIdentifier: grids.layerIdentifier) as? MGLFillStyleLayer else {
             fatalError("Could not cast to specified MGLFillStyleLayer")
         }
         
-        // MARK: - sanJuanIslands
-        let sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"] // main list, TODO:  this should be parsed from the GeoJSON
-        let goodCampingIslands = gridList
+        let goodCampingIslands = grids.names
         layer.predicate = NSPredicate(format: "name IN %@", sanJuanIslands)
         layer.fillColor = NSExpression(format: "TERNARY(name in %@, %@, %@)", goodCampingIslands, UIColor.red, UIColor.gray)  // Color selected as red, else gray
         
@@ -375,7 +420,7 @@ extension MapModelController: MGLMapViewDelegate {
         /// [#85](https://github.com/mapbox/mapbox-gl-native-ios/issues/85)
         /// [#14970](https://github.com/mapbox/mapbox-gl-native/issues/14970)
         /// Test & triage of how to use `featuresMatchingPredicate`
-        if let s = mapView.style?.source(withIdentifier: "polyline-source") as? MGLShapeSource {
+        if let s = mapView.style?.source(withIdentifier: grids.sourceIdentifier) as? MGLShapeSource {
             let features1 = s.features(matching: nil)
             print("features1 \(features1.count)")
             let features2 = s.features(matching: NSPredicate(format: "name IN %@", goodCampingIslands) )
@@ -395,7 +440,7 @@ extension MapModelController: MGLMapViewDelegate {
              */
             let dict = features2[0].geoJSONDictionary()
             guard let json = try? JSONSerialization.data(withJSONObject: dict,
-                                                         options: JSONSerialization.WritingOptions()) else { return }
+                                                         options: JSONSerialization.WritingOptions()) else { return MGLCoordinateBounds() }
             let feature = try! JSONDecoder().decode(Feature.self, from: json)
             
             /// Set a breakpoint to inspect the data from the Turf `Feature` object.  These variables are unused, but here to learn and inspect GeoJSON data
@@ -406,7 +451,11 @@ extension MapModelController: MGLMapViewDelegate {
             let value = feature.geometry.value as! Polygon
 
             let bbox = try? BoundingBox(from: value.coordinates[0])  /// TODO: - In this example, need to access the 0th element of the array?!?
+            returnBounds.sw = bbox?.southWest as! CLLocationCoordinate2D
+            returnBounds.ne = bbox?.northEast as! CLLocationCoordinate2D
         }
+
+        return returnBounds
     }
 
     func loadGeoJson() {
@@ -437,11 +486,11 @@ extension MapModelController: MGLMapViewDelegate {
             fatalError("Could not generate MGLShape")
         }
 
-        let source = MGLShapeSource(identifier: "polyline-source", shape: shapeFromGeoJSON, options: nil)
+        let source = MGLShapeSource(identifier: grids.sourceIdentifier, shape: shapeFromGeoJSON, options: nil)
         style.addSource(source)
 
         // Create new layer for the line.
-        let layer = MGLFillStyleLayer(identifier: layerIdentifier, source: source)
+        let layer = MGLFillStyleLayer(identifier: grids.layerIdentifier, source: source)
         layer.fillColor = NSExpression(forConstantValue: UIColor(red: 1, green: 0, blue: 1, alpha: 0.75))
         layer.fillOpacity = NSExpression(forConstantValue: 0.5)
 
@@ -456,14 +505,11 @@ extension MapModelController {
     ///
     /// Create a region that includes the current viewport and any tiles needed to view it when zoomed further in.
     /// Because tile count grows exponentially with the maximum zoom level, you should be conservative with your `toZoomLevel` setting.
-    func startOfflinePackDownload() {
-        // TODO: - Hardcoded Orcas island area
-        let sw = CLLocationCoordinate2D(latitude: 48.205684798303594, longitude: -123.16231940207614)
-        let ne = CLLocationCoordinate2D(latitude: 48.794425635659934, longitude: -122.64733527625552)
+    func startOfflinePackDownload(boundingBox: MGLCoordinateBounds) {
+        // TODO: - Hardcoded
         let fromZoomLevel = 9.0
         let toZoomLevel = 14.0
-
-        let bbox = MGLCoordinateBounds(sw: sw, ne: ne)
+        let bbox = MGLCoordinateBounds(sw: boundingBox.sw, ne: boundingBox.ne)
         let region = MGLTilePyramidOfflineRegion(styleURL: mapView.styleURL,
                                                  bounds: bbox,
                                                  fromZoomLevel: fromZoomLevel,
