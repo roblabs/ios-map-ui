@@ -316,7 +316,59 @@ extension MapModelController: MGLMapViewDelegate {
         return PlaceAnnotationView(placeAnnotation: pAnno, reuseIdentifier: annoReuseId)
     }
     
+    /**
+     Tells the delegate that the map view was unable to load data needed for displaying the map.
+
+     This method may be called for a variety of reasons, including a network connection failure or a failure to fetch the style from the server. You can use the given error message to notify the user that map data is unavailable.
+     */
+    func mapViewDidFailLoadingMap(_ mapView: MGLMapView, withError error: Error) {
+        #if DEBUG
+        fatalError("-mapViewDidFailLoadingMap:withError: \(error)")
+        #endif
+    }
+    
+    /**
+     Tells the delegate that the map view will begin to load.
+
+     This method is called whenever the map view starts loading, including when a new style has been set and the map must reload.
+     */
+    func mapViewWillStartLoadingMap(_ mapView: MGLMapView) {
+        #if DEBUG
+        print("-mapViewWillStartLoadingMap:")
+        #endif
+    }
+    
+    func mapViewWillStartRenderingMap(_ mapView: MGLMapView) {
+        #if DEBUG
+        print("-mapViewWillStartRenderingMap:")
+        #endif
+    }
+    
+    /**
+     Tells the delegate that the map view is entering an idle state, and no more drawing will be necessary until new data is loaded or there is some interaction with the map.
+
+     * No camera transitions are in progress
+     * All currently requested tiles have loaded
+     * All fade/transition animations have completed
+     */
+    func mapViewDidBecomeIdle(_ mapView: MGLMapView) {
+        #if DEBUG
+        print("-mapViewDidBecomeIdle:")
+        #endif
+    }
+    
     /// Print out metadata from the current map view, useful testing of regions & centers for Offline maps
+    ///   # Debugger (lldb) #
+    /**
+```
+# print out the Sources & Layers for inspection
+# The layers included in the style, arranged according to their back-to-front ordering on the screen.
+po mapView.style?.layers
+
+# A set containing the style’s sources.
+po mapView.style?.sources
+```
+     */
     func mapView(_ mapView: MGLMapView, regionDidChangeWith reason: MGLCameraChangeReason, animated: Bool) {
         #if DEBUG
         /// Convenience pretty printing:  go straight from the log to code
@@ -324,6 +376,7 @@ extension MapModelController: MGLMapViewDelegate {
         let longitude = String(format: "%.6f", mapView.longitude)
         let zoomLevel = String(format: "%.2f", mapView.zoomLevel)
         let visibleCoordinateBounds = mapView.visibleCoordinateBounds
+        print("mapView.styleURL = \(String(describing: mapView.styleURL))")
         print("/// `-mapView:regionDidChangeAnimated:`")
         /// use for setting center
         print("mapView.setCenter(CLLocationCoordinate2D(latitude: \(latitude), longitude: \(longitude)), zoomLevel: \(zoomLevel), animated: false)")
