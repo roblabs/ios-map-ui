@@ -48,6 +48,7 @@
 		D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */; };
 		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
+		D7C4700D251A5CB100EAADFE /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = D7C4700C251A5CB100EAADFE /* FloatingPanel */; };
 		D7D4B58825014FC8002367CD /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = D7D4B58725014FC8002367CD /* Turf */; };
 		D7D4B590250152AC002367CD /* TurfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B58F250152AC002367CD /* TurfTests.swift */; };
 		D7E7E86324CB5CBF00F2BC9E /* Mapbox_starterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E86224CB5CBF00F2BC9E /* Mapbox_starterTests.swift */; };
@@ -171,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7D4B58825014FC8002367CD /* Turf in Frameworks */,
+				D7C4700D251A5CB100EAADFE /* FloatingPanel in Frameworks */,
 				FD602DCC1FC236CA002DA06A /* Mapbox.framework in Frameworks */,
 				CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */,
 			);
@@ -406,6 +408,7 @@
 			name = "Mapbox-starter";
 			packageProductDependencies = (
 				D7D4B58725014FC8002367CD /* Turf */,
+				D7C4700C251A5CB100EAADFE /* FloatingPanel */,
 			);
 			productName = starter;
 			productReference = FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */;
@@ -453,6 +456,7 @@
 			mainGroup = FD602DAD1FC22DAD002DA06A;
 			packageReferences = (
 				D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */,
+				D7C4700B251A5CB100EAADFE /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = FD602DB71FC22DAD002DA06A /* Products */;
 			projectDirPath = "";
@@ -980,6 +984,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D7C4700B251A5CB100EAADFE /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SCENEE/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.6;
+			};
+		};
 		D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/turf-swift.git";
@@ -991,6 +1003,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D7C4700C251A5CB100EAADFE /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7C4700B251A5CB100EAADFE /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
 		D7D4B58725014FC8002367CD /* Turf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */;

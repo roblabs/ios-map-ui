@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "FloatingPanel",
+        "repositoryURL": "https://github.com/SCENEE/FloatingPanel.git",
+        "state": {
+          "branch": null,
+          "revision": "ca7596e1cae161415f54059a8c44b82c95724160",
+          "version": "1.7.6"
+        }
+      },
+      {
         "package": "Turf",
         "repositoryURL": "https://github.com/mapbox/turf-swift.git",
         "state": {
