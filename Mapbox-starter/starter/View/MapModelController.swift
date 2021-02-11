@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FloatingPanel
 import Mapbox
 import Turf
 
@@ -19,27 +18,6 @@ class MapModelController: UIViewController {
     
     var model: MapViewModel?
     private let locationManager = LocationManager.shared
-    
-    // MARK: View attributes/objects
-    
-    private var panelState: PanelState = .search {
-        didSet {
-            // deallocate previous panel controllers
-            searchVC = nil
-            settingsVC = nil
-            
-            let showingSettings = panelState == .settings
-            
-            // hide top right buttons for settings panel
-            containerView.isHidden = showingSettings
-            
-            // hide compass button for settings panel
-            mapView.compassView.compassVisibility = showingSettings ? .hidden : .adaptive
-            
-            // exchange floating panels for current panelState
-            exchangeFPC()
-        }
-    }
     
     /// test list of Islands from `grids.geojson`
     let sanJuanIslands = ["Orcas", "Jones", "Sucia", "Matia", "Stuart", "Johns"] // main list, TODO:  this should be parsed from the GeoJSON
@@ -62,16 +40,9 @@ class MapModelController: UIViewController {
     }
     
     var grids = Grids()
-    
-    private lazy var searchLayout = SearchPanelLayout(parentSize: view.frame.size)
-    private lazy var settingsLayout = SettingsPanelLayout(parentSize: view.frame.size)
-    
-    var fpc: FloatingPanelController!
+
     /// Progress for offline maps
     var progressView: UIProgressView!
-    
-    private var searchVC: SearchPanelController!
-    private var settingsVC: SettingsPanelController!
     
     private lazy var mapView: MGLMapView! = {
         let mapView = MGLMapView(frame: view.bounds, styleURL: Default.style.url)
@@ -147,11 +118,6 @@ class MapModelController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        // update layouts for new view.frame.size
-        searchLayout.parentSize = size
-        settingsLayout.parentSize = size
-        fpc.updateLayout()
     }
     
     private func loadModel() {
@@ -179,9 +145,6 @@ class MapModelController: UIViewController {
     private func loadSubViews() {
         NSLayoutConstraint.activate(viewConstraints)
         
-        // add initial floating panel controller
-        addFPC()
-        
         // notify GPS Button when new location services determined
         NotificationCenter.default.addObserver(
             self,
@@ -189,37 +152,6 @@ class MapModelController: UIViewController {
             name: .locationServicesStatusChange,
             object: nil
         )
-    }
-    
-    private func addFPC() {
-        fpc = FloatingPanelController()
-        fpc.view.translatesAutoresizingMaskIntoConstraints = false
-        fpc.delegate = self
-        fpc.surfaceView.shadowHidden = false
-        fpc.surfaceView.cornerRadius = Default.cornerRadius / 2
-        fpc.surfaceView.grabberTopPadding = Default.grabberPadding
-        fpc.surfaceView.grabberHandleHeight = Default.grabberHandleHeight
-        configurePanel()
-    }
-    
-    // specifically configure newly added fpc based on which panel
-    private func configurePanel() {
-        
-        // set floating panel based on state
-        switch panelState {
-        case .search:
-            searchVC = SearchPanelController(places: model!.map.mappedPlaces)
-            searchVC.delegate = self
-            fpc.set(contentViewController: searchVC)
-            fpc.track(scrollView: searchVC.tableView)
-        case .settings:
-            settingsVC = SettingsPanelController()
-            settingsVC.delegate = self
-            fpc.set(contentViewController: settingsVC)
-        }
-
-        // add panel to parent controller
-        fpc.addPanel(toParent: self, animated: true)
     }
     
     // configure compassView position based on button containerView
@@ -244,7 +176,9 @@ class MapModelController: UIViewController {
     }
     
     @objc func detailsTapped() {
-        panelState = .settings
+//        panelState = .settings
+        toggleLayer("layer-osm")
+//        updateRasterSource()
     }
     
     @objc func gpsTapped() {
@@ -267,23 +201,6 @@ class MapModelController: UIViewController {
         
         locationManager.toggleUpdatingLocation()
     }
-    
-    private func exchangeFPC() {
-        // cancel scrollView tracking if there was one
-        fpc.track(scrollView: nil)
-        
-        // hide previous panel
-        // afterwards, replace with new panel
-        fpc.hide(animated: true) { [weak self] in
-            
-            // remove panel/panelcontroler
-            self!.fpc.removePanelFromParent(animated: false)
-            
-            // add new panelcontroller
-            self!.addFPC()
-        }
-    }
-    
     // MARK: Errors
     
     private func handle(error: Error) {
@@ -570,9 +487,9 @@ po mapView.style?.layers
 
         #if DEBUG
         print()
-        print("Style    \(mapView.style?.name!)")
+        print("Style    \(String(describing: mapView.style?.name!))")
         print("styleURL \(mapView.styleURL!)")
-        print("source   \(mapView.style?.source(withIdentifier: layer))")
+        print("source   \(String(describing: mapView.style?.source(withIdentifier: layer)))")
         print("id:      \(layer)")
         let visibilityDescription = layerVisibility == true ? "visible" : "none"
         print("         layout.visibility: \(visibilityDescription)")
@@ -748,136 +665,6 @@ po mapView.style?.sources
         layer.fillOpacity = NSExpression(forConstantValue: 0.5)
 
         style.addLayer(layer)
-    }
-}
-
-// MARK: - extension FloatingPanelController
-extension MapModelController: FloatingPanelControllerDelegate {
-    enum PanelState {
-        case search, settings
-    }
-    
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        switch panelState {
-        case .search: return searchLayout
-        case .settings: return settingsLayout
-        }
-    }
-    
-    func floatingPanelDidMove(_ vc: FloatingPanelController) {
-        // animate searchVC's table showing and hiding on drag
-        guard panelState == .search else { return }
-        
-        let y = vc.surfaceView.frame.origin.y
-        let halfY = vc.originYOfSurface(for: .half)
-        let tipY = vc.originYOfSurface(for: .tip)
-        
-        let offset = tipY - y
-        let mrgn = tipY - halfY // animatable margin between half and tip positions
-        
-        if offset >= 0 {
-            let prog = min(1.0, offset / mrgn)
-            searchVC.tableView.alpha = prog
-        }
-    }
-    
-    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
-        // if searching and you start to drag
-        // resign the search bar if responder
-        if panelState == .search && vc.position == .full {
-            searchVC.resignSearchBar()
-        } else if panelState == .settings && vc.position == .full {
-            settingsVC.updateSettingsCollection(forState: .button)
-        }
-    }
-    
-    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
-        // if dragged fast enough for fpc to leave view:
-        // renew with another fpc
-        if targetPosition == .hidden {
-            exchangeFPC()
-        }
-    }
-    
-    func floatingPanelDidChangePosition(_ vc: FloatingPanelController) {
-        switch panelState {
-        case .search:
-            updateSearchTable(forPositionChangeOf: vc)
-        case .settings:
-            updateSettingsCollection(forPositionChangeOf: vc)
-        }
-    }
-    
-    private func updateSearchTable(forPositionChangeOf vc: FloatingPanelController) {
-        guard searchVC != nil else { return }
-        
-        // update currentPosition variable for searchVC
-        searchVC.currentPosition = vc.position
-        
-        // animate searchVC table alpha on position changes
-        var trgt: CGFloat
-        
-        switch vc.position {
-        case .full, .half: trgt = 1
-        case .tip, .hidden: trgt = 0
-        @unknown default: fatalError("Unknown FloatingPanel position")
-        }
-        
-        let tbl = searchVC.tableView
-        let t = Default.animationDuration
-        UIView.animate(withDuration: t) { tbl.alpha = trgt }
-    }
-    
-    private func updateSettingsCollection(forPositionChangeOf vc: FloatingPanelController) {
-        let size = view.bounds.size
-        
-        if vc.position == .full && size.width < size.height {
-            settingsVC.updateSettingsCollection(forState: .collection)
-        }
-    }
-}
-
-// MARK: - extension Search Panel
-extension MapModelController: SearchPanelControllerDelegate {
-    
-    func didBeginSearching() {
-        let selected = mapView.selectedAnnotations.first
-        mapView.deselectAnnotation(selected, animated: true)
-        fpc.move(to: .full, animated: true)
-    }
-    
-    func didCancelSearch() {
-        fpc.move(to: .half, animated: true)
-    }
-    
-    func didSelect(place: Place) {
-        searchVC.resignSearchBar()
-        let matches = model!.annotations.filter { $0.place == place }
-        guard let annotation = matches.first else { return }
-        
-        fpc.move(to: .tip, animated: true) {
-            self.mapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
-        }
-    }
-}
-
-// MARK: - extension Settings Panel
-extension MapModelController: SettingsPanelControllerDelegate {
-    func styleSelected(_ style: MapStyle) {
-        model?.updateStyle(to: style)
-        mapView.styleURL = style.url
-    }
-    
-    func showSettingsTapped() {
-        fpc.move(to: .full, animated: true, completion: { [weak self] in
-            self?.settingsVC.updateSettingsCollection(forState: .collection)
-        })
-    }
-    
-    func didDismiss() {
-        // hide settings fpc on dismissal call from settings controller
-        // do so by setting panelState, which fires fpc exchange method
-        panelState = .search
     }
 }
 

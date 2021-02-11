@@ -17,11 +17,7 @@
 		CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */; };
 		CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26823172652006E6B65 /* MapModelController.swift */; };
 		CF4EF28923172653006E6B65 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26923172652006E6B65 /* PlaceTableViewCell.swift */; };
-		CF4EF28A23172653006E6B65 /* SearchPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26A23172652006E6B65 /* SearchPanelController.swift */; };
-		CF4EF28B23172653006E6B65 /* SearchPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26B23172652006E6B65 /* SearchPanelLayout.swift */; };
 		CF4EF28C23172653006E6B65 /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26C23172652006E6B65 /* PlaceAnnotationView.swift */; };
-		CF4EF28D23172653006E6B65 /* SettingsPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */; };
-		CF4EF28E23172653006E6B65 /* SettingsPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */; };
 		CF4EF28F23172653006E6B65 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF26F23172652006E6B65 /* MapViewModel.swift */; };
 		CF4EF29023172653006E6B65 /* GPSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27023172652006E6B65 /* GPSButton.swift */; };
 		CF4EF29123172653006E6B65 /* PanelInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF27123172652006E6B65 /* PanelInset.swift */; };
@@ -42,11 +38,10 @@
 		CF4EF2A123172653006E6B65 /* PlaceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28323172653006E6B65 /* PlaceCategory.swift */; };
 		CF4EF2A223172653006E6B65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28423172653006E6B65 /* Map.swift */; };
 		CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4EF28523172653006E6B65 /* MapBoundaries.swift */; };
-		CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4EF2A423172840006E6B65 /* FloatingPanel.framework */; };
+		D700760E25D587E9000B7E78 /* MapboxMobileEvents in Frameworks */ = {isa = PBXBuildFile; productRef = D700760D25D587E9000B7E78 /* MapboxMobileEvents */; };
+		D700761025D587E9000B7E78 /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = D700760F25D587E9000B7E78 /* Mapbox */; };
 		D7102E2224C7E9DC0095B9B1 /* grids.geojson in Resources */ = {isa = PBXBuildFile; fileRef = D7102E2124C7E9DB0095B9B1 /* grids.geojson */; };
-		D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */; };
 		D766ED5824DA291F001FA28A /* Mapbox_starterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */; };
-		D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */; };
 		D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */; };
 		D7D4B58825014FC8002367CD /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = D7D4B58725014FC8002367CD /* Turf */; };
 		D7D4B590250152AC002367CD /* TurfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B58F250152AC002367CD /* TurfTests.swift */; };
@@ -54,7 +49,6 @@
 		FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD602DB91FC22DAD002DA06A /* AppDelegate.swift */; };
 		FD602DC11FC22DAD002DA06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC01FC22DAD002DA06A /* Assets.xcassets */; };
 		FD602DC41FC22DAD002DA06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD602DC21FC22DAD002DA06A /* LaunchScreen.storyboard */; };
-		FD602DCC1FC236CA002DA06A /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD602DCB1FC236CA002DA06A /* Mapbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,11 +86,7 @@
 		CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF4EF26823172652006E6B65 /* MapModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModelController.swift; sourceTree = "<group>"; };
 		CF4EF26923172652006E6B65 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
-		CF4EF26A23172652006E6B65 /* SearchPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPanelController.swift; sourceTree = "<group>"; };
-		CF4EF26B23172652006E6B65 /* SearchPanelLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPanelLayout.swift; sourceTree = "<group>"; };
 		CF4EF26C23172652006E6B65 /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
-		CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPanelLayout.swift; sourceTree = "<group>"; };
-		CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPanelController.swift; sourceTree = "<group>"; };
 		CF4EF26F23172652006E6B65 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		CF4EF27023172652006E6B65 /* GPSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPSButton.swift; sourceTree = "<group>"; };
 		CF4EF27123172652006E6B65 /* PanelInset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelInset.swift; sourceTree = "<group>"; };
@@ -119,14 +109,12 @@
 		CF4EF28523172653006E6B65 /* MapBoundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBoundaries.swift; sourceTree = "<group>"; };
 		CF4EF2A423172840006E6B65 /* FloatingPanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FloatingPanel.framework; path = Carthage/Build/iOS/FloatingPanel.framework; sourceTree = "<group>"; };
 		D7102E2124C7E9DB0095B9B1 /* grids.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.geojson; sourceTree = "<group>"; };
-		D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailControllerPreview.swift; sourceTree = "<group>"; };
 		D766ED5524DA291F001FA28A /* Mapbox-starterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mapbox-starterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D766ED5724DA291F001FA28A /* Mapbox_starterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapbox_starterUITests.swift; sourceTree = "<group>"; };
 		D766ED5924DA291F001FA28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D766ED6124DA2E36001FA28A /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		D766ED6324DA2E44001FA28A /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
 		D766ED6524DA2EFB001FA28A /* Mapbox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Mapbox; path = Carthage/Build/iOS/Mapbox.framework/Mapbox; sourceTree = "<group>"; };
-		D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPanelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelControllerPreview.swift; sourceTree = "<group>"; };
 		D7BED77424AFB03600EFF487 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D7D4B58D250152AB002367CD /* TurfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +129,6 @@
 		FD602DC31FC22DAD002DA06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD602DC51FC22DAD002DA06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD602DCB1FC236CA002DA06A /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
-		FD9CD1911FC23D4F00B0D313 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,9 +157,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D700761025D587E9000B7E78 /* Mapbox in Frameworks */,
+				D700760E25D587E9000B7E78 /* MapboxMobileEvents in Frameworks */,
 				D7D4B58825014FC8002367CD /* Turf in Frameworks */,
-				FD602DCC1FC236CA002DA06A /* Mapbox.framework in Frameworks */,
-				CF4EF2A523172840006E6B65 /* FloatingPanel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,11 +174,7 @@
 				CF4EF26723172652006E6B65 /* CategoryCollectionViewCell.swift */,
 				CF4EF26823172652006E6B65 /* MapModelController.swift */,
 				CF4EF26923172652006E6B65 /* PlaceTableViewCell.swift */,
-				CF4EF26A23172652006E6B65 /* SearchPanelController.swift */,
-				CF4EF26B23172652006E6B65 /* SearchPanelLayout.swift */,
 				CF4EF26C23172652006E6B65 /* PlaceAnnotationView.swift */,
-				CF4EF26E23172652006E6B65 /* SettingsPanelController.swift */,
-				CF4EF26D23172652006E6B65 /* SettingsPanelLayout.swift */,
 				CF0D055424B763F3006C130C /* SettingsCollectionController.swift */,
 				CF0D055A24B76E6F006C130C /* SettingCollectionViewCell.swift */,
 				CF0D055C24B7ED28006C130C /* SettingDetailController.swift */,
@@ -259,9 +242,7 @@
 		D7BED76F24AFA72600EFF487 /* SwiftUI-Previews */ = {
 			isa = PBXGroup;
 			children = (
-				D7BED77024AFA79000EFF487 /* SettingsPanelControllerPreview.swift */,
 				D7BED77224AFAA2A00EFF487 /* MapModelControllerPreview.swift */,
-				D738ED4F24C20D7A00E21AE3 /* SettingDetailControllerPreview.swift */,
 			);
 			path = "SwiftUI-Previews";
 			sourceTree = "<group>";
@@ -288,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				D7BED77424AFB03600EFF487 /* README.md */,
-				FD9CD1911FC23D4F00B0D313 /* Cartfile */,
 				FD602DB81FC22DAD002DA06A /* starter */,
 				D7E7E86124CB5CBF00F2BC9E /* Mapbox-starterTests */,
 				D766ED5624DA291F001FA28A /* Mapbox-starterUITests */,
@@ -397,7 +377,6 @@
 				FD602DB21FC22DAD002DA06A /* Sources */,
 				FD602DB31FC22DAD002DA06A /* Frameworks */,
 				FD602DB41FC22DAD002DA06A /* Resources */,
-				FD602DCD1FC236EA002DA06A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -406,6 +385,8 @@
 			name = "Mapbox-starter";
 			packageProductDependencies = (
 				D7D4B58725014FC8002367CD /* Turf */,
+				D700760D25D587E9000B7E78 /* MapboxMobileEvents */,
+				D700760F25D587E9000B7E78 /* Mapbox */,
 			);
 			productName = starter;
 			productReference = FD602DB61FC22DAD002DA06A /* Mapbox-starter.app */;
@@ -453,6 +434,7 @@
 			mainGroup = FD602DAD1FC22DAD002DA06A;
 			packageReferences = (
 				D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */,
+				D700760C25D587E9000B7E78 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
 			);
 			productRefGroup = FD602DB71FC22DAD002DA06A /* Products */;
 			projectDirPath = "";
@@ -501,25 +483,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		FD602DCD1FC236EA002DA06A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/FloatingPanel.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MapboxMobileEvents.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D766ED5124DA291F001FA28A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -551,7 +514,6 @@
 			files = (
 				CF4EF28823172653006E6B65 /* MapModelController.swift in Sources */,
 				CF4EF29A23172653006E6B65 /* MapError.swift in Sources */,
-				D738ED5024C20D7A00E21AE3 /* SettingDetailControllerPreview.swift in Sources */,
 				CF4EF28723172653006E6B65 /* CategoryCollectionViewCell.swift in Sources */,
 				CF0D055D24B7ED28006C130C /* SettingDetailController.swift in Sources */,
 				CF4EF29D23172653006E6B65 /* PlaceCategory+Service.swift in Sources */,
@@ -561,25 +523,20 @@
 				CF2ED14A23E366BD001E17C7 /* LogManager.swift in Sources */,
 				CF4EF2A123172653006E6B65 /* PlaceCategory.swift in Sources */,
 				CF4EF28623172653006E6B65 /* PlaceAnnotation.swift in Sources */,
-				CF4EF28D23172653006E6B65 /* SettingsPanelLayout.swift in Sources */,
 				CF0D055924B76D88006C130C /* Setting+Service.swift in Sources */,
 				CF4EF2A223172653006E6B65 /* Map.swift in Sources */,
 				CF4EF2A023172653006E6B65 /* File.swift in Sources */,
 				CF0D055B24B76E6F006C130C /* SettingCollectionViewCell.swift in Sources */,
-				CF4EF28A23172653006E6B65 /* SearchPanelController.swift in Sources */,
 				CF4EF29E23172653006E6B65 /* MapStyle.swift in Sources */,
 				CF4EF29723172653006E6B65 /* Extensions.swift in Sources */,
 				CF4EF29F23172653006E6B65 /* Location+Service.swift in Sources */,
-				CF4EF28E23172653006E6B65 /* SettingsPanelController.swift in Sources */,
 				CF4EF29123172653006E6B65 /* PanelInset.swift in Sources */,
-				D7BED77124AFA79000EFF487 /* SettingsPanelControllerPreview.swift in Sources */,
 				CF4EF29623172653006E6B65 /* SerializationError.swift in Sources */,
 				CF0D055524B763F3006C130C /* SettingsCollectionController.swift in Sources */,
 				CF4EF29223172653006E6B65 /* DataService.swift in Sources */,
 				CF4EF29B23172653006E6B65 /* Location.swift in Sources */,
 				CF4EF2A323172653006E6B65 /* MapBoundaries.swift in Sources */,
 				FD602DBA1FC22DAD002DA06A /* AppDelegate.swift in Sources */,
-				CF4EF28B23172653006E6B65 /* SearchPanelLayout.swift in Sources */,
 				CF4EF29023172653006E6B65 /* GPSButton.swift in Sources */,
 				D7BED77324AFAA2A00EFF487 /* MapModelControllerPreview.swift in Sources */,
 				CF4EF29323172653006E6B65 /* Default.swift in Sources */,
@@ -980,6 +937,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D700760C25D587E9000B7E78 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.0;
+			};
+		};
 		D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/turf-swift.git";
@@ -991,6 +956,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D700760D25D587E9000B7E78 /* MapboxMobileEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D700760C25D587E9000B7E78 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = MapboxMobileEvents;
+		};
+		D700760F25D587E9000B7E78 /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D700760C25D587E9000B7E78 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
 		D7D4B58725014FC8002367CD /* Turf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7D4B58625014FC8002367CD /* XCRemoteSwiftPackageReference "turf-swift" */;
