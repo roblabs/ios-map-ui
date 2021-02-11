@@ -12,6 +12,10 @@ struct MapStyleCollection {
     // load Map Styles locally here 
     static let allStyles: [MapStyle] = [
         MapStyle(
+            title: "GeographyClass",
+            urlString: "https://raw.githubusercontent.com/roblabs/openmaptiles-ios-demo/master/OSM2VectorTiles/styles/geography-class.GitHub.json"
+        ),
+        MapStyle(
             title: "Streets",
             urlString: "mapbox://styles/mapbox/streets-v11"
         ),
