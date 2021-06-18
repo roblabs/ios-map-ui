@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D71F1ACE267D58BA00DDEBF4 /* MapView OSLog Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = D71F1ACD267D58BA00DDEBF4 /* MapView OSLog Extensions */; };
 		D7BB2FA923C0F8A900D94807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2FA823C0F8A900D94807 /* AppDelegate.swift */; };
 		D7BB2FAB23C0F8A900D94807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2FAA23C0F8A900D94807 /* SceneDelegate.swift */; };
 		D7BB2FAD23C0F8A900D94807 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2FAC23C0F8A900D94807 /* ContentView.swift */; };
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71F1ACE267D58BA00DDEBF4 /* MapView OSLog Extensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,9 @@
 			dependencies = (
 			);
 			name = "MapKit-demo";
+			packageProductDependencies = (
+				D71F1ACD267D58BA00DDEBF4 /* MapView OSLog Extensions */,
+			);
 			productName = "MapKit-demo";
 			productReference = D7BB2FA523C0F8A900D94807 /* MapKit-demo.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +200,9 @@
 				Base,
 			);
 			mainGroup = D7BB2F9C23C0F8A900D94807;
+			packageReferences = (
+				D71F1ACC267D58BA00DDEBF4 /* XCRemoteSwiftPackageReference "mapview-log-extensions" */,
+			);
 			productRefGroup = D7BB2FA623C0F8A900D94807 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -507,6 +515,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D71F1ACC267D58BA00DDEBF4 /* XCRemoteSwiftPackageReference "mapview-log-extensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roblabs/mapview-log-extensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.78.31415;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D71F1ACD267D58BA00DDEBF4 /* MapView OSLog Extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D71F1ACC267D58BA00DDEBF4 /* XCRemoteSwiftPackageReference "mapview-log-extensions" */;
+			productName = "MapView OSLog Extensions";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D7BB2F9D23C0F8A900D94807 /* Project object */;
 }

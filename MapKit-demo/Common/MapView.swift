@@ -8,6 +8,8 @@
 
 import SwiftUI
 import MapKit
+import OSLog
+import MapViewOSLogExtensions
 
 struct MapView: UIViewRepresentable {
     
@@ -28,6 +30,7 @@ struct MapView: UIViewRepresentable {
     @Binding var mapCamera: MKMapCamera
     
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
+        OSLog.mapView(.event)
         let mapView = MKMapView()
         
         // Accessing Map Properties
@@ -65,10 +68,12 @@ struct MapView: UIViewRepresentable {
         
         mapView.delegate = context.coordinator
         
+        OSLog.mapView(.event, "🖼 frame: \(mapView.frame)")
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: UIViewRepresentableContext<MapView>) {
+        OSLog.mapView(.event)
         let locationVisible = mapView.isUserLocationVisible
     }
     
@@ -81,6 +86,7 @@ struct MapView: UIViewRepresentable {
         var control: MapView
         
         init(_ control: MapView) {
+            OSLog.mapView(.event, OSLog.mapEvents.initDelegate.description)
             self.control = control
         }
         
@@ -91,65 +97,67 @@ struct MapView: UIViewRepresentable {
         // MARK: - Responding to Map Position Changes
         
         func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-            print("mapView(_:regionWillChangeAnimated:)")
+            OSLog.mapView(.event, OSLog.mapEvents.regionWillChangeAnimated.description)
         }
+
         
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            print("mapViewDidChangeVisibleRegion(_:)")
+            OSLog.mapView(.event, OSLog.mapEvents.DidChangeVisibleRegion.description)
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            print("mapView(_:regionDidChangeAnimated:)")
+            OSLog.mapView(.event, OSLog.mapEvents.regionDidChangeAnimated.description)
         }
         
         // MARK: - Loading the Map Data
         
         func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-            print("mapViewWillStartLoadingMap")
+            OSLog.mapView(.event, OSLog.mapEvents.WillStartLoadingMap.description)
         }
         
         func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-            print("mapViewDidFinishLoadingMap")
+            OSLog.mapView(.event, OSLog.mapEvents.DidFinishLoadingMap.description)
         }
         
         func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
-            print("mapViewDidFailLoadingMap(_:withError:)")
+            OSLog.mapView(.event)
         }
         
         func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-            print("mapViewWillStartRenderingMap")
+            OSLog.mapView(.event, OSLog.mapEvents.WillStartRenderingMap.description)
         }
         
         func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-            print("mapViewDidFinishRenderingMap \(mapView.camera.description)")
+            OSLog.mapView(.event, OSLog.mapEvents.DidFinishRenderingMap.description)
+            OSLog.mapView(.event, "\(OSLog.mapEvents.DidFinishRenderingMap.description):  \(mapView.camera.description)")
         }
         
         // MARK: - Tracking the User Location
 
         func mapViewDidStopLocatingUser(_ mapView: MKMapView) {
-            print("mapViewDidStopLocatingUser")
+            OSLog.mapView(.event)
         }
             
         func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
-            print("mapViewWillStartLocatingUser")
+            OSLog.mapView(.event)
         }
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-            print("mapView(_:didUpdate:)")
+            OSLog.mapView(.event)
         }
         
         func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
-            print("mapView(_:didFailToLocateUserWithError:)")
+            OSLog.mapView(.event)
         }
         
         func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
-            print("mapView(_:didChange:)")
+            OSLog.mapView(.event)
         }
         
         // MARK: - Managing Annotation Views
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            print("mapView(_:viewFor:)")
+            OSLog.mapView(.event)
             return MKAnnotationView()
         }
         
@@ -162,11 +170,11 @@ struct MapView: UIViewRepresentable {
         // MARK: - Selecting Annotation Views
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            print("mapView(_:didSelect:)")
+            OSLog.mapView(.event)
         }
         
         func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-            print("mapView(_:didDeselect:)")
+            OSLog.mapView(.event)
         }
         
         // MARK: - Managing the Display of Overlays
@@ -177,10 +185,9 @@ struct MapView: UIViewRepresentable {
 //        }
         
         func mapView(_ mapView: MKMapView, didAdd renderers: [MKOverlayRenderer]) {
-            print("mapView(_:didAdd:)")
+            OSLog.mapView(.event)
         }
     }
-    
 }
 
 

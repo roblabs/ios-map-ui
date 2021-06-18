@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "maplibre-gl-native",
+        "repositoryURL": "https://github.com/maplibre/maplibre-gl-native-distribution.git",
+        "state": {
+          "branch": null,
+          "revision": "7eaf6a9741e1a2bd698c4dfc4184cfa138f2aba3",
+          "version": "5.10.0"
+        }
+      },
+      {
+        "package": "MapView OSLog Extensions",
+        "repositoryURL": "https://github.com/roblabs/mapview-log-extensions.git",
+        "state": {
+          "branch": null,
+          "revision": "a30606ebbaaa1e82234a6d055bcd718a459fb3c2",
+          "version": "2.78.31415"
+        }
+      },
+      {
         "package": "Turf",
         "repositoryURL": "https://github.com/mapbox/turf-swift.git",
         "state": {
